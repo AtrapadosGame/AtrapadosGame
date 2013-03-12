@@ -1,4 +1,10 @@
 #pragma strict
+//Ojo, para evitar problemas en el nivel 1:
+// Dario --> Player1
+// Fabio --> Player2
+// Diana --> Player3
+// Cristina --> Player4
+
 	private var act_Player : GameObject;
 	private var ply_posx : float = 500;
 	private var ply_posy : float = 50;
@@ -102,7 +108,7 @@
 	
 	function Start () {
 		startTime = GetComponent(Timer).StartTime();
-		GetComponent(Player_Manager).destruirCristina();
+		//GetComponent(Player_Manager).destruirCristina();
 		GameObject.Find("Derrumbe").renderer.enabled = false;
 		GameObject.Find("Derrumbe").collider.enabled = false;
 		GameObject.Find("Derrumbe2").renderer.enabled = false;
@@ -429,7 +435,7 @@
 				Destroy(GameObject.Find("Armario"));
 				GameObject.Find("TAyuda").GetComponent(Interactor_Trigger).apagar();
 				GameObject.Find("CursorFuerza").GetComponent(CursorControl).DesactivarCursor();
-				GetComponent(Player_Manager).crearCristina();
+				GetComponent(Player_Manager).crearPlayer4();
 				cm1 = true;
 				yield WaitForSeconds(5);
 				cm1 = false;
@@ -462,8 +468,8 @@
 				text20 = false;
 				text33 = true;
 				gd = false;
-				GetComponent(Menu_script).ActivarCristina();
-				GetComponent(Player_Manager).darCristina().GetComponent(Interactor_Click).enabled = false;
+				GetComponent(Menu_script).activarP4();
+				GetComponent(Player_Manager).darPlayer4().GetComponent(Interactor_Click).enabled = false;
 				yield WaitForSeconds(5);
 				text33 = false;
 			}
@@ -571,7 +577,7 @@
 			text13 = true;
 			text12 = false;
 			gd = false;
-			GetComponent(Menu_script).ActivarFabio();
+			GetComponent(Menu_script).activarP2();
 			yield WaitForSeconds(5);
 			text13 = false;
 		}
@@ -601,7 +607,7 @@
 			text32 = true;
 			yield WaitForSeconds(5);
 			text32 = false;
-			GetComponent(Menu_script).ActivarDiana();
+			GetComponent(Menu_script).activarP3();
 		}
 		if(textID == 13){
 			text17 = true;

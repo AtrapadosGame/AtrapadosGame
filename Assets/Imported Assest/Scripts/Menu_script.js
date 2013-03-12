@@ -13,28 +13,22 @@ private var posY : int;
 private var ancho : int;
 private var alto : int;
 private var separacion : int;
-
-//Las siguientes variables controlan la aparicion de los botones de habilidad
 private var pausa :boolean = false;
 private var noPuedo : boolean = false;
 private var noHay : boolean = false;
-private var hMano : boolean = false;
-private var hFuerza : boolean = false;
-private var hCurar : boolean = false;
-private var hChiquita : boolean = false;
 
 //Las siguientes variables determinan si el personaje en cuestión está dentro del grupo
 // y es posible seleccionarlo para usarlo
-var estaDario : boolean = false;
-var estaDiana : boolean = false;
-var estaCristina : boolean= false;
-var estaFabio : boolean = false;
+var estaP1 : boolean = false;
+var estaP2 : boolean = false;
+var estaP3 : boolean= false;
+var estaP4 : boolean = false;
 
 //Las siguientes variables determinan las texturas de los botones de cada personaje
-var texturaDario : Texture2D;
-var texturaDiana : Texture2D;
-var texturaCristina : Texture2D;
-var texturaFabio : Texture2D;
+var texturaP1 : Texture2D;
+var texturaP2 : Texture2D;
+var texturaP3 : Texture2D;
+var texturaP4 : Texture2D;
 var texturaMano : Texture2D;
 var texturaFuerza : Texture2D;
 var texturaCurar : Texture2D;
@@ -48,7 +42,6 @@ function Start () {
 	alto = Screen.height/8;
 	separacion = 3;
 	player = GetComponent(Player_Manager).darActual();
-	hMano = true;
 }
 
 function Update (){
@@ -69,23 +62,23 @@ function OnGUI () {
 		}
 	
 		// Crea los botones de cada personaje
-		if(estaDario){
-			var bttDario = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaDario,"Boton"));
+		if(estaP1){
+			var bttP1 = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaP1,"Boton"));
 			posX += (ancho + separacion);
 		}
 	
-		if(estaDiana){
-			var bttDiana = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaDiana,"Boton"));
+		if(estaP2){
+			var bttP2 = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaP2,"Boton"));
 			posX += (ancho + separacion);
 		}
 	
-		if(estaCristina){
-			var bttCristina = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaCristina,"Boton"));
+		if(estaP3){
+			var bttP3 = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaP3,"Boton"));
 			posX += (ancho + separacion);
 		}
 	
-		if(estaFabio){
-			var bttFabio = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaFabio,"Boton"));
+		if(estaP4){
+			var bttP4 = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaP4,"Boton"));
 			posX += (ancho + separacion);
 		}
 	
@@ -98,20 +91,20 @@ function OnGUI () {
 		}
 	
 		//Maneja los eventos de presionar algún boton de la interfaz
-		if(bttDario && estaDario){
-			SendMessage ("DarioButton", SendMessageOptions.DontRequireReceiver);
+		if(bttP1 && estaP1){
+			P1Button();
 		}
 	
-		if(bttDiana && estaDiana){
-			SendMessage ("DianaButton", SendMessageOptions.DontRequireReceiver);
+		if(bttP2 && estaP2){
+			P2Button();
 		}
 	
-		if(bttCristina && estaCristina){
-			SendMessage ("CristinaButton", SendMessageOptions.DontRequireReceiver);
+		if(bttP3 && estaP3){
+			P3Button();
 		}
 	
-		if(bttFabio && estaFabio){
-			SendMessage ("FabioButton", SendMessageOptions.DontRequireReceiver);
+		if(bttP4 && estaP4){
+			P4Button();
 		}
 	}
 	else{
@@ -152,46 +145,6 @@ function OnGUI () {
 	}
 }
 
-//Estas funciones activan o desactivan algún personaje dentro del grupo
-function ActivarDario(){
-	estaDario = true;
-	GetComponent(Player_Manager).activarDario();
-}
-
-function ActivarDiana(){
-	estaDiana = true;
-	hCurar = true;
-	GetComponent(Player_Manager).activarDiana();
-}
-
-function ActivarCristina(){
-	estaCristina = true;
-	hChiquita = true;
-	GetComponent(Player_Manager).activarCristina();
-}
-
-function ActivarFabio(){
-	estaFabio = true;
-	hFuerza = true;
-	GetComponent(Player_Manager).activarFabio();
-}
-
-function DesactivarDario(){
-	estaDario = false;
-}
-
-function DesactivarDiana(){
-	estaDiana = false;
-}
-
-function DesactivarCristina(){
-	estaCristina = false;
-}
-
-function DesactivarFabio(){
-	estaFabio = false;
-}
-
 // Estas funciones manejan los eventos que ocurren si el cursor está sobre los botones de personajes
 // Evita que los personajes se muevan cuando se hace click en un boton
 function BotonOnMouseOver() {
@@ -203,25 +156,42 @@ function BotonOnMouseOut () {
 	encenderMovimiento();
 }
 
+//Estas funcones activan los flags de los botones de personajes
+function activarP1(){
+	estaP1 = true;
+}
+
+function activarP2(){
+	estaP2 = true;
+}
+
+function activarP3(){
+	estaP3 = true;
+}
+
+function activarP4(){
+	estaP4 = true;
+}
+
 // Estas funciones controlan la accion de los botones
 // Cambian el control del personaje actual
-function DarioButton(){
-	GetComponent(Player_Manager).cambiarDario();
+function P1Button(){
+	GetComponent(Player_Manager).cambiarP1();
 	player = GetComponent(Player_Manager).darActual();
 }
 
-function DianaButton(){
-	GetComponent(Player_Manager).cambiarDiana();
+function P2Button(){
+	GetComponent(Player_Manager).cambiarP2();
 	player = GetComponent(Player_Manager).darActual();
 }
 
-function CristinaButton(){
-	GetComponent(Player_Manager).cambiarCristina();
+function P3Button(){
+	GetComponent(Player_Manager).cambiarP3();
 	player = GetComponent(Player_Manager).darActual();
 }
 
-function FabioButton(){
-	GetComponent(Player_Manager).cambiarFabio();
+function P4Button(){
+	GetComponent(Player_Manager).cambiarP4();
 	player = GetComponent(Player_Manager).darActual();
 }
 
@@ -249,13 +219,13 @@ function ActualizarActualObject(nuevo: GameObject){
 
 function EstaPersonaje(name : String){
 	if(name.Equals("Dario"))
-		return estaDario;
+		return estaP1;
 	if(name.Equals("Diana"))
-		return estaDiana;
+		return estaP2;
 	if(name.Equals("Cristina"))
-		return estaCristina;
+		return estaP3;
 	if(name.Equals("Fabio"))
-		return estaFabio;
+		return estaP4;
 }
 
 function EstaItem(comando : String){
