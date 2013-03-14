@@ -197,11 +197,11 @@ function P4Button(){
 
 //Estas funciones permiten controlar el movimiento cuando se presiona un boton 
 function apagarMovimiento(){
-	player.GetComponent(MoverInput).MoverOff();
+	player.GetComponent(MoverClick).MoverOff();
 }
 
 function encenderMovimiento(){
-	player.GetComponent(MoverInput).MoverOn();
+	player.GetComponent(MoverClick).MoverOn();
 }
 
 //Permite agregar nuevos items al menu

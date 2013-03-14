@@ -5,7 +5,6 @@ private var restSeconds : int;
 private var roundedRestSeconds : int;
 private var displaySeconds : int;
 private var displayMinutes : int;
-var myFont : Font;
 
 var countDownSeconds : int;
 
@@ -28,11 +27,9 @@ function OnGUI () {
     displayMinutes = roundedRestSeconds / 60; 
 
     var text : String = String.Format ("{0:00}:{1:00}", displayMinutes, displaySeconds);
-    var myStyle = new GUIStyle();
-    myStyle.font = myFont;
     var anchoLabel:int = Screen.width/8;
     var altoLabel:int = Screen.height/8; 
-    GUI.Label (Rect (Screen.width/2 - anchoLabel, 0, anchoLabel, altoLabel), text,myStyle);
+    GUI.Label (Rect (Screen.width/2 - anchoLabel, 0, anchoLabel, altoLabel), text);
 }
 
 function StartTime(){

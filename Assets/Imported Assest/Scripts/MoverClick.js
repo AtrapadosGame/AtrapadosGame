@@ -1,7 +1,7 @@
 #pragma strict
 //Mueve el objeto hacia la posición donde se hizo click con el mouse
  
-private var mover:boolean = true;// Determina la posibilidad de moverse o no
+private var mover:boolean = false;// Determina la posibilidad de moverse o no
 private var targetPosition:Vector3;//Posición a la cual moverse
 var smooth:int; // Determina la velocidad de movimiento
 

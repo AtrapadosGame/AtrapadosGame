@@ -108,7 +108,7 @@
 	
 	function Start () {
 		startTime = GetComponent(Timer).StartTime();
-		//GetComponent(Player_Manager).destruirCristina();
+		GetComponent(Player_Manager).destruirPlayer4();
 		GameObject.Find("Derrumbe").renderer.enabled = false;
 		GameObject.Find("Derrumbe").collider.enabled = false;
 		GameObject.Find("Derrumbe2").renderer.enabled = false;

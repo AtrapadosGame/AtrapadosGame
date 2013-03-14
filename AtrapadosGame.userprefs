@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\EventManagerScripts\Manager1.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Managers\Manager1.js">
     <Files>
-      <File FileName="Assets\Imported Assest\Scripts\EventManagerScripts\Player_Manager.js" Line="150" Column="17" />
-      <File FileName="Assets\Imported Assest\Scripts\EventManagerScripts\Manager1.js" Line="438" Column="49" />
-      <File FileName="Assets\Imported Assest\Scripts\Menu_script.js" Line="174" Column="2" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="505" Column="84" />
+      <File FileName="Assets\Imported Assest\Scripts\Menu_script.js" Line="204" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -13,7 +13,7 @@ function Awake(){
 }
 
 function Start () {
-	actual.GetComponent(MoverInput).MoverOn();
+	actual.GetComponent(MoverClick).MoverOn();
 }
 
 function Update () {
@@ -25,10 +25,10 @@ function cambiarP1(){
 	var rotActual = actual.transform.rotation;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverInput).MoverOff();
+	actual.GetComponent(MoverClick).MoverOff();
 	player1.transform.position = posActual;
 	crearPlayer1();
-	player1.GetComponent(MoverInput).MoverOn();
+	player1.GetComponent(MoverClick).MoverOn();
 	actual = player1;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
@@ -39,10 +39,10 @@ function cambiarP4(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverInput).MoverOff();
+	actual.GetComponent(MoverClick).MoverOff();
 	player4.transform.position = posActual;
 	crearPlayer4();
-	player4.GetComponent(MoverInput).MoverOn();
+	player4.GetComponent(MoverClick).MoverOn();
 	actual = player4;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
@@ -53,10 +53,10 @@ function cambiarP2(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverInput).MoverOff();
+	actual.GetComponent(MoverClick).MoverOff();
 	player2.transform.position = posActual;
 	crearPlayer2();
-	player2.GetComponent(MoverInput).MoverOn();
+	player2.GetComponent(MoverClick).MoverOn();
 	actual = player2;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
@@ -67,10 +67,10 @@ function cambiarP3(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverInput).MoverOff();
+	actual.GetComponent(MoverClick).MoverOff();
 	player3.transform.position = posActual;
 	crearPlayer3();
-	player3.GetComponent(MoverInput).MoverOn();
+	player3.GetComponent(MoverClick).MoverOn();
 	actual = player3;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
@@ -139,22 +139,22 @@ function crearPlayer2(){
 
 function activarPlayer1(){
 	destruirPlayer1();
-	player1.GetComponent(MoverInput).MoverOn();
+	player1.GetComponent(MoverClick).MoverOn();
 }
 
 function activarPlayer2(){
 	destruirPlayer2();
-	player2.GetComponent(MoverInput).MoverOn();
+	player2.GetComponent(MoverClick).MoverOn();
 }
 
 function activarPlayer3(){
 	destruirPlayer3();
-	player3.GetComponent(MoverInput).MoverOn();
+	player3.GetComponent(MoverClick).MoverOn();
 }
 
 function activarPlayer4(){
 	destruirPlayer4();
-	player4.GetComponent(MoverInput).MoverOn();
+	player4.GetComponent(MoverClick).MoverOn();
 }
 
 
