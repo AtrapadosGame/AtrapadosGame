@@ -305,7 +305,7 @@
 		}
 		if(objName.Equals("Fabio")){
 			StartCoroutine(ShowAndWaitUntilHide(9));
-			GameObject.Find("TFabio").GetComponent(Interactor_Trigger).apagar();
+			GameObject.Find("FabioTrigger").GetComponent(Interactor_Trigger).apagar();
 			StartCoroutine(ShowAndWaitUntilHide(10));
 		}
 		if(objName.Equals("Salida")){
@@ -553,6 +553,10 @@
 			gp = false;
 		}
 		if(textID == 9){
+			var target : Vector3 = new Vector3(act_Player.transform.position.x - 1.5,act_Player.transform.position.y,act_Player.transform.position.z);
+			//act_Player.transform.position = Vector3.MoveTowards(act_Player.transform.position, target, 1.5);
+			act_Player.GetComponent(MoverClick).SetTargetPosition(target);
+			act_Player.GetComponent(MoverClick).MoverOff();
 			text9 = true;
 			yield WaitForSeconds(3);
 			text10 = true;
@@ -578,6 +582,7 @@
 			text12 = false;
 			gd = false;
 			GetComponent(Menu_script).activarP2();
+			act_Player.GetComponent(MoverClick).MoverOn();
 			yield WaitForSeconds(5);
 			text13 = false;
 		}

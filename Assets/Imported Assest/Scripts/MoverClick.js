@@ -3,7 +3,7 @@
  
 private var mover:boolean = false;// Determina la posibilidad de moverse o no
 private var targetPosition:Vector3;//Posición a la cual moverse
-var smooth:int; // Determina la velocidad de movimiento
+var smooth:float; // Determina la velocidad de movimiento
 
 function Awake(){
 	targetPosition = Vector3.zero;
@@ -20,9 +20,6 @@ function Update () {
 		if (playerPlane.Raycast (ray, hitdist)) {
 			var targetPoint = ray.GetPoint(hitdist);
 			targetPosition = ray.GetPoint(hitdist);
-			//Rota para mirar ahacia la posición deseada
-			//var targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-			//transform.rotation = targetRotation;
 		}
 		
 		

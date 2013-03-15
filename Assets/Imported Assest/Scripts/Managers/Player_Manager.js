@@ -25,8 +25,9 @@ function cambiarP1(){
 	var rotActual = actual.transform.rotation;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverClick).MoverOff();
+	//actual.GetComponent(MoverClick).MoverOff();
 	player1.transform.position = posActual;
+	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
 	crearPlayer1();
 	player1.GetComponent(MoverClick).MoverOn();
 	actual = player1;
@@ -39,7 +40,7 @@ function cambiarP4(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverClick).MoverOff();
+	//actual.GetComponent(MoverClick).MoverOff();
 	player4.transform.position = posActual;
 	crearPlayer4();
 	player4.GetComponent(MoverClick).MoverOn();
@@ -53,8 +54,9 @@ function cambiarP2(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverClick).MoverOff();
+	//actual.GetComponent(MoverClick).MoverOff();
 	player2.transform.position = posActual;
+	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
 	crearPlayer2();
 	player2.GetComponent(MoverClick).MoverOn();
 	actual = player2;
@@ -67,7 +69,7 @@ function cambiarP3(){
 	var posActual = actual.transform.position;
 	actual.renderer.enabled = false;
 	actual.collider.enabled = false;
-	actual.GetComponent(MoverClick).MoverOff();
+	//actual.GetComponent(MoverClick).MoverOff();
 	player3.transform.position = posActual;
 	crearPlayer3();
 	player3.GetComponent(MoverClick).MoverOn();
