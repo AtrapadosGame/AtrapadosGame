@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{66CF740A-C0A7-5BE5-1423-28218A0B0D44}</ProjectGuid>
+	<ProjectGuid>{3CA141D7-87BC-8C94-5635-F0B7B1BF15F5}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,38 +44,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Imported Assest\Scripts\CameraRotation.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\CursorControl\CursorControl.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\CursorControl\CursorControlLlave.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Game_Over.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Habilidades_script.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Click.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Habilidad.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Trigger.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\IEvent_manager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\Manager1.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\Player_Manager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\ScreenManager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Menu_script.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverClick.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverInput.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverInput2.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\OnDistance.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Player.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Timer.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\MouseOrbit.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothFollow.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothLookAt.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\aparecer texturas.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\countdown.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\home.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\jugar.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\load2.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\loaddlevel.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\siguiente.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver a jugar.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver2.js" />
+     <Compile Include="Assets\SM2\Editor\AnBSoft\Editors\SpriteTimelineEditor.cs" />
+     <Compile Include="Assets\SM2\Editor\AnBSoft\Wizards\About_SM2.cs" />
+     <Compile Include="Assets\SM2\Editor\AnBSoft\Wizards\BuildAtlases.cs" />
+     <Compile Include="Assets\SM2\Editor\AnBSoft\Wizards\SetRenderCamera.cs" />
+     <Compile Include="Assets\SM2\Editor\AnBSoft\Wizards\SpriteSizer.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
@@ -92,12 +65,17 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:\Desarrollo\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{3EF6F99F-C977-C575-7845-8B3EE8C21C8C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{6222D603-D86F-CFD8-762B-4B62F44FCD93}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{66CF740A-C0A7-5BE5-1423-28218A0B0D44}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
