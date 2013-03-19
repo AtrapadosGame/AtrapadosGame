@@ -5,6 +5,10 @@ var player1 : GameObject;
 var player2 : GameObject;
 var player3 : GameObject;
 var player4 : GameObject;
+var cursorP1 : String;
+var cursorP2 : String;
+var cursorP3 : String;
+var cursorP4 : String;
 var camara : Camera;
 var luz : GameObject;  
 
@@ -33,7 +37,7 @@ function cambiarP1(){
 	actual = player1;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor("CursorH");
+	GetComponent(ScreenManager).CambiarCursor(cursorP1);
 }
 
 function cambiarP4(){
@@ -42,12 +46,13 @@ function cambiarP4(){
 	actual.collider.enabled = false;
 	//actual.GetComponent(MoverClick).MoverOff();
 	player4.transform.position = posActual;
+	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
 	crearPlayer4();
 	player4.GetComponent(MoverClick).MoverOn();
 	actual = player4;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor("CursorFuerza");
+	GetComponent(ScreenManager).CambiarCursor(cursorP4);
 }
 
 function cambiarP2(){
@@ -62,7 +67,7 @@ function cambiarP2(){
 	actual = player2;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor("CursorCura");
+	GetComponent(ScreenManager).CambiarCursor(cursorP2);
 }
 
 function cambiarP3(){
@@ -71,12 +76,13 @@ function cambiarP3(){
 	actual.collider.enabled = false;
 	//actual.GetComponent(MoverClick).MoverOff();
 	player3.transform.position = posActual;
+	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
 	crearPlayer3();
 	player3.GetComponent(MoverClick).MoverOn();
 	actual = player3;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor("CursorPeque");
+	GetComponent(ScreenManager).CambiarCursor(cursorP3);
 }
 
 function darActual(){

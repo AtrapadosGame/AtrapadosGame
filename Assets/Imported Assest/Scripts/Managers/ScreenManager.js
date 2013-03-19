@@ -3,7 +3,7 @@
 private var cursor : String = "CursorMano"; 
 
 function Awake () {
-	Screen.SetResolution (960, 600, false);
+	Screen.SetResolution (1024, 768, false);
 }
 
 function Cursor(){

@@ -313,12 +313,14 @@
 			var diana : boolean = GetComponent(Menu_script).EstaPersonaje("Diana");
 			var cris : boolean = GetComponent(Menu_script).EstaPersonaje("Cristina");
 			if(fabio && diana && cris){
+				act_Player.GetComponent(MoverClick).MoverOff();
 				text22 = true;
-				yield WaitForSeconds(5);
+				yield WaitForSeconds(3);
 				text22 = false;
 				gp = false;
-				Destroy(GameObject.Find("Lsalida"));
-				GameObject.Find("TSalida").GetComponent(Interactor_Trigger).apagar();
+				Destroy(GameObject.Find("LuzSalidaA"));
+				act_Player.GetComponent(MoverClick).MoverOn();
+				GameObject.Find("SalidaA").GetComponent(Interactor_Trigger).apagar();
 			}
 			else{
 				text21 = true;
@@ -332,8 +334,8 @@
 		fabio = GetComponent(Menu_script).EstaPersonaje("Fabio");
 		diana = GetComponent(Menu_script).EstaPersonaje("Diana");
 		cris = GetComponent(Menu_script).EstaPersonaje("Cristina");
-		print(fabio+ ""+diana+""+cris);
-			if(fabio && diana && cris){
+		if(fabio && diana && cris){
+			act_Player.GetComponent(MoverClick).MoverOff();
 				var der = GameObject.Find("Derrumbe2");
 				der.renderer.enabled = true;
 				der.collider.enabled = true;
@@ -343,17 +345,19 @@
 				yield WaitForSeconds(3);
 				text23 = false;
 				gp = false;
-				GameObject.Find("Lsalida2").transform.position = new Vector3(-10.3,0.5,-12);
-				GameObject.Find("TSalida2").GetComponent(Interactor_Trigger).apagar();
+				GameObject.Find("LuzSalidaB").transform.position = new Vector3(-10.3,0.5,-12);
+				GameObject.Find("SalidaB").GetComponent(Interactor_Trigger).apagar();
+				act_Player.GetComponent(MoverClick).MoverOn();
 			}
 			else{
 				text21 = true;
 				yield WaitForSeconds(5);
 				text21 = false;
+				gp= false;
 			}
 		}
 		
-		if(objName.Equals("End")){
+		if(objName.Equals("Final")){
 			text29 = true;
 			yield WaitForSeconds(3);
 			text29 = false;
@@ -380,8 +384,8 @@
 		//Puerta de la primera habitación
 		if(comando.Equals("PuertaS")){
 			StartCoroutine(ShowAndWaitUntilHide(4));
+			GameObject.Find("CursorLlave").GetComponent(CursorControl).DesactivarCursor();
 			Screen.showCursor = true;
-			GameObject.Find("CursorLlave").GetComponent(CursorControlLlave).DesactivarCursor();
 		}
 		
 		if(comando.Equals("Puerta")){
@@ -432,8 +436,9 @@
 				StartCoroutine(ShowAndWaitUntilHide(8));
 			}
 			else{
+				act_Player.GetComponent(MoverClick).MoverOff();
 				Destroy(GameObject.Find("Armario"));
-				GameObject.Find("TAyuda").GetComponent(Interactor_Trigger).apagar();
+				GameObject.Find("AyudaTrigger").GetComponent(Interactor_Trigger).apagar();
 				GameObject.Find("CursorFuerza").GetComponent(CursorControl).DesactivarCursor();
 				GetComponent(Player_Manager).crearPlayer4();
 				cm1 = true;
@@ -441,6 +446,7 @@
 				cm1 = false;
 				text18 = true;
 				yield WaitForSeconds(5);
+				act_Player.GetComponent(MoverClick).MoverOn();
 				text18 = false;
 			}
 		}
@@ -448,10 +454,10 @@
 		if(comando.Equals("Escombros")){
 			if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
 				StartCoroutine(ShowAndWaitUntilHide(12));
-				Destroy(GameObject.Find("Escombros"));
-				Destroy(GameObject.Find("ParedOC"));
-				GameObject.Find("TAuxilio").GetComponent(Interactor_Trigger).apagar();
 				GameObject.Find("CursorFuerza").GetComponent(CursorControl).DesactivarCursor();
+				Destroy(GameObject.Find("Escombros"));
+				//Destroy(GameObject.Find("ParedOC"));
+				GameObject.Find("AuxilioTrigger").GetComponent(Interactor_Trigger).apagar();
 				flag3 = true;
 			}
 			else if(act_Player.GetComponent(Player).Nombre().Equals("Dario"))
@@ -460,6 +466,7 @@
 		//Curar a Cristina
 		if(comando.Equals("Cristina")){
 			if(act_Player.GetComponent(Player).Nombre().Equals("Diana")){
+				act_Player.GetComponent(MoverClick).MoverOff();
 				cm2 = true;
 				yield WaitForSeconds(5);
 				cm2 = false;
@@ -471,6 +478,7 @@
 				GetComponent(Menu_script).activarP4();
 				GetComponent(Player_Manager).darPlayer4().GetComponent(Interactor_Click).enabled = false;
 				yield WaitForSeconds(5);
+				act_Player.GetComponent(MoverClick).MoverOn();
 				text33 = false;
 			}
 		}
@@ -478,7 +486,7 @@
 		if(comando.Equals("Emergencia")){
 			if(act_Player.GetComponent(Player).Nombre().Equals("Cristina")){
 				cm3 = true;
-				Destroy(GameObject.Find("Emergencia"));
+				Destroy(GameObject.Find("PuertaEmergencia"));
 				GameObject.Find("CursorPeque").GetComponent(CursorControl).DesactivarCursor();
 				yield WaitForSeconds(5);
 				cm3 = false;
@@ -502,7 +510,7 @@
 		//Llave
 		if(objName.Equals("llave")){
 			Screen.showCursor = false;
-			GameObject.Find("CursorLlave").GetComponent(CursorControlLlave).ActivarCursor();
+			GameObject.Find("CursorLlave").GetComponent(CursorControl).ActivarCursor();
 			GameObject.Find("Puerta").GetComponent(Interactor_Click).FlagOff();	
 		}
 	}
@@ -603,6 +611,7 @@
 		}
 		
 		if(textID == 12){
+			act_Player.GetComponent(MoverClick).MoverOff();
 			cm1 = true;
 			yield WaitForSeconds(5);
 			cm1 = false;
@@ -610,8 +619,9 @@
 			yield WaitForSeconds(5);
 			text19 = false;
 			text32 = true;
-			yield WaitForSeconds(5);
+			yield WaitForSeconds(2);
 			text32 = false;
+			act_Player.GetComponent(MoverClick).MoverOn();
 			GetComponent(Menu_script).activarP3();
 		}
 		if(textID == 13){
