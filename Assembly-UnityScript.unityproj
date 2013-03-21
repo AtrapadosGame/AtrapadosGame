@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Desarrollo/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Desarrollo/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +66,7 @@
      <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothFollow.js" />
      <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothLookAt.js" />
      <Compile Include="Assets\Imported Assest\Scripts\aparecer texturas.js" />
+     <Compile Include="Assets\Imported Assest\Scripts\cameraShake.js" />
      <Compile Include="Assets\Imported Assest\Scripts\countdown.js" />
      <Compile Include="Assets\Imported Assest\Scripts\home.js" />
      <Compile Include="Assets\Imported Assest\Scripts\jugar.js" />
