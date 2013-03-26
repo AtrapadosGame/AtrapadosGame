@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\MoverClick.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Managers\ManagerDialogos.js">
     <Files>
-      <File FileName="Assets\Imported Assest\Scripts\MoverClick.js" Line="7" Column="27" />
+      <File FileName="Assets\Imported Assest\Scripts\cameraShake.js" Line="1" Column="1" />
+      <File FileName="Assets\Imported Assest\Scripts\MoverClick.js" Line="1" Column="1" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="1" Column="1" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\ManagerDialogos.js" Line="2" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
