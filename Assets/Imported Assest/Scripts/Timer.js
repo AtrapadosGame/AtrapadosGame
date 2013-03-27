@@ -5,16 +5,35 @@ private var restSeconds : int;
 private var roundedRestSeconds : int;
 private var displaySeconds : int;
 private var displayMinutes : int;
+private var shakeTimer : int ;
+private var lastShake : int;
 
+var timeUntilShake : int;
+var shakeTimerFactor : int;
 var countDownSeconds : int;
+
+var MainCamera : Camera;
 
 function Awake() {
     startTime = Time.time;
+    lastShake = startTime;
 }
 
 function OnGUI () {
     //make sure that your time is based on when this script was first called
     //instead of when your game started
+
+	shakeTimer = Time.time - lastShake;
+	if(shakeTimer >= timeUntilShake){
+
+	//ACA TIENE QUE TEMBLAR
+	MainCamera.GetComponent(cameraShake).Shake();
+	
+	lastShake = Time.time;
+	timeUntilShake -= shakeTimerFactor;
+	
+	}
+
     var guiTime = Time.time - startTime;
     restSeconds = countDownSeconds - (guiTime);
     if (restSeconds == 0) {
