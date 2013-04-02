@@ -32,7 +32,8 @@ function Update () {
 }
 
 function OnCollisionEnter(){
-
+	
+	Debug.Log("esta chocando");
 	targetPosition = Vector3.zero;
 	rigidbody.angularVelocity = Vector3.zero;
 	rigidbody.velocity = Vector3.zero;
@@ -43,7 +44,6 @@ function OnCollisionEnter(){
 function SetTargetPosition(nTarget : Vector3){
 	targetPosition = nTarget;
 }
-
 
 function MoverOff(){
 	mover = false;
