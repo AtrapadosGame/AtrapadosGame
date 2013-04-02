@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Managers\Manager1.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1p5A.js">
     <Files>
-      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="103" Column="36" />
-      <File FileName="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1.js" Line="108" Column="30" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1-5.js" Line="47" Column="3" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1p5A.js" Line="43" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

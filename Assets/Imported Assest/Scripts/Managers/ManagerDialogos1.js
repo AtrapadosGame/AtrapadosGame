@@ -6,6 +6,7 @@ public static final var GLOBO_PENSAMIENTO : int = 2;
 public static final var GLOBO_DIALOGO_OPUESTO : int = 3;
 public static final var GLOBO_DIALOGO_INVERSO : int = 4;
 public static final var CUADRO_TEXTO : int = 5;
+public static final var POS_PERSONAJE_ACTUAL : int[] = new int[4];
 
 private var dialogos : String[]; //Arreglo de dialogos
 // Flags para mostrar los globos de dialogo
@@ -33,6 +34,10 @@ var myFont : Font;
 
 // Inicializa el arreglo con los dialogos del nivel
 function Start () {
+	POS_PERSONAJE_ACTUAL[0] = Screen.width/2;
+	POS_PERSONAJE_ACTUAL[1] = Screen.height/2;
+	POS_PERSONAJE_ACTUAL[2] = Screen.width/2 + 10;
+	POS_PERSONAJE_ACTUAL[3] = Screen.height/2 + 30;
 	dialogos = new String[NUM_DIALOGOS];
 	fuente = new GUIStyle();
 	fuente.font = myFont;
@@ -52,7 +57,7 @@ function Start () {
 	dialogos[13] = "No se preocupe Doctor,\n Yo puedo mover eso…";
 	dialogos[14] = "¡FABIO SE HA UNIDO\n A TU GRUPO!";
 	dialogos[15] = "Listo, ya podemos salir.";
-	dialogos[16] = "¡Si, pero hay\n más personas, debemos\n ir por ellas!";
+	dialogos[16] = "¡Pero hay\n más personas, debemos\n ir por ellas!";
 	dialogos[17] = "Listo";
 	dialogos[18] = "¡Encontramos el botiquín!\n Ya podemos continuar.";
 	dialogos[19] = "¡Gracias. Creí que\n iba a morir! Pero me duele\n mucho la pierna…";
@@ -66,7 +71,7 @@ function Start () {
 	dialogos[27] = "Puedo usar la\n llave que encontré\n para abrir la puerta";
 	dialogos[28] = "Fabio dijo que él\n podia mover esto.";
 	dialogos[29] = "Un botiquin,\n podria llegar a ser útil";
-	dialogos[30] = "Fin del juego,\n gracias por jugar.";
+	dialogos[30] = "Perfecto,\n una salida.";
 	dialogos[31] = "Aqui hay un botiquin,\n Diana puede sacarlo.";
 	dialogos[32] = "Solo las enfermeras\n pueden abrir estos cajones.";
 	dialogos[33] = "DIANA SE HA UNIDO\n A TU GRUPO.";
