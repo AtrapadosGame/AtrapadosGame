@@ -289,9 +289,16 @@
 				flag3 = true;
 			}
 			else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
-				managerDialogos.mostrarDialogo(6,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
+				if(flag1){
+					managerDialogos.mostrarDialogo(6,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+					yield WaitForSeconds(3);
+					managerDialogos.apagarDialogo();
+				}
+				else{
+					managerDialogos.mostrarDialogo(5,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+					yield WaitForSeconds(3);
+					managerDialogos.apagarDialogo();
+				}
 			}
 			
 		}
