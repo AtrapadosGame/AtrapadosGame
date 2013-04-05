@@ -5,12 +5,17 @@ private var flag : boolean = true;
 private var cursor : String;
 var actObject : String;
 var manager : GameObject;
+
+    var cursorTexture : Texture2D;
+    var cursorMode : CursorMode = CursorMode.Auto;
+    var hotSpot : Vector2 = Vector2.zero;
+
 function Start () {
 }
 
 function Update () {
 	player = manager.GetComponent(Player_Manager).darActual();
-	cursor = manager.GetComponent(ScreenManager).Cursor();
+	
 }
 
 function  DistanceFromObject(){
@@ -32,12 +37,12 @@ function FlagOff(){
 
 function OnMouseEnter(){
 	if(DistanceFromObject() && flag)
-		GameObject.Find(cursor).GetComponent(CursorControl).ActivarCursor();
+		   Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 }
 
 function OnMouseExit(){
 	if(flag)
-		GameObject.Find(cursor).GetComponent(CursorControl).DesactivarCursor();
+		    Cursor.SetCursor(null, Vector2.zero, cursorMode);
 }
 
 function OnMouseDown(){

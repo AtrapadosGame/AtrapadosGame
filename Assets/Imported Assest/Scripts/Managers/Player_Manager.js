@@ -37,7 +37,7 @@ function cambiarP1(){
 	actual = player1;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor(cursorP1);
+
 }
 
 function cambiarP4(){
@@ -52,7 +52,7 @@ function cambiarP4(){
 	actual = player4;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor(cursorP4);
+	
 }
 
 function cambiarP2(){
@@ -67,7 +67,7 @@ function cambiarP2(){
 	actual = player2;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor(cursorP2);
+
 }
 
 function cambiarP3(){
@@ -82,7 +82,7 @@ function cambiarP3(){
 	actual = player3;
 	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
 	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	GetComponent(ScreenManager).CambiarCursor(cursorP3);
+	
 }
 
 function darActual(){
