@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Managers\Manager1.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Timer.js">
     <Files>
-      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="278" Column="42" />
+      <File FileName="Assets\Imported Assest\Scripts\Timer.js" Line="20" Column="27" />
+      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="259" Column="28" />
       <File FileName="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

@@ -7,6 +7,7 @@ private var displaySeconds : int;
 private var displayMinutes : int;
 private var shakeTimer : int ;
 private var lastShake : int;
+private var numTemblores : int;
 
 var timeUntilShake : int;
 var shakeTimerFactor : int;
@@ -17,6 +18,7 @@ var MainCamera : Camera;
 function Awake() {
     startTime = Time.time;
     lastShake = startTime;
+    numTemblores = 0;
 }
 
 function OnGUI () {
@@ -30,7 +32,8 @@ function OnGUI () {
 	MainCamera.GetComponent(cameraShake).Shake();
 	
 	lastShake = Time.time;
-	timeUntilShake -= shakeTimerFactor;
+	numTemblores ++ ;
+	timeUntilShake -= (shakeTimerFactor*numTemblores);
 	
 	}
 
