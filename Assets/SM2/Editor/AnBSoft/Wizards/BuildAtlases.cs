@@ -71,6 +71,7 @@ public class BuildAtlases : ScriptableWizard
 #else
 	public bool scanProjectFolder = true;	// Reuse the entire "Assets" folder for prefabs containing packable sprites.
 #endif
+	public bool haltOnNullMaterial = true;	// Stop atlas building when a null material is encountered?
 
 	public static bool doSpecificMaterials = false; // Will only build the atlas for the selected materials - the ones currently selected
 	public static List<Material> targetMaterials = new List<Material>();	// Reference to the selected materials for which a single-material build will occur.
@@ -92,6 +93,7 @@ public class BuildAtlases : ScriptableWizard
 #else
 		scanProjectFolder = 1 == PlayerPrefs.GetInt("BuildAtlases.scanProjectFolder", scanProjectFolder ? 1 : 0);
 #endif
+		haltOnNullMaterial = 1 == PlayerPrefs.GetInt("BuildAtlases.haltOnNullMaterial", haltOnNullMaterial ? 1 : 0);
 	}
 
 	// Saves settings to PlayerPrefs.
@@ -107,6 +109,7 @@ public class BuildAtlases : ScriptableWizard
 #else
 		PlayerPrefs.SetInt("BuildAtlases.scanProjectFolder", scanProjectFolder ? 1 : 0);
 #endif
+		PlayerPrefs.SetInt("BuildAtlases.haltOnNullMaterial", haltOnNullMaterial ? 1 : 0);
 	}
 
 
@@ -362,11 +365,14 @@ public class BuildAtlases : ScriptableWizard
 
 					if (obj != null)
 					{
-						c = obj.GetComponentsInChildren(typeof(ISpriteAggregator), true);
-
+						c = obj.GetComponentsInChildren<Component>(true);
 						foreach (Component comp in c)
 						{
-							sprites.Add(comp);
+							if (comp is ISpriteAggregator)
+							{
+								for (int j = 0; j < c.Length; ++j)
+									sprites.Add(c[j]);
+							}
 						}
 					}
 				}
@@ -412,9 +418,17 @@ public class BuildAtlases : ScriptableWizard
 
 			if(mat == null)
 			{
-				EditorUtility.DisplayDialog("ERROR", errString, "Ok");
-				Selection.activeGameObject = sprite.gameObject;
-				return null;
+				if (haltOnNullMaterial)
+				{
+					EditorUtility.DisplayDialog("ERROR", errString, "Ok");
+					Selection.activeGameObject = sprite.gameObject;
+					return null;
+				}
+				else
+				{
+					Debug.LogError(errorString);
+					continue;
+				}
 			}
 
 			index = materials.IndexOf(mat);
@@ -671,7 +685,7 @@ public class BuildAtlases : ScriptableWizard
 				}
 			}
 
-			EditorUtility.SetDirty(spAg.gameObject);
+			EditorUtility.SetDirty((Component)spAg);
 		}
 	}
 

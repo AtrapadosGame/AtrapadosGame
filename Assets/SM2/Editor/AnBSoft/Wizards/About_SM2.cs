@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class About_SM2 : ScriptableObject
 {
-	public static string version = "1.93";
+	public static string version = "1.94";
 
 
 	[UnityEditor.MenuItem("Tools/A&B Software/About SpriteManager 2")]
