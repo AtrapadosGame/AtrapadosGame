@@ -44,39 +44,39 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Imported Assest\Scripts\CameraRotation.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\CursorControl\CursorControl.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Game_Over.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Habilidades_script.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Click.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Habilidad.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Interactores\Interactor_Trigger.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\IEvent_manager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\Manager1.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\Player_Manager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Managers\ScreenManager.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Menu_script.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverClick.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverInput(Deprecated).js" />
-     <Compile Include="Assets\Imported Assest\Scripts\MoverInput2(Deprecated).js" />
-     <Compile Include="Assets\Imported Assest\Scripts\OnDistance.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Player.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Timer.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\MouseOrbit.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothFollow.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\Unity Scripts\Mouse\SmoothLookAt.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\aparecer texturas.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\cameraShake.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\countdown.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\home.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\jugar.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\load2.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\loaddlevel.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\siguiente.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver a jugar.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver.js" />
-     <Compile Include="Assets\Imported Assest\Scripts\volver2.js" />
+     <Compile Include="Assets\Scripts\CameraRotation.js" />
+     <Compile Include="Assets\Scripts\CursorControl\CursorControl(Unused).js" />
+     <Compile Include="Assets\Scripts\Game_Over.js" />
+     <Compile Include="Assets\Scripts\Habilidades_script.js" />
+     <Compile Include="Assets\Scripts\Interactores\Interactor_Click.js" />
+     <Compile Include="Assets\Scripts\Interactores\Interactor_Habilidad.js" />
+     <Compile Include="Assets\Scripts\Interactores\Interactor_Trigger.js" />
+     <Compile Include="Assets\Scripts\Managers\IEvent_manager.js" />
+     <Compile Include="Assets\Scripts\Managers\Manager1.js" />
+     <Compile Include="Assets\Scripts\Managers\ManagerDialogos1.js" />
+     <Compile Include="Assets\Scripts\Managers\Player_Manager.js" />
+     <Compile Include="Assets\Scripts\Managers\ScreenManager.js" />
+     <Compile Include="Assets\Scripts\Menu_script.js" />
+     <Compile Include="Assets\Scripts\MoverClick.js" />
+     <Compile Include="Assets\Scripts\MoverInput(Deprecated).js" />
+     <Compile Include="Assets\Scripts\MoverInput2(Deprecated).js" />
+     <Compile Include="Assets\Scripts\OnDistance.js" />
+     <Compile Include="Assets\Scripts\Player.js" />
+     <Compile Include="Assets\Scripts\Timer.js" />
+     <Compile Include="Assets\Scripts\Unity Scripts\Mouse\MouseOrbit(unused).js" />
+     <Compile Include="Assets\Scripts\Unity Scripts\Mouse\SmoothFollow.js" />
+     <Compile Include="Assets\Scripts\Unity Scripts\Mouse\SmoothLookAt(Unused).js" />
+     <Compile Include="Assets\Scripts\aparecer texturas.js" />
+     <Compile Include="Assets\Scripts\cameraShake.js" />
+     <Compile Include="Assets\Scripts\countdown.js" />
+     <Compile Include="Assets\Scripts\home.js" />
+     <Compile Include="Assets\Scripts\jugar.js" />
+     <Compile Include="Assets\Scripts\load2.js" />
+     <Compile Include="Assets\Scripts\loaddlevel.js" />
+     <Compile Include="Assets\Scripts\siguiente.js" />
+     <Compile Include="Assets\Scripts\volver a jugar.js" />
+     <Compile Include="Assets\Scripts\volver.js" />
+     <Compile Include="Assets\Scripts\volver2.js" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
@@ -108,5 +108,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
+  <ProjectExtensions xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><MonoDevelop><Properties><Policies><TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="application/javascript" /><TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="text/plain" /><TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="text/x-unitytxt" /><TextStylePolicy inheritsSet="null" scope="text/x-shader" /></Policies></Properties></MonoDevelop></ProjectExtensions>
+
 </Project>

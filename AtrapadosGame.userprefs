@@ -1,13 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Imported Assest\Scripts\Interactores\Interactor_Click.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interactores\Interactor_Click.js">
     <Files>
-      <File FileName="Assets\Imported Assest\Scripts\CursorControl\CursorControl.js" Line="11" Column="33" />
-      <File FileName="Assets\Imported Assest\Scripts\Timer.js" Line="1" Column="1" />
-      <File FileName="Assets\Imported Assest\Scripts\Managers\Manager1.js" Line="1" Column="1" />
-      <File FileName="Assets\Imported Assest\Scripts\Managers\ManagerDialogos1.js" Line="1" Column="1" />
-      <File FileName="Assets\Imported Assest\Scripts\Managers\Player_Manager.js" Line="55" Column="1" />
-      <File FileName="Assets\Imported Assest\Scripts\Interactores\Interactor_Click.js" Line="51" Column="31" />
+      <File FileName="Assets\Scripts\Managers\Player_Manager.js" Line="127" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Manager1.js" Line="169" Column="22" />
+      <File FileName="Assets\Scripts\Managers\IEvent_manager.js" Line="8" Column="2" />
+      <File FileName="Assets\Scripts\Menu_script.js" Line="27" Column="67" />
+      <File FileName="Assets\Scripts\Unity Scripts\Mouse\SmoothLookAt(Unused).js" Line="15" Column="9" />
+      <File FileName="Assets\Scripts\Interactores\Interactor_Trigger.js" Line="14" Column="19" />
+      <File FileName="Assets\Scripts\CursorControl\CursorControl(Unused).js" Line="7" Column="31" />
+      <File FileName="Assets\Scripts\Player.js" Line="3" Column="3" />
+      <File FileName="Assets\Scripts\MoverClick.js" Line="35" Column="57" />
+      <File FileName="Assets\Scripts\Unity Scripts\Mouse\SmoothFollow.js" Line="21" Column="1" />
+      <File FileName="Assets\Scripts\Interactores\Interactor_Click.js" Line="56" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
