@@ -1,5 +1,5 @@
 #pragma strict
-private static final var NUM_DIALOGOS : int = 35; //Constante para el numero de dialogos del nivel
+private static final var NUM_DIALOGOS : int = 37; //Constante para el numero de dialogos del nivel
 // Constantes para los globos de dialogo
 public static final var GLOBO_DIALOGO : int = 1;
 public static final var GLOBO_PENSAMIENTO : int = 2;
@@ -34,10 +34,10 @@ var myFont : Font;
 
 // Inicializa el arreglo con los dialogos del nivel
 function Start () {
-	POS_PERSONAJE_ACTUAL[0] = Screen.width/2;
-	POS_PERSONAJE_ACTUAL[1] = Screen.height/2;
-	POS_PERSONAJE_ACTUAL[2] = Screen.width/2 + 10;
-	POS_PERSONAJE_ACTUAL[3] = Screen.height/2 + 30;
+	POS_PERSONAJE_ACTUAL[0] = Screen.width/2 + 30;
+	POS_PERSONAJE_ACTUAL[1] = Screen.height/2 - 250;
+	POS_PERSONAJE_ACTUAL[2] = Screen.width/2 + 40;
+	POS_PERSONAJE_ACTUAL[3] = Screen.height/2 - 220;
 	dialogos = new String[NUM_DIALOGOS];
 	fuente = new GUIStyle();
 	fuente.font = myFont;
@@ -47,7 +47,7 @@ function Start () {
 	dialogos[3] = "¡Esta debe ser!";
 	dialogos[4] = "AUXILIOOOOOO";
 	dialogos[5] = "¡No puedo ayudar\n a esta persona, no puedo\n levantar los escombros!";
-	dialogos[6] = "¡Aquí hay alguien\n atrapado, seguramente Fabio\n podrá ayudar!";
+	dialogos[6] = "¡Aquí hay alguien\n atrapado, seguramente\n Fabio podrá ayudar!";
 	dialogos[7] = "AYUDENMEEEEEE";
 	dialogos[8] = "¡Hay una chica\n bajo este armario!\n ¡Pero no puedo moverlo!";
 	dialogos[9] = "¡Aquí hay alguien\n atrapado, seguramente Fabio\n podrá ayudar!";
@@ -60,22 +60,24 @@ function Start () {
 	dialogos[16] = "¡Pero hay\n más personas, debemos\n ir por ellas!";
 	dialogos[17] = "Listo";
 	dialogos[18] = "¡Encontramos el botiquín!\n Ya podemos continuar.";
-	dialogos[19] = "¡Gracias. Creí que\n iba a morir! Pero me duele\n mucho la pierna…";
+	dialogos[19] = "¡Gracias. Creí que\n iba a morir! Pero me\nduele mucho la\npierna…";
 	dialogos[20] = "¡Gracias por ayudarme!\n Hay gente herida,\n deberíamos buscar\n un botiquín.";
 	dialogos[21] = "¡Ya esta!\n Ya podemos irnos.";
 	dialogos[22] = "¡Es la salida!\n Pero no, aun hay\n gente atrapada.";
 	dialogos[23] = "Obvio, el ascensor no\n funciona. Hay que buscar\n otra salida.";
 	dialogos[24] = "¡No podremos salir\n por aquí, hay que buscar\n otra salida!";
 	dialogos[25] = "¡Esta es una escalera de\n incendios pero la\n chapa esta rota!";
-	dialogos[26] = "¡Yo puedo trepar por\n esa ventanilla y abrirla\n desde el otro lado!";
+	dialogos[26] = "¡Cristina puede\ntrepar por esa\n ventanilla y abrirla\n desde el otro lado!";
 	dialogos[27] = "Puedo usar la\n llave que encontré\n para abrir la puerta";
 	dialogos[28] = "Fabio dijo que él\n podia mover esto.";
 	dialogos[29] = "Un botiquin,\n podria llegar a ser útil";
 	dialogos[30] = "Perfecto,\n una salida.";
-	dialogos[31] = "Aqui hay un botiquin,\n Diana puede sacarlo.";
-	dialogos[32] = "Solo las enfermeras\n pueden abrir estos cajones.";
+	dialogos[31] = "Aqui hay un\nbotiquin,Diana puede\nsacarlo.";
+	dialogos[32] = "Solo las enfermeras\n pueden abrir estos\n cajones.";
 	dialogos[33] = "DIANA SE HA UNIDO\n A TU GRUPO.";
 	dialogos[34] = "CRISTINA SE HA UNIDO\n A TU GRUPO.";
+	dialogos[35] = "Necesitamos la\n asistencia de\n una enfermera";
+	dialogos[36] = "Voy a necesitar\n un botiquin";
 }
 
 // Dibuja el globo con su texto correspondiente controlados por lof flags
