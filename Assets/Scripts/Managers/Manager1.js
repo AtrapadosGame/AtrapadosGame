@@ -169,9 +169,15 @@ function EventTrigger(objName : String){
 		Application.LoadLevel("cambio nivel");
 	}
 	
-	if(objName.Equals("Sonido")){
-		var son = GameObject.Find("TSonido");
-		son.audio.Play();
+	if(objName.Equals("Fantasma")){
+		var fantasma : GameObject = GameObject.Find("Fantasma");
+		fantasma.GetComponent(TrasladarHorizontal).activar();
+		yield WaitForSeconds(0.5);
+		managerDialogos.mostrarDialogo(37,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		fantasma.GetComponent(TrasladarHorizontal).desactivar();
+		GameObject.Find("FantasmaTrigger").GetComponent(Interactor_Trigger).apagar();
 	}
 }
 

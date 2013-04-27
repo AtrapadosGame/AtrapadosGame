@@ -1,5 +1,5 @@
 #pragma strict
-private static final var NUM_DIALOGOS : int = 37; //Constante para el numero de dialogos del nivel
+private static final var NUM_DIALOGOS : int = 38; //Constante para el numero de dialogos del nivel
 // Constantes para los globos de dialogo
 public static final var GLOBO_DIALOGO : int = 1;
 public static final var GLOBO_PENSAMIENTO : int = 2;
@@ -78,6 +78,7 @@ function Start () {
 	dialogos[34] = "CRISTINA SE HA UNIDO\n A TU GRUPO.";
 	dialogos[35] = "Necesitamos la\n asistencia de\n una enfermera";
 	dialogos[36] = "Voy a necesitar\n un botiquin";
+	dialogos[37] = "¿Pero qué...?";
 }
 
 // Dibuja el globo con su texto correspondiente controlados por lof flags
