@@ -13,9 +13,6 @@ function Awake(){
 
 function Update () {
 	if(Input.GetButton ("Fire1")&& mover){
-
-		
-		
 		//Crea un raycast hasta la posición deseada
 		var playerPlane = new Plane(Vector3.up, transform.position);
 		var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -31,50 +28,33 @@ function Update () {
 		var rotation = Quaternion.LookRotation(relativePos);
 		
 		if(rotation.eulerAngles.y> 45 && rotation.eulerAngles.y <135){
-			
-//			print("TOCA PONER SPRITE CAMINAR DE LADO IZQ ACA");
-//		print(rotation.eulerAngles.y);
-			
+			SendMessage("DoAnim","caminar izq");	
 		}else if(rotation.eulerAngles.y> 225 && rotation.eulerAngles.y <315) {
-			
-//			print("TOCA PONER SPRITE CAMINAR DE LADO DER ACA");
-//			print(rotation.eulerAngles.y);
-			
+			SendMessage("DoAnim","caminar");	
 		}
 		else if(rotation.eulerAngles.y> 135 && rotation.eulerAngles.y <225){
-//				print("TOCA PONER SPRITE CAMINAR ARRIBA ACA");
-//		print(rotation.eulerAngles.y);
-			
-			
+			SendMessage("DoAnim","espalda");
 		}else if(rotation.eulerAngles.y> 315 || rotation.eulerAngles.y <45){
-			
-//			print("TOCA PONER SPRITE CAMINAR ABAJO ACA");
-//		print(rotation.eulerAngles.y);
-			
-		
-		}
-		
-		
+			SendMessage("DoAnim","caminar");;
+		}		
+	}
+	
+	if(transform.position == targetPosition){
+		SendMessage("StopAnim");
 	}
 	
 	//Interpola la posición hasta llegar al destino
 	if(targetPosition != Vector3.zero){
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 	}
-	
 }
 
 function OnCollisionEnter(){
-	
+	SendMessage("StopAnim");
 	transform.position = Vector3.MoveTowards(transform.position, targetPosition, -bounceDistance);
 	targetPosition = Vector3.zero;
 	rigidbody.angularVelocity = Vector3.zero;
-	rigidbody.velocity = Vector3.zero;
-	
-	
-	
-	
-	
+	rigidbody.velocity = Vector3.zero;	
 }
 
 
