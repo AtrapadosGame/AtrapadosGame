@@ -14,28 +14,23 @@ private var ancho : int;
 private var alto : int;
 private var separacion : int;
 private var pausa :boolean = false;
-private var noPuedo : boolean = false;
-private var noHay : boolean = false;
+
 
 //Las siguientes variables determinan si el personaje en cuestión está dentro del grupo
 // y es posible seleccionarlo para usarlo
-var estaP1 : boolean = false;
-var estaP2 : boolean = false;
-var estaP3 : boolean= false;
-var estaP4 : boolean = false;
+private var estaP1 : boolean = false;
+private var estaP2 : boolean = false;
+private var estaP3 : boolean= false;
+private var estaP4 : boolean = false;
 
 //Las siguientes variables determinan las texturas de los botones de cada personaje
 var texturaP1 : Texture2D;
 var texturaP2 : Texture2D;
 var texturaP3 : Texture2D;
 var texturaP4 : Texture2D;
-var texturaChiquita : Texture2D;
+var menu : Texture2D;
 var reiniciar : Texture2D;
 var home : Texture2D;
-
-//var texturaMano : Texture2D;
-//var texturaFuerza : Texture2D;
-//var texturaCurar : Texture2D;
 
 //Inicializa el jugador activo al principio del nivel
 function Start () {
@@ -55,13 +50,6 @@ function OnGUI () {
 	GUI.depth = 0;
 	
 	if(!pausa){
-		if(noPuedo){
-			GUI.Label (Rect (200, 200, 200, 200), "No puedo hacer eso");
-		}
-		if(noHay){
-			GUI.Label (Rect (200, 200, 200, 200), "¡Debemos buscar un botiquín!");
-		}
-	
 		// Crea los botones de cada personaje
 		if(estaP1){
 			var bttP1 = GUI.Button (new Rect (posX,posY,ancho,alto),GUIContent (texturaP1,"Boton"));
@@ -85,9 +73,12 @@ function OnGUI () {
 	
 		//Dibuja periodicamente los botones de los items
 		for(var i:int=0;i < itemList.length;i++){
-			var tex : Texture2D = itemList[i]; 
-			if(GUI.Button(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent (tex,"Boton"))){
-				SendMessage ("EventItem",actionList[i]);
+			var tex : Texture2D = itemList[i];
+			print(tex + "---" + i);
+			if(tex != null){ 
+				if(GUI.Button(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent (tex,"Boton"))){
+					SendMessage ("EventItem",actionList[i]);
+				}
 			}
 		}
 	
@@ -121,7 +112,7 @@ function OnGUI () {
 		}
 	}
 	 //Dibuja el boton de pausa
-    if(GUI.Button (new Rect (Screen.width - 50,0,50,50),GUIContent (texturaChiquita,"Boton"))){
+    if(GUI.Button (new Rect (Screen.width - 50,0,50,50),GUIContent (menu,"Boton"))){
     	if(!pausa){
     		Time.timeScale=0;
     		pausa = true;
@@ -212,6 +203,17 @@ function agregarItem(texture : Texture2D, command : String){
 }
 
 function sacarItem(command : String){
+	var pos : int = 0;
+	var f : boolean = false;
+	for(var i : int = 0; i<actionList.length && !f; i++){
+		var actual : String = actionList[i];
+		if(actual.Equals(command)){
+			pos = i;
+			f = true;
+		}
+	}
+	itemList.remove(i);
+	actionList.remove(i);
 }
 
 function ActualizarActualObject(nuevo: GameObject){
@@ -219,13 +221,13 @@ function ActualizarActualObject(nuevo: GameObject){
 }
 
 function EstaPersonaje(name : String){
-	if(name.Equals("Dario"))
+	if(name.Equals("P1") || name.Equals("p1"))
 		return estaP1;
-	if(name.Equals("Diana"))
+	if(name.Equals("P2") || name.Equals("p2"))
 		return estaP2;
-	if(name.Equals("Cristina"))
+	if(name.Equals("P3") || name.Equals("p3"))
 		return estaP3;
-	if(name.Equals("Fabio"))
+	if(name.Equals("P4") || name.Equals("p4"))
 		return estaP4;
 }
 
@@ -237,17 +239,4 @@ function EstaItem(comando : String){
 			esta = true;
 	}
 	return esta;
-}
-
-function ShowAndWaitUntilHide(textID : int){
-	if(textID == 1){
-		noPuedo = true;
-		yield WaitForSeconds(5);
-		noPuedo = false;
-	}
-	if(textID == 2){
-		noHay = true;
-		yield WaitForSeconds(5);
-		noHay = false;
-	}
 }
