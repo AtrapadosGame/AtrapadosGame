@@ -1,11 +1,18 @@
 #pragma strict
 
-var closeDistance : float = 1.5;
+//flag para determinar dos tipos de interacción con el objeto
 private var flag : boolean = true;
+// Determina el cursor que se despliega en el OnMouseEnter
 private var cursor : Texture2D;
+//Determina el jugador actual
+private var player  : GameObject;
+//Determina el comando de acción del evento
 var actObject : String;
+//Conexión con el LevelManager
 var manager : GameObject;
-var player  : GameObject;
+//Distancia mínima de interacción
+var closeDistance : float = 1.5;
+
 
 function Start(){
 player = manager.GetComponent(Player_Manager).darActual();
