@@ -79,6 +79,16 @@ function getHijo3():NodoDialogo{
 return hijo3;
 }
 
+function getQuienLinea():int {
+
+ var linea : LineaDialogo= lineasDialogo[indiceDialogo] as LineaDialogo;
+ var quien: int = linea.getQuienHabla();
+
+return quien;
+
+}
+
+
 
 function getTextoLinea():String {
 

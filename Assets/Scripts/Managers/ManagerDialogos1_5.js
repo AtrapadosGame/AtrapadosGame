@@ -10,19 +10,31 @@ private var conversacionMario : ArbolConversacion;
 private var conversacionCristina : ArbolConversacion;
 
 
-private var ventana : Rect = Rect(0,(Screen.height/2)+100, Screen.width,(Screen.height/4));
+private var ventana : Rect = Rect(0,(Screen.height/2)+100, Screen.width,(Screen.height/3)-50);
 private var textoActivo: String;
 private var textoOpcion1: String;
 private var textoOpcion2: String;
-//private var textoOpcion3: String;
+private var textoOpcion3: String;
+
+private var texturaActual1 : Texture2D;
+private var texturaActual2 : Texture2D;
+
 
 var customSkin: GUISkin;
-//var texturaDiana : Texture2D;
-//var texturaCristina : Texture2D;
-//var texturaDario: Texture2D;
-//var texturaMario: Texture2D;
-//var texturaFrancisco: Texture2D;
-//var texturaFabio: Texture2D;
+var texturaDiana : Texture2D;
+var texturaCristina : Texture2D;
+var texturaDario: Texture2D;
+var texturaMario: Texture2D;
+var texturaFrancisco: Texture2D;
+var texturaFabio: Texture2D;
+
+var texturaDianaSombreada : Texture2D;
+var texturaCristinaSombreada : Texture2D;
+var texturaDarioSombreada: Texture2D;
+var texturaMarioSombreada: Texture2D;
+var texturaFranciscoSombreada: Texture2D;
+var texturaFabioSombreada: Texture2D;
+
 
 
 public static final var CONVERSACION_DIANA  :int= 0;
@@ -56,24 +68,57 @@ function OnGUI () {
 GUI.skin = customSkin;
 	if(dialogosActivos){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
+		GUI.Box(Rect(0,100,Screen.width/2,Screen.height/2),texturaActual1);
+		GUI.Box(Rect(Screen.width/2,100,Screen.width/2,Screen.height/2),texturaActual2);
+		
 	}
+	
+	
+	
 }
 
 function WindowFunction (windowID : int) {
 
-	GUI.Label (Rect (10, 10, ventana.width, ventana.height), textoActivo);
+
+	if(enOpcion){
 	
 	
-	var opcion1 =GUI.Label (Rect (10, 30, ventana.width, ventana.height), textoOpcion1);
-	var opcion2 =GUI.Label (Rect (10, 50, ventana.width, ventana.height), textoOpcion2);
+	if(GUI.Button(Rect (10, 40, ventana.width, 75), textoOpcion1)){
+	print("Escogio Opcion 1:");
+	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
+	dibujarDialogo();
+	enOpcion = false;
+	textoOpcion1 = "";
+	textoOpcion2 = "";
 	
+	}
+	if(GUI.Button(Rect (10, 115, ventana.width, 75), textoOpcion2)){
+		print("Escogio Opcion 2:");
+	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
+	dibujarDialogo();
+	enOpcion = false;
+	textoOpcion1 = "";
+	textoOpcion2 = "";
+	}
+	if(conversacionActual.getNodoActual().getHijo3()){
 	
-	if(GUI.changed)
-	{
+	if(GUI.Button(Rect (10, 190, ventana.width, 75), textoOpcion3)){
+		print("Escogio Opcion 2:");
+	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo3());
+	dibujarDialogo();
+	enOpcion = false;
+	textoOpcion1 = "";
+	textoOpcion2 = "";
+	}
+	
 	
 	
 	}
-	//GUI.Label (Rect (10, 10, ventana.width, ventana.height), textoOpcion3);
+	
+	}
+	else{
+	GUI.Label (Rect (10, 30, ventana.width, ventana.height), textoActivo);
+	}
 }
 
 
@@ -106,26 +151,26 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 }
 
 //ESTA EN LAS OPCIONES Y APACHURRA LA 1, como prueba se usa boton izq del mouse
-else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && enOpcion){
-	print("Escogio Opcion 1:");
-	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
-	dibujarDialogo();
-	enOpcion = false;
-	textoOpcion1 = "";
-	textoOpcion2 = "";
+//else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && enOpcion){
+	//print("Escogio Opcion 1:");
+	//conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
+///	dibujarDialogo();
+//	enOpcion = false;
+//	textoOpcion1 = "";
+//	textoOpcion2 = "";
 	//textoOpcion3 = "";
 	
-}
+//}
 
 //ESTA EN LAS OPCIONES Y APACHURRA LA 2, como prueba se usa boton der del mouse
-else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse1) && enOpcion){
-	print("Escogio Opcion 2:");
-	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
-	dibujarDialogo();
-	enOpcion = false;
-	textoOpcion1 = "";
-	textoOpcion2 = "";
-}
+//else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse1) && enOpcion){
+	//print("Escogio Opcion 2:");
+//	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
+	//dibujarDialogo();
+	//enOpcion = false;
+	//textoOpcion1 = "";
+	//textoOpcion2 = "";
+//}
 
 
 }
@@ -173,8 +218,21 @@ dialogosActivos = true;
 }
 
 function dibujarDialogo(){
-//print(conversacionActual.getNodoActual().getTextoLinea());
+
+
+if(conversacionActual.getNodoActual().getQuienLinea() == 1){
+texturaActual1 = conversacionActual.getTexturaPj1();
+texturaActual2 = conversacionActual.getTexturaPj2Sombreada();
+}
+else if (conversacionActual.getNodoActual().getQuienLinea() == 2){
+texturaActual1 = conversacionActual.getTexturaPj1Sombreada();
+texturaActual2 = conversacionActual.getTexturaPj2();
+}
+
 textoActivo = conversacionActual.getNodoActual().getTextoLinea();
+
+
+
 }
 
 
@@ -182,11 +240,17 @@ function dibujarOpcion(){
 textoOpcion1 = conversacionActual.getNodoActual().getHijo1().getTextoLinea();
 textoOpcion2 = conversacionActual.getNodoActual().getHijo2().getTextoLinea();
 textoActivo = "";
-//textoOpcion3 = conversacionActual.getNodoActual().getHijo3().getTextoLinea();
+if(conversacionActual.getNodoActual().getHijo3()){
+	textoOpcion3 = conversacionActual.getNodoActual().getHijo3().getTextoLinea();
+}
 
-//print();
-//print(conversacionActual.getNodoActual().getHijo2().getTextoLinea());
-//print(conversacionActual.getNodoActual().getHijo3().getTextoLinea());
+
+texturaActual1 = conversacionActual.getTexturaPj1();
+texturaActual2 = conversacionActual.getTexturaPj2Sombreada();
+
+
+
+
 }
 
 
@@ -199,7 +263,7 @@ textoActivo = "";
 
 function inicializarConversacionDiana(){
 print("Inicializa la conversacion");
-conversacionDiana = new ArbolConversacion(texturaDario,texturaDiana);
+conversacionDiana = new ArbolConversacion(texturaDario,texturaDiana,texturaDarioSombreada,texturaDianaSombreada);
 
 /**
 * Nodo Raiz
@@ -234,7 +298,7 @@ conversacionDiana.setRaiz(nodoRaiz);
 dialogos = new Array();
 l = new LineaDialogo("¿Qué dice Diana, me acompaña?",1);
 dialogos.Push(l);
-l = new LineaDialogo("¿La verdad doc, es que estoy de acuerdo con Fabio, es mejor bajar y pedir auxilio a profesionales que ya deben estar listos para ayudar.?",2);
+l = new LineaDialogo("La verdad doc, es que estoy de acuerdo con Fabio, es mejor bajar y pedir auxilio a profesionales que ya deben estar listos para ayudar.",2);
 dialogos.Push(l);
 
 var nodo1: NodoDialogo = new NodoDialogo(dialogos);
@@ -260,7 +324,6 @@ nodoRaiz.setHijo2(nodo2);
 
 
 
-
 /**
 * Nodo Opcion 2.1
 * 
@@ -283,7 +346,7 @@ nodo2.setHijo1(nodo21);
 */
 
 dialogos = new Array();
-l = new LineaDialogo("Sé que no soy su superior, pero entonces no me queda más remedio que ordenarle como médico y en virtud de nuestro juramento que suba conmigo.",1);
+l = new LineaDialogo("Sé que no soy su superior, pero entonces no me queda más remedio \n que ordenarle como médico y en virtud de nuestro juramento que suba conmigo.",1);
 dialogos.Push(l);
 l = new LineaDialogo("Si lo pone en esos términos doctor, entonces que se haga lo que usted dice.",2);
 dialogos.Push(l);
