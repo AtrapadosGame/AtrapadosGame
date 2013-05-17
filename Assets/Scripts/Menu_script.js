@@ -41,7 +41,9 @@ function Start () {
 }
 
 function Update (){
+
 }
+
 
 //Dibuja el menu y responde a los eventos de los botones
 function OnGUI () {
@@ -74,11 +76,12 @@ function OnGUI () {
 		//Dibuja periodicamente los botones de los items
 		for(var i:int=0;i < itemList.length;i++){
 			var tex : Texture2D = itemList[i];
-			print(tex + "---" + i);
+			//print(tex + "---" + i);
 			if(tex != null){ 
-				if(GUI.Button(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent (tex,"Boton"))){
-					SendMessage ("EventItem",actionList[i]);
-				}
+				GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent (tex,"Boton"));
+				//if(GUI.Button(new Rect(i*ancho,Screen.height - alto,ancho,alto), tex)){
+				//	SendMessage ("EventItem",actionList[i]);
+				
 			}
 		}
 	

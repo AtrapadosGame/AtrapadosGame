@@ -9,12 +9,21 @@ private var conversacionFrancisco : ArbolConversacion;
 private var conversacionMario : ArbolConversacion;
 private var conversacionCristina : ArbolConversacion;
 
-var texturaDiana : Texture2D;
-var texturaCristina : Texture2D;
-var texturaDario: Texture2D;
-var texturaMario: Texture2D;
-var texturaFrancisco: Texture2D;
-var texturaFabio: Texture2D;
+
+private var ventana : Rect = Rect(0,(Screen.height/2)+100, Screen.width,(Screen.height/4));
+private var textoActivo: String;
+private var textoOpcion1: String;
+private var textoOpcion2: String;
+//private var textoOpcion3: String;
+
+var customSkin: GUISkin;
+//var texturaDiana : Texture2D;
+//var texturaCristina : Texture2D;
+//var texturaDario: Texture2D;
+//var texturaMario: Texture2D;
+//var texturaFrancisco: Texture2D;
+//var texturaFabio: Texture2D;
+
 
 public static final var CONVERSACION_DIANA  :int= 0;
 public static final var CONVERSACION_FABIO :int = 1;
@@ -29,7 +38,7 @@ public static final var CONVERSACION_FRANCISCO  :int= 5;
 // ================================================================================
 
 function Start(){
- print("Start");
+
  inicializarConversacionDiana();
  inicializarConversacionCristina();
  inicializarConversacionFabio();
@@ -37,6 +46,35 @@ function Start(){
  inicializarConversacionMario();
 }
 
+
+// ================================================================================
+// OnGui
+// ================================================================================
+
+function OnGUI () {
+
+GUI.skin = customSkin;
+	if(dialogosActivos){
+		ventana = GUI.Window(0,ventana , WindowFunction,"");
+	}
+}
+
+function WindowFunction (windowID : int) {
+
+	GUI.Label (Rect (10, 10, ventana.width, ventana.height), textoActivo);
+	
+	
+	var opcion1 =GUI.Label (Rect (10, 30, ventana.width, ventana.height), textoOpcion1);
+	var opcion2 =GUI.Label (Rect (10, 50, ventana.width, ventana.height), textoOpcion2);
+	
+	
+	if(GUI.changed)
+	{
+	
+	
+	}
+	//GUI.Label (Rect (10, 10, ventana.width, ventana.height), textoOpcion3);
+}
 
 
 // ================================================================================
@@ -62,6 +100,8 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 	else if(conversacionActual.getNodoActual().estaTerminado() && !conversacionActual.getNodoActual().tieneHijos()){
 		print("Fin dialogo");
 		dialogosActivos = false;
+		
+		GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOn();
 	}
 }
 
@@ -71,6 +111,10 @@ else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && enOpcion){
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
 	dibujarDialogo();
 	enOpcion = false;
+	textoOpcion1 = "";
+	textoOpcion2 = "";
+	//textoOpcion3 = "";
+	
 }
 
 //ESTA EN LAS OPCIONES Y APACHURRA LA 2, como prueba se usa boton der del mouse
@@ -79,6 +123,8 @@ else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse1) && enOpcion){
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
 	dibujarDialogo();
 	enOpcion = false;
+	textoOpcion1 = "";
+	textoOpcion2 = "";
 }
 
 
@@ -119,24 +165,31 @@ break;
 
 }
 
-//Frezze de pantalla 
-//Quitar el movimiento por medio de mouse
+GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOff();
+
 dialogosActivos = true;
 
 
 }
 
 function dibujarDialogo(){
-print(conversacionActual.getNodoActual().getTextoLinea());
-
+//print(conversacionActual.getNodoActual().getTextoLinea());
+textoActivo = conversacionActual.getNodoActual().getTextoLinea();
 }
+
 
 function dibujarOpcion(){
+textoOpcion1 = conversacionActual.getNodoActual().getHijo1().getTextoLinea();
+textoOpcion2 = conversacionActual.getNodoActual().getHijo2().getTextoLinea();
+textoActivo = "";
+//textoOpcion3 = conversacionActual.getNodoActual().getHijo3().getTextoLinea();
 
-print(conversacionActual.getNodoActual().getHijo1().getTextoLinea());
-print(conversacionActual.getNodoActual().getHijo2().getTextoLinea());
+//print();
+//print(conversacionActual.getNodoActual().getHijo2().getTextoLinea());
 //print(conversacionActual.getNodoActual().getHijo3().getTextoLinea());
 }
+
+
 
 
 
@@ -196,7 +249,7 @@ nodoRaiz.setHijo1(nodo1);
 */
 
 dialogos = new Array();
-l = new LineaDialogo("¿Debe acompañarme?",1);
+l = new LineaDialogo("Debe acompañarme",1);
 dialogos.Push(l);
 l = new LineaDialogo("La verdad, no sé qué decirle...",2);
 dialogos.Push(l);
