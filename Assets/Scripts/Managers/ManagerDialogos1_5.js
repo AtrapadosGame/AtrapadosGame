@@ -10,7 +10,7 @@ private var conversacionMario : ArbolConversacion;
 private var conversacionCristina : ArbolConversacion;
 
 
-private var ventana : Rect = Rect(0,(Screen.height/2)+100, Screen.width,(Screen.height/3)-50);
+private var ventana : Rect = Rect(0,(Screen.height/2)+50, Screen.width,(Screen.height/3));
 private var textoActivo: String;
 private var textoOpcion1: String;
 private var textoOpcion2: String;
@@ -68,8 +68,8 @@ function OnGUI () {
 GUI.skin = customSkin;
 	if(dialogosActivos){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
-		GUI.Box(Rect(0,100,Screen.width/2,Screen.height/2),texturaActual1);
-		GUI.Box(Rect(Screen.width/2,100,Screen.width/2,Screen.height/2),texturaActual2);
+		GUI.Box(Rect(0,50,Screen.width/2,Screen.height/2),texturaActual1);
+		GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);
 		
 	}
 	
@@ -83,7 +83,7 @@ function WindowFunction (windowID : int) {
 	if(enOpcion){
 	
 	
-	if(GUI.Button(Rect (10, 40, ventana.width, 75), textoOpcion1)){
+	if(GUI.Button(Rect (10, 20, ventana.width, 75), textoOpcion1)){
 	print("Escogio Opcion 1:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
 	dibujarDialogo();
@@ -92,7 +92,7 @@ function WindowFunction (windowID : int) {
 	textoOpcion2 = "";
 	
 	}
-	if(GUI.Button(Rect (10, 115, ventana.width, 75), textoOpcion2)){
+	if(GUI.Button(Rect (10, 95, ventana.width, 75), textoOpcion2)){
 		print("Escogio Opcion 2:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
 	dibujarDialogo();
@@ -102,7 +102,7 @@ function WindowFunction (windowID : int) {
 	}
 	if(conversacionActual.getNodoActual().getHijo3()){
 	
-	if(GUI.Button(Rect (10, 190, ventana.width, 75), textoOpcion3)){
+	if(GUI.Button(Rect (10, 170, ventana.width, 75), textoOpcion3)){
 		print("Escogio Opcion 2:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo3());
 	dibujarDialogo();
@@ -323,14 +323,13 @@ var nodo2: NodoDialogo = new NodoDialogo(dialogos);
 nodoRaiz.setHijo2(nodo2);
 
 
-
 /**
 * Nodo Opcion 2.1
 * 
 */
 
 dialogos = new Array();
-l = new LineaDialogo("Mire que usted es valiosa en estos casos, insisto en que será de gran ayuda ¿que dice?",1);
+l = new LineaDialogo("Mire que usted es valiosa en estos casos,\n insisto en que será de gran ayuda ¿que dice?",1);
 dialogos.Push(l);
 l = new LineaDialogo("No doctor, mejor bajamos a pedir ayuda, somos muy pocos para tanta gente que hay arriba.",2);
 dialogos.Push(l);
@@ -346,7 +345,7 @@ nodo2.setHijo1(nodo21);
 */
 
 dialogos = new Array();
-l = new LineaDialogo("Sé que no soy su superior, pero entonces no me queda más remedio \n que ordenarle como médico y en virtud de nuestro juramento que suba conmigo.",1);
+l = new LineaDialogo("No soy su superior, pero no me queda más remedio que ordenarle \ncomo médico y en virtud de nuestro juramento que suba conmigo.",1);
 dialogos.Push(l);
 l = new LineaDialogo("Si lo pone en esos términos doctor, entonces que se haga lo que usted dice.",2);
 dialogos.Push(l);
