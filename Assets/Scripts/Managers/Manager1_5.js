@@ -27,6 +27,13 @@ function EventTrigger(objName : String){
 
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
+	var managerDialogos = GetComponent(ManagerDialogos1_5);
+	
+	if(comando.Equals("test")){
+	
+	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_DIANA);
+	
+	}
 	
 }
 

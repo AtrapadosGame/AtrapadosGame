@@ -37,15 +37,18 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Desarrollo/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Desarrollo/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraRotation.js" />
      <Compile Include="Assets\Scripts\CursorControl\CursorControl(Unused).js" />
+     <Compile Include="Assets\Scripts\Dialogos\ArbolConversacion.js" />
+     <Compile Include="Assets\Scripts\Dialogos\LineaDialogo.js" />
+     <Compile Include="Assets\Scripts\Dialogos\NodoDialogo.js" />
      <Compile Include="Assets\Scripts\Game_Over.js" />
      <Compile Include="Assets\Scripts\Habilidades_script.js" />
      <Compile Include="Assets\Scripts\Interactores\Interactor_Click.js" />
@@ -53,9 +56,10 @@
      <Compile Include="Assets\Scripts\Interactores\Interactor_Trigger.js" />
      <Compile Include="Assets\Scripts\Managers\ArbolDialogos.js" />
      <Compile Include="Assets\Scripts\Managers\IEvent_manager.js" />
-     <Compile Include="Assets\Scripts\Managers\Manager1-5.js" />
      <Compile Include="Assets\Scripts\Managers\Manager1.js" />
+     <Compile Include="Assets\Scripts\Managers\Manager1_5.js" />
      <Compile Include="Assets\Scripts\Managers\ManagerDialogos1.js" />
+     <Compile Include="Assets\Scripts\Managers\ManagerDialogos1_5.js" />
      <Compile Include="Assets\Scripts\Managers\ManagerDialogosDario.js" />
      <Compile Include="Assets\Scripts\Managers\NodoDialogos.js" />
      <Compile Include="Assets\Scripts\Managers\Player_Manager.js" />
