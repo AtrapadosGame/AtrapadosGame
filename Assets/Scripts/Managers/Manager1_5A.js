@@ -27,11 +27,35 @@ function EventTrigger(objName : String){
 
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
-	var managerDialogos = GetComponent(ManagerDialogos1_5);
+	var managerDialogos = GetComponent(ManagerDialogos1_5A);
 	
-	if(comando.Equals("test")){
+	if(comando.Equals("Diana")){
 	
-	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_DIANA);
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_DIANA);
+	
+	}
+	
+	if(comando.Equals("Fabio")){
+	
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_FABIO);
+	
+	}
+	
+	if(comando.Equals("Cristina")){
+	
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_CRISTINA);
+	
+	}
+	
+	if(comando.Equals("Mario")){
+	
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_MARIO);
+	
+	}
+	
+	if(comando.Equals("Francisco")){
+	
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_FRANCISCO);
 	
 	}
 	

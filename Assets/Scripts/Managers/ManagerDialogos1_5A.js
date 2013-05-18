@@ -69,12 +69,8 @@ GUI.skin = customSkin;
 	if(dialogosActivos){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
 		GUI.Box(Rect(0,50,Screen.width/2,Screen.height/2),texturaActual1);
-		GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);
-		
+		GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);		
 	}
-	
-	
-	
 }
 
 function WindowFunction (windowID : int) {
@@ -189,25 +185,27 @@ case CONVERSACION_DIANA:
 
 conversacionActual = conversacionDiana;
 
-
-
 break;
 case CONVERSACION_FABIO:
 
-break;
-case CONVERSACION_DARIO:
+conversacionActual = conversacionFabio;
 
 break;
 case CONVERSACION_MARIO:
 
+conversacionActual = conversacionMario;
+
 break;
 case CONVERSACION_CRISTINA:
+
+conversacionActual = conversacionCristina;
 
 break;
 case CONVERSACION_FRANCISCO:
 
-break;
+conversacionActual = conversacionFrancisco;
 
+break;
 }
 
 GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOff();
@@ -261,6 +259,7 @@ texturaActual2 = conversacionActual.getTexturaPj2Sombreada();
 // Inicializacion de Arboles
 // ================================================================================
 
+//Conversacion con Diana
 function inicializarConversacionDiana(){
 print("Inicializa la conversacion");
 conversacionDiana = new ArbolConversacion(texturaDario,texturaDiana,texturaDarioSombreada,texturaDianaSombreada);
@@ -353,28 +352,297 @@ dialogos.Push(l);
 var nodo22: NodoDialogo = new NodoDialogo(dialogos);
 
 nodo2.setHijo2(nodo22);
-
-
 }
 
-
-
-
+//Conversacion con Fabio
 function inicializarConversacionFabio(){
+conversacionFabio = new ArbolConversacion(texturaDario,texturaFabio,texturaDarioSombreada,texturaFabioSombreada);
 
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("¿Escuchó  a los hombres?",1);
+dialogos.Push(l);
+l = new LineaDialogo("Si, está muy claro ¿no?",2);
+dialogos.Push(l);
+  
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+
+conversacionFabio.setRaiz(nodoRaiz);
+
+/**
+* Nodo Opcion 1
+* 
+**/
+dialogos = new Array();
+l = new LineaDialogo("Yo creo que debemos subir a ayudar a esa otra gente\n y usted puede ser de gran ayuda.",1);
+dialogos.Push(l);
+l = new LineaDialogo("De una vez se lo digo doctor, no cuente conmigo. Yo bajo en seguida.",2);
+dialogos.Push(l);
+
+var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo1(nodo1);
+
+/**
+* Nodo Opcion 2
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("No puede tener ninguna excusa. Debe subir conmigo, lo necesitamos.",1);
+dialogos.Push(l);
+l = new LineaDialogo("De una vez se lo digo doctor, no cuente conmigo. Yo bajo en seguida.",2);
+dialogos.Push(l);
+
+var nodo2: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo2(nodo2);
 }
 
+//Conversacion con Francisco
 function inicializarConversacionFrancisco(){
+conversacionFrancisco = new ArbolConversacion(texturaDario,texturaFrancisco,texturaDarioSombreada,texturaFranciscoSombreada);
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("No creía que la situación fuera tan grave.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Lo peor es que tenemos muy poco tiempo para salvarnos.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Según el muchacho hay gente arriba que necesita de nosotros. Entre todos, seguro que podríamos ayudar.",1);
+dialogos.Push(l);
+l = new LineaDialogo("¿Está usted hablando en serio?",2);
+dialogos.Push(l);
+  
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 
+conversacionFrancisco.setRaiz(nodoRaiz);
+
+/**
+* Nodo Opcion 1
+* 
+**/
+dialogos = new Array();
+l = new LineaDialogo("Se trata de un deber humanitario, no creo que haya alternativa, ¡Acompáñeme usted!",1);
+dialogos.Push(l);
+l = new LineaDialogo("Está loco, amigo, no crea que por ser doctor puede darme órdenes\n, yo me voy ya, usted verá lo que hace.",2);
+dialogos.Push(l);
+
+var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo1(nodo1);
+
+/**
+* Nodo Opcion 2
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Acabamos de salvarnos gracias a la colaboración de todos\n, seguro que usted podría ayudar arriba, acompáñeme ¿Si?",1);
+dialogos.Push(l);
+l = new LineaDialogo("No doctorcito que se encarguen de eso los que saben, yo voy a salvar mi pellejo.",2);
+dialogos.Push(l);
+
+var nodo2: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo2(nodo2);
+
+/**
+* Nodo Opcion 2.1
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("No hay tiempo para pedir ayuda abajo, debemos encargarnos\n nosotros mismos de la ayuda a los de arriba.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Haga lo que quiera, yo me largo.",2);
+dialogos.Push(l);
+
+var nodo21 : NodoDialogo= new NodoDialogo(dialogos);
+
+nodo2.setHijo1(nodo21);
+
+/**
+* Nodo Opcion 2.2
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Por favor, acompáñeme. Es una cuestión puramente humanitaria.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Está bien, subo. Pero le advierto, si a los 5 minutos veo que la cosa no funciona, bajo a salvar mi pellejo.",2);
+dialogos.Push(l);
+
+var nodo22: NodoDialogo = new NodoDialogo(dialogos);
+
+nodo2.setHijo2(nodo22);
 }
 
+//Conversación con Mario
 function inicializarConversacionMario(){
+conversacionMario = new ArbolConversacion(texturaDario,texturaMario,texturaDarioSombreada,texturaMarioSombreada);
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("¿Cómo está la situación arriba?",1);
+dialogos.Push(l);
+l = new LineaDialogo("Es un poco extraña. Un sector se derrumbó y hay gente atrapada que pide ayuda, pero hay otro sector intacto y la gente como si nada, sigue trabajando.es un poco extraña.\n Un sector se derrumbó y hay gente atrapada que pide ayuda, pero hay otro sector intacto y la gente como si nada, sigue trabajando.",2);
+dialogos.Push(l);
+l = new LineaDialogo("¿Pero cree que si subimos podemos ayudar?",1);
+dialogos.Push(l);
+l = new LineaDialogo("No sé, es mucha gente. Lo que es cierto es que los atrapados necesitan auxilio.",2);
+dialogos.Push(l);
+  
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+
+conversacionMario.setRaiz(nodoRaiz);
+
+
+/**
+* Nodo Opcion 1
+* 
+**/
+dialogos = new Array();
+l = new LineaDialogo("Estoy seguro que armando un buen un equipo podremos ayudar ¿Se une usted?\n Usted conoce el lugar y los procedimientos.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Está bien, usted organiza y vemos cómo puedo ayudar.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Gracias, sé que juntos podemos hacer mucho.",1);
+dialogos.Push(l);
+
+var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo1(nodo1);
+
+/**
+* Nodo Opcion 2
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Esta labor es humanitaria y es mi deber conformar un equipo de rescate a como dé lugar,\n le ordeno que me acompañe.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Insisto en que no tengo claridad de lo que puedo hacer, no tengo experiencia y soy\n muy nervioso para estas cosas, mejor bajo a conseguir ayuda.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Acabamos de salir de un sitio que estaba a punto de desplomarse ¿Sabe cómo?",1);
+dialogos.Push(l);
+l = new LineaDialogo("¿Cómo doctor?",2);
+dialogos.Push(l);
+
+var nodo2: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo2(nodo2);
+
+/**
+* Nodo Opcion 2.1
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Colaborando. Cada uno con lo que sabía o podía hacer",1);
+dialogos.Push(l);
+l = new LineaDialogo("Es justamente lo que no sé, cómo ayudar. Soy un mensajero, no tengo formación para esto.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Es que no se trata de formación, sino de habilidades y esas salen a flote en\n la situación misma, seguro que en algo nos puede ayudar usted, ya verá, es mejor sumar que restar\n en estos casos.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Bueno doctor, subo con usted. Ojalá que mis nervios no me traicionen",2);
+dialogos.Push(l);
+
+var nodo21 : NodoDialogo= new NodoDialogo(dialogos);
+
+nodo2.setHijo1(nodo21);
+
+/**
+* Nodo Opcion 2.2
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Tragándonos nuestro miedo y haciendo lo que teníamos que hacer.",1);
+dialogos.Push(l);
+l = new LineaDialogo("No creo que sea miedo doctor. No voy a poder hacer nada para ayudar, es mejor si solo salgo, no quiero estorbar.",2);
+dialogos.Push(l);
+l = new LineaDialogo("¿Está seguro de esa decisión?",1);
+dialogos.Push(l);
+l = new LineaDialogo("Más que seguro doctor, es lo correcto, no puedo meterme en su camino.",2);
+dialogos.Push(l);
+
+var nodo22: NodoDialogo = new NodoDialogo(dialogos);
+
+nodo2.setHijo2(nodo22);
+
+/**
+* Nodo Opcion 3
+* 
+*/
+
+dialogos = new Array();
+l = new LineaDialogo("Acabamos de salir de un sitio que estaba a punto de desplomarse ¿Sabe cómo?",1);
+dialogos.Push(l);
+l = new LineaDialogo("¿Cómo doctor?",2);
+dialogos.Push(l);
+
+var nodo3: NodoDialogo = new NodoDialogo(dialogos);
+
+nodoRaiz.setHijo3(nodo3);
+
+/**
+* Nodo Opcion 3.1
+* 
+*/
+nodo3.setHijo1(nodo21);
+
+/**
+* Nodo Opcion 3.2
+* 
+*/
+nodo3.setHijo2(nodo22);
 
 }
 
+//Conversacion Cristina
 function inicializarConversacionCristina(){
+conversacionCristina = new ArbolConversacion(texturaDario,texturaCristina,texturaDarioSombreada,texturaCristinaSombreada);
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("¿Cómo se siente?",1);
+dialogos.Push(l);
+l = new LineaDialogo("Mucho mejor, pero todavía me duele mi brazo.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Si no hubiera sido por  usted, todavía estaríamos atrapados.",1);
+dialogos.Push(l);
+l = new LineaDialogo("Si, fue una suerte que pudiera pasar por la ventana.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Ahora tenemos que ayudar otra gente.",1);
+dialogos.Push(l);
+l = new LineaDialogo("¿Se refiere a los seres que están al otro lado?",2);
+dialogos.Push(l);
+l = new LineaDialogo("¿Al otro lado? No, a los que están atrapados arriba ¿No oyó al muchacho?",1);
+dialogos.Push(l);
+l = new LineaDialogo("Hay seres que nos necesitan.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Si, a eso me refiero, los que están en las oficinas.",1);
+dialogos.Push(l);
+l = new LineaDialogo("No, usted no me entiende. Hay otros seres que nos piden ayuda.",2);
+dialogos.Push(l);
+l = new LineaDialogo("Disculpe, no la entiendo. Lo que quiero saber es si sube conmigo.",1);
+dialogos.Push(l);
+l = new LineaDialogo("No, me voy al otro lado, a ayudarlos. Más  bien debería usted acompañarme.",2);
+dialogos.Push(l);
+l = new LineaDialogo("No, yo subo. Pero debería usted pedir ayuda para su brazo y para su estado emocional.\n Una crisis de abstinencia podría ser fatal.",1);
+dialogos.Push(l);
+  
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 
+conversacionCristina.setRaiz(nodoRaiz);
 }
-
-
-

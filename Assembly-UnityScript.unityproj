@@ -57,9 +57,9 @@
      <Compile Include="Assets\Scripts\Managers\ArbolDialogos.js" />
      <Compile Include="Assets\Scripts\Managers\IEvent_manager.js" />
      <Compile Include="Assets\Scripts\Managers\Manager1.js" />
-     <Compile Include="Assets\Scripts\Managers\Manager1_5.js" />
+     <Compile Include="Assets\Scripts\Managers\Manager1_5A.js" />
      <Compile Include="Assets\Scripts\Managers\ManagerDialogos1.js" />
-     <Compile Include="Assets\Scripts\Managers\ManagerDialogos1_5.js" />
+     <Compile Include="Assets\Scripts\Managers\ManagerDialogos1_5A.js" />
      <Compile Include="Assets\Scripts\Managers\ManagerDialogosDario.js" />
      <Compile Include="Assets\Scripts\Managers\NodoDialogos.js" />
      <Compile Include="Assets\Scripts\Managers\Player_Manager.js" />
