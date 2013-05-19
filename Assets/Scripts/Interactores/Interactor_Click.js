@@ -53,13 +53,9 @@ function OnMouseExit(){
 }
 
 function OnMouseDown(){
-	
-	if (DistanceFromObject() && flag) {
-		
-		manager.GetComponent(IEvent_manager).Switch(actObject);
-	}
-	else if (DistanceFromObject() && !flag) {
-		
-		manager.GetComponent(IEvent_manager).Switch(actObject + "S");
+			
+	if(flag){
+			
+	manager.GetComponent(IEvent_manager).Switch(actObject);
 	}
 }

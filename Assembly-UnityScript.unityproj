@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\Interactores\Interactor_Click.js" />
      <Compile Include="Assets\Scripts\Interactores\Interactor_Habilidad.js" />
      <Compile Include="Assets\Scripts\Interactores\Interactor_Trigger.js" />
+     <Compile Include="Assets\Scripts\Inventario\Inventario.js" />
+     <Compile Include="Assets\Scripts\Inventario\Item.js" />
      <Compile Include="Assets\Scripts\Managers\ArbolDialogos.js" />
      <Compile Include="Assets\Scripts\Managers\IEvent_manager.js" />
      <Compile Include="Assets\Scripts\Managers\Manager1.js" />

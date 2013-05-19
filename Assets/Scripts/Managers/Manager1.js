@@ -4,23 +4,33 @@
 // Fabio --> Player2
 // Diana --> Player3
 // Cristina --> Player4
+
+
+// ================================================================================
+// Variables
+// ================================================================================
+
 private var act_Player : GameObject;
+
 //Flags de control
 private var flag1 : boolean = false;//Conseguir a Fabio
-private var flag2 : boolean = false;//Conseguir la llave
 private var flag3 : boolean = false;//Conseguir a diana
-private var flag4 : boolean = false;//Conseguir el botiquin
 private var cm1 : boolean = false;//Derrumbe fabio-dario
 private var cm2 : boolean = false;//Curar Cristina
 private var cm3 : boolean = false;//Cristina puerta emergencia
-private var fCaja : boolean = true;
-private var fCajon : boolean = true;
 
 //Texturas
 var cinematicas : Texture2D[] = new Texture2D[5];
 var texturaLlave : Texture2D;
 var texturaBotiquin : Texture2D;
 
+public static final var OBJETO_LLAVE  :int= 0;
+public static final var OBJETO_BOTIQUIN  :int= 1;
+
+
+// ================================================================================
+// Start
+// ================================================================================
 
 function Start () {
 	GetComponent(Player_Manager).destruirPlayer4();
@@ -31,9 +41,18 @@ function Start () {
 	GameObject.Find("Derrumbe2").collider.enabled = false;
 }
 
+
+// ================================================================================
+// Update
+// ================================================================================
+
 function Update() {
 	act_Player = GetComponent(Player_Manager).darActual();
 }
+
+// ================================================================================
+// OnGUI
+// ================================================================================
 
 function OnGUI(){
 	if(cm1){
@@ -46,6 +65,10 @@ function OnGUI(){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[2]);
 	}
 }
+
+// ================================================================================
+// Manejo de los eventos de triggers(Activados por Areas)(Llamado por interactorTrigger_)
+// ================================================================================
 
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
@@ -173,176 +196,176 @@ function EventTrigger(objName : String){
 	}
 }
 
+
+// ================================================================================
+// Manejo de eventos por Click(Llamado por Interactor Click)
+// ================================================================================
+
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
-	var habID;
+	
 	var managerDialogos = GetComponent(ManagerDialogos1);
 	//Caja donde esta la llave
-	if(comando.Equals("Caja") && fCaja){
-		fCaja = false;
-		GetComponent(Menu_script).agregarItem(texturaLlave, "llave");
+	if(comando.Equals("Caja")){
+		
+		//Aca se consigue la llave de la puerta
+		
+		GetComponent(Inventario).addItem(new Item(texturaLlave, OBJETO_LLAVE));
 		managerDialogos.mostrarDialogo(2,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
 		yield WaitForSeconds(3);
 		managerDialogos.apagarDialogo();
-		flag2 = true;
+		
 	}
-	//Puerta de la primera habitación
-	if(comando.Equals("PuertaS")){
-		var puerta : GameObject = GameObject.Find("Puerta");
-		puerta.audio.Play();
-		yield WaitForSeconds(0.5);
-		Destroy(puerta);
-		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		GetComponent(Menu_script).sacarItem("llave");
-	}
-	
+	//Puerta de la primera habitación, se necesita la llave para poder abrirla
 	if(comando.Equals("Puerta")){
-		if(flag2){
+		
+		//SI se tiene la llave en el inventario
+		if(GetComponent(Inventario).enInventario(OBJETO_LLAVE)){
 			
-			managerDialogos.mostrarDialogo(27,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-		}
-		else{
+			var puerta : GameObject = GameObject.Find("Puerta");
+			puerta.audio.Play();
+			yield WaitForSeconds(0.5);
+			Destroy(puerta);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			
+		}else{//En caso de que se haga click sin tener la llave
+			
 			managerDialogos.mostrarDialogo(1,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
 			yield WaitForSeconds(3);
 			managerDialogos.apagarDialogo();
 		}
 	}
 	
+	
 	//Cajon donde esta el botiquin
-	if(comando.Equals("Cajon") && fCajon){
-		if(!(act_Player.GetComponent(Player).Nombre().Equals("Diana"))){
-			if(flag3){
-				managerDialogos.mostrarDialogo(31,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-			else{
-				managerDialogos.mostrarDialogo(32,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-		}
-		else{
-			fCajon = false;
-			flag4 = true;
-			GetComponent(Menu_script).agregarItem(texturaBotiquin, "Botiquin");
-			managerDialogos.mostrarDialogo(18,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-		}
-	}
-	//Derrumbe de la habitacion donde esta fabio
-	if(comando.Equals("Derrumbe")){
-		if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
-			act_Player.GetComponent(MoverClick).MoverOff();
-			cm1 = true;
-			yield WaitForSeconds(5);
-			Destroy(GameObject.Find("Derrumbe"));
-			act_Player.GetComponent(MoverClick).MoverOn();
-			cm1 = false;
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			yield WaitForSeconds(1);
-			managerDialogos.mostrarDialogo(15,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-			managerDialogos.mostrarDialogo(16,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-			flag1 = true;
-		}
-		else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
-			managerDialogos.mostrarDialogo(28,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-		}
-	}
-	//Armario donde esta atrapada cristina
-	if(comando.Equals("Armario")){
-		if(!(act_Player.GetComponent(Player).Nombre().Equals("Fabio"))){
-			managerDialogos.mostrarDialogo(8,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-		}
-		else{
-			act_Player.GetComponent(MoverClick).MoverOff();
-			Destroy(GameObject.Find("Armario"));
-			GameObject.Find("AyudaTrigger").GetComponent(Interactor_Trigger).apagar();
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GetComponent(Player_Manager).crearPlayer4();
-			cm1 = true;
-			yield WaitForSeconds(5);
-			cm1 = false;
-			managerDialogos.mostrarDialogo(19,managerDialogos.GLOBO_DIALOGO_INVERSO, Screen.width/2 - 80, Screen.height/2 ,Screen.width/2 - 50 ,Screen.height/2 + 90);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-			act_Player.GetComponent(MoverClick).MoverOn();
-		}
-	}
-	//Escombros donde esta atrapada diana
-	if(comando.Equals("Escombros")){
-		if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
-			act_Player.GetComponent(MoverClick).MoverOff();
-			cm1 = true;
-			yield WaitForSeconds(5);
-			Destroy(GameObject.Find("Escombros"));
-			cm1 = false;
-			managerDialogos.mostrarDialogo(20,ManagerDialogos1.GLOBO_DIALOGO_INVERSO,Screen.width/2 + 200, Screen.height/2 - 30,Screen.width/2 + 230,Screen.height/2 + 60);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-			managerDialogos.mostrarDialogo(33,ManagerDialogos1.CUADRO_TEXTO,Screen.width - 150, Screen.height - 50,Screen.width - 150, Screen.height - 40);
-			yield WaitForSeconds(2);
-			managerDialogos.apagarDialogo();
-			act_Player.GetComponent(MoverClick).MoverOn();
-			GetComponent(Menu_script).activarP3();
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("AuxilioTrigger").GetComponent(Interactor_Trigger).apagar();
-			flag3 = true;
-		}
-		else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
-			if(flag1){
-				managerDialogos.mostrarDialogo(6,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-			else{
-				managerDialogos.mostrarDialogo(5,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-		}
+	if(comando.Equals("Cajon")){
 		
+		//Cuando el jugador interactua con el cajon que contiene el botiquin
+		if(!(act_Player.GetComponent(Player).Nombre().Equals("Diana"))){// Si no se tiene a Diana seleccionada
+		
+		if(flag3){//Si diana esta en la party
+		
+		managerDialogos.mostrarDialogo(31,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
 	}
-	//Curar a Cristina
-	if(comando.Equals("Cristina")){
-		if(act_Player.GetComponent(Player).Nombre().Equals("Diana")){
-			if(flag4){
-				managerDialogos.mostrarDialogo(38,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-			else{
-				managerDialogos.mostrarDialogo(36,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
+	else{//Si diana no esta en la party
+	
+	managerDialogos.mostrarDialogo(32,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+	yield WaitForSeconds(3);
+	managerDialogos.apagarDialogo();
+}
+}
+else{//Cuando se tiene a diana seleccionada
+
+GetComponent(Inventario).addItem(new Item(texturaLlave, OBJETO_LLAVE));
+managerDialogos.mostrarDialogo(18,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+yield WaitForSeconds(3);
+managerDialogos.apagarDialogo();
+}
+}
+
+//Derrumbe de la habitacion donde esta fabio
+if(comando.Equals("Derrumbe")){
+	if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
+		act_Player.GetComponent(MoverClick).MoverOff();
+		cm1 = true;
+		yield WaitForSeconds(5);
+		Destroy(GameObject.Find("Derrumbe"));
+		act_Player.GetComponent(MoverClick).MoverOn();
+		cm1 = false;
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		yield WaitForSeconds(1);
+		managerDialogos.mostrarDialogo(15,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		managerDialogos.mostrarDialogo(16,managerDialogos.GLOBO_DIALOGO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		flag1 = true;
+	}
+	else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
+		managerDialogos.mostrarDialogo(28,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+	}
+}
+//Armario donde esta atrapada cristina
+if(comando.Equals("Armario")){
+	if(!(act_Player.GetComponent(Player).Nombre().Equals("Fabio"))){
+		managerDialogos.mostrarDialogo(8,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+	}
+	else{
+		act_Player.GetComponent(MoverClick).MoverOff();
+		Destroy(GameObject.Find("Armario"));
+		GameObject.Find("AyudaTrigger").GetComponent(Interactor_Trigger).apagar();
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		GetComponent(Player_Manager).crearPlayer4();
+		cm1 = true;
+		yield WaitForSeconds(5);
+		cm1 = false;
+		managerDialogos.mostrarDialogo(19,managerDialogos.GLOBO_DIALOGO_INVERSO, Screen.width/2 - 80, Screen.height/2 ,Screen.width/2 - 50 ,Screen.height/2 + 90);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		act_Player.GetComponent(MoverClick).MoverOn();
+	}
+}
+//Escombros donde esta atrapada diana
+if(comando.Equals("Escombros")){
+	if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
+		act_Player.GetComponent(MoverClick).MoverOff();
+		cm1 = true;
+		yield WaitForSeconds(5);
+		Destroy(GameObject.Find("Escombros"));
+		cm1 = false;
+		managerDialogos.mostrarDialogo(20,ManagerDialogos1.GLOBO_DIALOGO_INVERSO,Screen.width/2 + 200, Screen.height/2 - 30,Screen.width/2 + 230,Screen.height/2 + 60);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		managerDialogos.mostrarDialogo(33,ManagerDialogos1.CUADRO_TEXTO,Screen.width - 150, Screen.height - 50,Screen.width - 150, Screen.height - 40);
+		yield WaitForSeconds(2);
+		managerDialogos.apagarDialogo();
+		act_Player.GetComponent(MoverClick).MoverOn();
+		GetComponent(Menu_script).activarP3();
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		GameObject.Find("AuxilioTrigger").GetComponent(Interactor_Trigger).apagar();
+		flag3 = true;
+	}
+	else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
+		if(flag1){
+			managerDialogos.mostrarDialogo(6,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+			yield WaitForSeconds(3);
+			managerDialogos.apagarDialogo();
 		}
 		else{
-			managerDialogos.mostrarDialogo(35,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+			managerDialogos.mostrarDialogo(5,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
 			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();	
+			managerDialogos.apagarDialogo();
 		}
 	}
 	
-	if(comando.Equals("CristinaS")){
+}
+//Curar a Cristina
+if(comando.Equals("Cristina")){
+	// SE Intenta usar el botiquin para curar a cristina  ==========================================
+	
+	
+	
+	if(act_Player.GetComponent(Player).Nombre().Equals("Diana")){//Si se tiene a diana seleccionada
+	
+	if(GetComponent(Inventario).enInventario(OBJETO_BOTIQUIN)){
+		
+		//Curan exitosamente a cristina
 		act_Player.GetComponent(MoverClick).MoverOff();
 		cm2 = true;
 		yield WaitForSeconds(5);
 		cm2 = false;
+		//Ya esta
 		managerDialogos.mostrarDialogo(21,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
 		yield WaitForSeconds(3);
 		managerDialogos.apagarDialogo();
+		//Cristina se unio
 		managerDialogos.mostrarDialogo(34,ManagerDialogos1.CUADRO_TEXTO,Screen.width - 160, Screen.height - 50,Screen.width - 160, Screen.height - 40);
 		yield WaitForSeconds(2);
 		managerDialogos.apagarDialogo();
@@ -350,47 +373,54 @@ function EventSwitch(comando : String){
 		GameObject.Find("Cristina").GetComponent(Interactor_Click).enabled = false;
 		GetComponent(Player_Manager).darPlayer4().GetComponent(Interactor_Click).enabled = false;
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		GetComponent(Menu_script).sacarItem("Botiquin");
+
+		
 		act_Player.GetComponent(MoverClick).MoverOn();
+		
+		
 	}
-	
-	if(comando.Equals("Emergencia")){
-		if(act_Player.GetComponent(Player).Nombre().Equals("Cristina")){
-			act_Player.GetComponent(MoverClick).MoverOff();
-			cm3 = true;
-			Destroy(GameObject.Find("PuertaEmergencia"));
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			yield WaitForSeconds(5);
-			cm3 = false;
-			act_Player.GetComponent(MoverClick).MoverOn();
-		}
-		else{
-			managerDialogos.mostrarDialogo(25,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-			yield WaitForSeconds(3);
-			managerDialogos.apagarDialogo();
-			if(GetComponent(Menu_script).EstaPersonaje("P4")){
-				managerDialogos.mostrarDialogo(26,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
-				yield WaitForSeconds(3);
-				managerDialogos.apagarDialogo();
-			}
-		}
+	else{
+		
+	// Voy a necesitar un botiquin
+	managerDialogos.mostrarDialogo(36,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+	yield WaitForSeconds(3);
+	managerDialogos.apagarDialogo();
 	}
 }
 
-//Implementación de la funcion Item() de la interfaz
-function EventItem(objName : String){
-	//Llave
-	if(objName.Equals("llave")){	
-		Cursor.SetCursor(texturaLlave, Vector2.zero, CursorMode.ForceSoftware);
-		GameObject.Find("Puerta").GetComponent(Interactor_Click).FlagOff();
+else{
+	//Si no se tiene a diana seleccionada
+	managerDialogos.mostrarDialogo(35,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+	yield WaitForSeconds(3);
+	managerDialogos.apagarDialogo();
+}
+}
+
+if(comando.Equals("CristinaS")){
+	// ACA TAMBIEN===============================================================================================
+}
+
+if(comando.Equals("Emergencia")){
+	if(act_Player.GetComponent(Player).Nombre().Equals("Cristina")){
+		act_Player.GetComponent(MoverClick).MoverOff();
+		cm3 = true;
+		Destroy(GameObject.Find("PuertaEmergencia"));
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		yield WaitForSeconds(5);
+		cm3 = false;
+		act_Player.GetComponent(MoverClick).MoverOn();
 	}
-	else if(objName.Equals("Botiquin")){
-		
-		Cursor.SetCursor(texturaBotiquin, Vector2.zero, CursorMode.ForceSoftware);
-		GameObject.Find("Cristina").GetComponent(Interactor_Click).FlagOff();
+	else{
+		managerDialogos.mostrarDialogo(25,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+		yield WaitForSeconds(3);
+		managerDialogos.apagarDialogo();
+		if(GetComponent(Menu_script).EstaPersonaje("P4")){
+			managerDialogos.mostrarDialogo(26,managerDialogos.GLOBO_PENSAMIENTO, managerDialogos.POS_PERSONAJE_ACTUAL[0], managerDialogos.POS_PERSONAJE_ACTUAL[1],managerDialogos.POS_PERSONAJE_ACTUAL[2],managerDialogos.POS_PERSONAJE_ACTUAL[3]);
+			yield WaitForSeconds(3);
+			managerDialogos.apagarDialogo();
+		}
 	}
-	
-	
+}
 }
 
 function DarCinematica(index : int){

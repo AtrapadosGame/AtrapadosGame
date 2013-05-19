@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\Manager1_5A.js">
     <Files>
-      <File FileName="Assets\Scripts\Managers\Manager1_5A.js" Line="29" Column="40" />
+      <File FileName="Assets\Scripts\Interactores\Interactor_Click.js" Line="25" Column="56" />
+      <File FileName="Assets\Scripts\Managers\Manager1.js" Line="262" Column="34" />
+      <File FileName="Assets\Scripts\Managers\Manager1_5A.js" Line="34" Column="72" />
+      <File FileName="Assets\Scripts\Inventario\Inventario.js" Line="112" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
