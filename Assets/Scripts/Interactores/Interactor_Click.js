@@ -12,6 +12,7 @@ var actObject : String;
 var manager : GameObject;
 //Distancia mínima de interacción
 var closeDistance : float = 1.5;
+var texturaEspecial : Texture2D;
 
 
 function Start(){
@@ -39,10 +40,18 @@ function FlagOff(){
 
 function OnMouseEnter(){
 	player = manager.GetComponent(Player_Manager).darActual();
-	if(DistanceFromObject() && flag){
-	
-	 var cursorTexture:Texture2D = player.GetComponent(Player).darCursor();
-	Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+	if(flag){
+	var cursorTexture:Texture2D;
+		if(texturaEspecial)
+		{
+		 cursorTexture= texturaEspecial;
+		}else
+		{
+		 cursorTexture = player.GetComponent(Player).darCursor();
+	 
+		
+		}
+		Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	
 }
@@ -54,8 +63,8 @@ function OnMouseExit(){
 
 function OnMouseDown(){
 			
-	if(flag){
+	if(flag && DistanceFromObject() ){
 			
-	manager.GetComponent(IEvent_manager).Switch(actObject);
+		manager.GetComponent(IEvent_manager).Switch(actObject);
 	}
 }

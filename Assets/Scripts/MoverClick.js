@@ -64,7 +64,9 @@ function SetTargetPosition(nTarget : Vector3){
 
 
 function MoverOff(){
+	targetPosition = Vector3.zero;
 	mover = false;
+	SendMessage("StopAnim");
 }
 
 function MoverOn(){

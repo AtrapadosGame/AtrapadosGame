@@ -88,12 +88,13 @@ for(var i:int = 0 ; i <4 ; i++){
 		
 			tempItems[i-1] = itemsActuales[i];
 			
+			
 		}	
 		
-		if (itemsActuales[i].getId() == id){
+		if (itemsActuales[i].getId() == id && !encontro){
 
 			encontro = true;
-		}else{
+		}else if(!encontro){
 		tempItems[i] = itemsActuales[i];
 		}
 		
