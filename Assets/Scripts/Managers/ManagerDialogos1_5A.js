@@ -283,7 +283,9 @@ l = new LineaDialogo("Ah, eso es porque fui enfermera jefe durante varios años.
 dialogos.Push(l);
 l = new LineaDialogo("¡Pero usted se ve muy joven!",1);
 dialogos.Push(l);
-l = new LineaDialogo("De cualquier modo, yo creo que usted debería acompañarme al piso de arriba para tratar de salvar a esa gente.",2);
+l = new LineaDialogo("Tan lindo, pero es pura apariencia.",2);
+dialogos.Push(l);
+l = new LineaDialogo("De cualquier modo, yo creo que usted debería acompañarme al piso de arriba para tratar de salvar a esa gente.",1);
 dialogos.Push(l);
   
 var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
@@ -493,7 +495,7 @@ conversacionMario = new ArbolConversacion(texturaDario,texturaMario,texturaDario
 var dialogos : Array = new Array();
 var l: LineaDialogo = new LineaDialogo("¿Cómo está la situación arriba?",1);
 dialogos.Push(l);
-l = new LineaDialogo("Es un poco extraña. Un sector se derrumbó y hay gente atrapada que pide ayuda, pero hay otro sector intacto y la gente como si nada, sigue trabajando.es un poco extraña.\n Un sector se derrumbó y hay gente atrapada que pide ayuda, pero hay otro sector intacto y la gente como si nada, sigue trabajando.",2);
+l = new LineaDialogo("Es un poco extraña. Un sector se derrumbó y hay gente atrapada que pide ayuda, pero hay otro sector intacto y la gente como si nada, sigue trabajando.",2);
 dialogos.Push(l);
 l = new LineaDialogo("¿Pero cree que si subimos podemos ayudar?",1);
 dialogos.Push(l);
