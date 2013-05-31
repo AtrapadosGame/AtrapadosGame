@@ -10,6 +10,7 @@ private var ancho : int;
 private var alto : int;
 var customSkin: GUISkin;
 var texturaVacia : Texture2D;
+private var lastTooltip : String =  "";
 // ================================================================================
 // Start
 // ================================================================================
@@ -33,13 +34,22 @@ GUI.skin = customSkin;
 
 for(var i:int = 0 ; i <4 ; i++){
 	if (itemsActuales[i]){
-		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), itemsActuales[i].getTextura());
+		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent(itemsActuales[i].getTextura(), "Button"));
 	}
 	else{
-		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), texturaVacia);
+		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent(texturaVacia, "Button"));
 	}
 }
-	
+
+
+	if (Event.current.type == EventType.Repaint && GUI.tooltip != lastTooltip) 
+{
+            if (lastTooltip != "")
+                SendMessage (lastTooltip + "OnMouseOut", SendMessageOptions.DontRequireReceiver);
+            if (GUI.tooltip != "")
+                SendMessage (GUI.tooltip + "OnMouseOver", SendMessageOptions.DontRequireReceiver);
+            lastTooltip = GUI.tooltip;
+}
 	
 }
 

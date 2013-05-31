@@ -13,6 +13,9 @@ private var hijo1 : NodoDialogo;
 private var hijo2 : NodoDialogo;
 private var hijo3 : NodoDialogo;
 
+//En caso de ser el ultimo nodo tiene un resultado de la conversacion
+private var resultado: int;
+
 // ================================================================================
 // Constructores
 // ================================================================================
@@ -22,6 +25,14 @@ lineasDialogo = dialogo;
 indiceDialogo = 0;
 
 }
+
+function NodoDialogo(dialogo: Array, res : int){
+resultado = res;
+lineasDialogo = dialogo;
+indiceDialogo = 0;
+
+}
+
 
 // ================================================================================
 // Metodos
@@ -99,7 +110,9 @@ return respuesta;
 
 }
 
-
+function getResultado():int{
+return resultado;
+}
 
 
 

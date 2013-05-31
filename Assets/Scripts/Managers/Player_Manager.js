@@ -1,169 +1,151 @@
 #pragma strict
-private var actual : GameObject;
-var startPlayer : String; //Determina el jugados inicial del nivel
-var player1 : GameObject;
-var player2 : GameObject;
-var player3 : GameObject;
-var player4 : GameObject;
-var cursorP1 : String;
-var cursorP2 : String;
-var cursorP3 : String;
-var cursorP4 : String;
+
+
+
+// ================================================================================
+// Variables
+// ================================================================================
+private var actuales : Player[] = new Player[4];
+private var currentGO : GameObject;
+private var current : Player;
+private var ancho : int;
+private var alto : int;
+private var separacion : int;
+private var lastTooltip : String =  "";
+var customSkin: GUISkin;
 var camara : Camera;
 var luz : GameObject;  
 
-function Awake(){
-	actual = GameObject.Find(startPlayer);
+
+
+
+
+public static final var DARIO : int = 0;
+public static final var CRISTINA : int = 1;
+public static final var DIANA : int = 2;
+public static final var FABIO : int = 3;
+public static final var MARIO : int = 4;
+public static final var FRANCISCO : int = 5;
+
+// ================================================================================
+// OnGUI
+// ================================================================================
+
+
+function OnGUI () 
+{
+
+
+
+for(var i:int = 0 ; i <4 ; i++)
+{
+
+	if(actuales[i])
+	{
+
+ 		if(GUI.Button(new Rect (i*ancho,0,ancho,alto),GUIContent(actuales[i].getTextura(), "Button")))
+ 		{
+ 			cambiarPj(actuales[i].getId());
+ 		}
+			
+			
+	}
 }
+
+if (Event.current.type == EventType.Repaint && GUI.tooltip != lastTooltip) 
+{
+            if (lastTooltip != "")
+                SendMessage (lastTooltip + "OnMouseOut", SendMessageOptions.DontRequireReceiver);
+            if (GUI.tooltip != "")
+                SendMessage (GUI.tooltip + "OnMouseOver", SendMessageOptions.DontRequireReceiver);
+            lastTooltip = GUI.tooltip;
+}
+
+}
+// ================================================================================
+// Start
+// ================================================================================
+
 
 function Start () {
-	actual.GetComponent(MoverClick).MoverOn();
+print("start player manager");
+ancho = (Screen.width/8) - 50;
+	alto = Screen.height/8;
+	separacion = 3;
+	current = actuales[0];
+	currentGO = current.getGameObject();
+	currentGO.GetComponent(MoverClick).MoverOn();
 }
 
-function Update () {
-
-}
-
-function cambiarP1(){
-	var posActual = actual.transform.position;
-	var rotActual = actual.transform.rotation;
-	actual.renderer.enabled = false;
-	actual.collider.enabled = false;
-	//actual.GetComponent(MoverClick).MoverOff();
-	player1.transform.position = posActual;
-	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
-	crearPlayer1();
-	player1.GetComponent(MoverClick).MoverOn();
-	actual = player1;
-	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-
-}
-
-function cambiarP4(){
-	var posActual = actual.transform.position;
-	actual.renderer.enabled = false;
-	actual.collider.enabled = false;
-	//actual.GetComponent(MoverClick).MoverOff();
-	player4.transform.position = posActual;
-	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
-	crearPlayer4();
-	player4.GetComponent(MoverClick).MoverOn();
-	actual = player4;
-	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
+function cambiarPj(id : int){
 	
-}
-
-function cambiarP2(){
-	var posActual = actual.transform.position;
-	actual.renderer.enabled = false;
-	actual.collider.enabled = false;
-	//actual.GetComponent(MoverClick).MoverOff();
-	player2.transform.position = posActual;
-	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
-	crearPlayer2();
-	player2.GetComponent(MoverClick).MoverOn();
-	actual = player2;
-	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-
-}
-
-function cambiarP3(){
-	var posActual = actual.transform.position;
-	actual.renderer.enabled = false;
-	actual.collider.enabled = false;
-	//actual.GetComponent(MoverClick).MoverOff();
-	player3.transform.position = posActual;
-	actual.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
-	crearPlayer3();
-	player3.GetComponent(MoverClick).MoverOn();
-	actual = player3;
-	camara.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
-	luz.GetComponent(SmoothFollow).ChangeTarget(actual.transform);
+		var posActual = currentGO.transform.position;
+		var rotActual = currentGO.transform.rotation;
+		currentGO.renderer.enabled = false;
+		currentGO.collider.enabled = false;
+		currentGO.GetComponent(MoverClick).SetTargetPosition(Vector3.zero);
 	
+	for(var i:int = 0 ; i <4 ; i++){
+	if (actuales[i])
+		
+	if (actuales[i].getId() == id){
+	
+	current = actuales[i];
+	
+	currentGO = current.getGameObject();
+	currentGO.transform.position = posActual;
+	
+	currentGO.renderer.enabled = true;
+	currentGO.collider.enabled = true;
+	
+	}
+
+	}
+	
+
+	camara.GetComponent(SmoothFollow).ChangeTarget(currentGO.transform);
+	luz.GetComponent(SmoothFollow).ChangeTarget(currentGO.transform);
+	}
+
+// ================================================================================
+// Metodos
+// ================================================================================
+function estaPersonaje(idPlayer : int): boolean{
+
+for(var i:int = 0 ; i <4 ; i++){
+	if (actuales[i])
+		
+	if (actuales[i].getId() == idPlayer){
+		return  true;
+
+	}
+
+}
+return false;
 }
 
-function darActual(){
-	return actual;
+
+function addPlayer(player:Player):boolean{
+
+
+for(var i:int = 0 ; i <4 ; i++){
+
+if(!actuales[i]){
+	actuales[i] =player;
+	
+	
+	print("se esta anadiendo");
+	return true;
+}
+}
+return false;
 }
 
-function darPlayer1(){
-	return player1;
+function getCurrentPlayer(): Player{
+return current;
+
 }
 
-function darPlayer2(){
-	return player2;
-}
-
-function darPlayer3(){
-	return player3;
-}
-
-function darPlayer4(){
-	return player4;
-}
-
-function destruirPlayer4(){
-	player4.renderer.enabled = false;
-	player4.collider.enabled = false;
-}
-
-function destruirPlayer1(){
-	player1.renderer.enabled = false;
-	player1.collider.enabled = false;
-}
-
-function destruirPlayer3(){
-	player3.renderer.enabled = false;
-	player3.collider.enabled = false;
-}
-
-function destruirPlayer2(){
-	player2.renderer.enabled = false;
-	player2.collider.enabled = false;
-}
-
-function crearPlayer4(){
-	player4.renderer.enabled = true;
-	player4.collider.enabled = true;
-}
-
-function crearPlayer1(){
-	player1.renderer.enabled = true;
-	player1.collider.enabled = true;
-}
-
-function crearPlayer3(){
-	player3.renderer.enabled = true;
-	player3.collider.enabled = true;
-}
-
-function crearPlayer2(){
-	player2.renderer.enabled = true;
-	player2.collider.enabled = true;
-}
-
-function activarPlayer1(){
-	destruirPlayer1();
-	player1.GetComponent(MoverClick).MoverOn();
-}
-
-function activarPlayer2(){
-	destruirPlayer2();
-	player2.GetComponent(MoverClick).MoverOn();
-}
-
-function activarPlayer3(){
-	destruirPlayer3();
-	player3.GetComponent(MoverClick).MoverOn();
-}
-
-function activarPlayer4(){
-	destruirPlayer4();
-	player4.GetComponent(MoverClick).MoverOn();
-}
 
 
 

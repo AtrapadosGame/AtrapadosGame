@@ -13,3 +13,6 @@ function Trigger(objName : String){
 }
 
 
+function DialogSwitch(obj : int){
+	SendMessage("EventDialog", obj);
+}

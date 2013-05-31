@@ -5,7 +5,7 @@ private var flag : boolean = true;
 // Determina el cursor que se despliega en el OnMouseEnter
 private var cursor : Texture2D;
 //Determina el jugador actual
-private var player  : GameObject;
+private var player  : Player;
 //Determina el comando de acción del evento
 var actObject : String;
 //Conexión con el LevelManager
@@ -15,15 +15,11 @@ var closeDistance : float = 1.5;
 var texturaEspecial : Texture2D;
 
 
-function Start(){
-player = manager.GetComponent(Player_Manager).darActual();
-}
-
 
 function  DistanceFromObject(){
 	var onDistance : boolean = false;
 	
-    var sqrLen = (player.transform.position - transform.position).sqrMagnitude;
+    var sqrLen = (player.getGameObject().transform.position - transform.position).sqrMagnitude;
     if( sqrLen < closeDistance){
     	onDistance = true;
         return onDistance;
@@ -39,7 +35,7 @@ function FlagOff(){
 }
 
 function OnMouseEnter(){
-	player = manager.GetComponent(Player_Manager).darActual();
+	player = manager.GetComponent(Player_Manager).getCurrentPlayer();
 	if(flag){
 	var cursorTexture:Texture2D;
 		if(texturaEspecial)
@@ -47,7 +43,7 @@ function OnMouseEnter(){
 		 cursorTexture= texturaEspecial;
 		}else
 		{
-		 cursorTexture = player.GetComponent(Player).darCursor();
+		 cursorTexture = player.getCursor();
 	 
 		
 		}

@@ -241,7 +241,7 @@ function WindowFunction (windowID : int) {
 // ================================================================================
 function Update(){
 
-print(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion);
+
 if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 
 	print("OnMouseDown");
@@ -273,13 +273,13 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 
 function prenderMovimiento(){
 yield WaitForSeconds(0.5);
-		GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOn();
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
 
 }
 
 function apagarMovimiento(){
 
-GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOff();
+GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
 }
 function empezarDialogos(idConversacion:int ){
 print("empezarDialogos");
@@ -373,19 +373,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER1:
 	
 		
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -396,19 +396,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER2:
 	
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -420,19 +420,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER3:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -444,19 +444,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER4:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -468,19 +468,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER5:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -492,19 +492,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER6:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -516,19 +516,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER7:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -540,19 +540,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER8:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -564,19 +564,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER9:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -588,19 +588,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER10:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -612,19 +612,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER11:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -636,21 +636,21 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER12:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 		print("Dario botiquin");
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 		print("Dario botiquin");
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -663,19 +663,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER13:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -687,19 +687,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER14:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -711,19 +711,19 @@ switch(idConversacion){
 	case CONVERSACION_PLAYER15:
 		
 		 
-		if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Dario"))
+		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Diana"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Fabio"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FABIO)
 		{
 			texturaPlayer=texturaFabio;
 		}
-		else if(GetComponent(Player_Manager).darActual().GetComponent(Player).Nombre().Equals("Cristina"))
+		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.CRISTINA)
 		{
 			texturaPlayer=texturaCristina;
 		}
@@ -1325,7 +1325,7 @@ function inicializarConversacionPlayer15(textura:Texture2D)
 	* 
 	*/
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("¿Pero qué...? SQUEEEE",1);
+	var l: LineaDialogo = new LineaDialogo("¿Pero qué...?",1);
 	dialogos.Push(l);
  	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 

@@ -12,6 +12,7 @@ function Awake(){
 }
 
 function Update () {
+
 	if(Input.GetButton ("Fire1")&& mover){
 		//Crea un raycast hasta la posición deseada
 		var playerPlane = new Plane(Vector3.up, transform.position);
@@ -39,7 +40,7 @@ function Update () {
 		}		
 	}
 	
-	if(transform.position == targetPosition){
+	if(transform.position == targetPosition && mover){
 		SendMessage("StopAnim");
 	}
 	
@@ -65,11 +66,13 @@ function SetTargetPosition(nTarget : Vector3){
 
 function MoverOff(){
 	targetPosition = Vector3.zero;
+	print("se desactiva movimiento");
 	mover = false;
 	SendMessage("StopAnim");
 }
 
 function MoverOn(){
+print("se activa movimiento");
 	mover = true;
 }
 

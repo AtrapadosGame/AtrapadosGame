@@ -10,32 +10,49 @@
 // Variables
 // ================================================================================
 
-private var act_Player : GameObject;
+private var currentPlayer : Player;
+private var managerDialogos;
 
-//Flags de control
-private var flag1 : boolean = false;//Conseguir a Fabio
-private var flag3 : boolean = false;//Conseguir a diana
-private var cm1 : boolean = false;//Derrumbe fabio-dario
-private var cm2 : boolean = false;//Curar Cristina
-private var cm3 : boolean = false;//Cristina puerta emergencia
 
-//Texturas
+private var cinematica1 : boolean = false;//Derrumbe fabio-dario
+private var cinematica2 : boolean = false;//Curar Cristina
+private var cinematica3 : boolean = false;//Cristina puerta emergencia
+
+// ================================================================================
+// Texturas
+// ================================================================================
+
 var cinematicas : Texture2D[] = new Texture2D[5];
+
+//Objetos
 var texturaLlave : Texture2D;
 var texturaBotiquin : Texture2D;
-private var managerDialogos;
+
+//Players
+var texturaCursorDario : Texture2D;
+var texturaCursorCristina : Texture2D;
+var texturaCursorFabio : Texture2D;
+var texturaCursorDiana : Texture2D;
+
+var texturaCuadroDario : Texture2D;
+var texturaCuadroCristina : Texture2D;
+var texturaCuadroFabio : Texture2D;
+var texturaCuadroDiana : Texture2D;
 
 public static final var OBJETO_LLAVE  :int= 0;
 public static final var OBJETO_BOTIQUIN  :int= 1;
 
+public var onPause : boolean = false;
 
 // ================================================================================
 // Start
 // ================================================================================
 
-function Start () {
-	GetComponent(Player_Manager).destruirPlayer4();
-	GetComponent(Menu_script).activarP1();
+function Awake () {
+	print("start maanger");
+	GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDario,Player_Manager.DARIO, "Dario" , texturaCursorDario));
+	GameObject.Find("Cristina").renderer.enabled = false;
+	GameObject.Find("Cristina").collider.enabled = false;
 	GameObject.Find("Derrumbe").renderer.enabled = false;
 	GameObject.Find("Derrumbe").collider.enabled = false;
 	GameObject.Find("Derrumbe2").renderer.enabled = false;
@@ -48,22 +65,20 @@ function Start () {
 // Update
 // ================================================================================
 
-function Update() {
-	act_Player = GetComponent(Player_Manager).darActual();
-}
+
 
 // ================================================================================
 // OnGUI
 // ================================================================================
 
 function OnGUI(){
-	if(cm1){
+	if(cinematica1){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[0]);
 	}
-	if(cm2){
+	if(cinematica2){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[1]);
 	}
-	if(cm3){
+	if(cinematica3){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[2]);
 	}
 }
@@ -74,6 +89,7 @@ function OnGUI(){
 
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
+	currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
 	var managerDialogos = GetComponent(ManagerDialogos1);
 	
 	if(objName.Equals("Inicio")){
@@ -83,23 +99,23 @@ function EventTrigger(objName : String){
 	}
 	
 	if(objName.Equals("Auxilio")){
-		var target : Vector3 = new Vector3(act_Player.transform.position.x - 0.5,act_Player.transform.position.y,act_Player.transform.position.z);
-		act_Player.GetComponent(MoverClick).SetTargetPosition(target);
+		var target : Vector3 = new Vector3(currentPlayer.getGameObject().transform.position.x - 0.5,currentPlayer.getGameObject().transform.position.y,currentPlayer.getGameObject().transform.position.z);
+		currentPlayer.getGameObject().GetComponent(MoverClick).SetTargetPosition(target);
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_WORLD1);
 		
 	}
 	
 	if(objName.Equals("Ayuda")){
 	print("Ayuda");
-		var target2 : Vector3 = new Vector3(act_Player.transform.position.x + 0.5,act_Player.transform.position.y,act_Player.transform.position.z);
-		act_Player.GetComponent(MoverClick).SetTargetPosition(target2);
+		var target2 : Vector3 = new Vector3(currentPlayer.getGameObject().transform.position.x + 0.5,currentPlayer.getGameObject().transform.position.y,currentPlayer.getGameObject().transform.position.z);
+		currentPlayer.getGameObject().GetComponent(MoverClick).SetTargetPosition(target2);
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_WORLD2);
 
 	}
 	
 	if(objName.Equals("Fabio")){
-		var target3 : Vector3 = new Vector3(act_Player.transform.position.x - 1,act_Player.transform.position.y,act_Player.transform.position.z);
-		act_Player.GetComponent(MoverClick).SetTargetPosition(target3);
+		var target3 : Vector3 = new Vector3(currentPlayer.getGameObject().transform.position.x - 1,currentPlayer.getGameObject().transform.position.y,currentPlayer.getGameObject().transform.position.z);
+		currentPlayer.getGameObject().GetComponent(MoverClick).SetTargetPosition(target3);
 		yield WaitForSeconds(1);
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_FABIO_DARIO1);
 		//GameObject.Find("FabioTrigger").GetComponent(Interactor_Trigger).apagar();
@@ -109,14 +125,15 @@ function EventTrigger(objName : String){
 		der.collider.enabled = true;
 		der.audio.Play();
 		//managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_WORLD3);
-		GetComponent(Menu_script).activarP2();
+		GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroFabio,Player_Manager.FABIO, "Fabio" , texturaCursorFabio));
+		
 		
 	}
 	
 	if(objName.Equals("Salida")){
-		var fabio : boolean = GetComponent(Menu_script).EstaPersonaje("P2");
-		var diana : boolean = GetComponent(Menu_script).EstaPersonaje("P3");
-		var cris : boolean = GetComponent(Menu_script).EstaPersonaje("P4");
+		var fabio : boolean = GetComponent(Player_Manager).estaPersonaje(Player_Manager.FABIO);
+		var diana : boolean = GetComponent(Player_Manager).estaPersonaje(Player_Manager.DIANA);
+		var cris : boolean = GetComponent(Player_Manager).estaPersonaje(Player_Manager.CRISTINA);
 		print(fabio + " " + diana + " " + cris);
 		if(fabio && diana && cris){
 			managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER5);
@@ -129,9 +146,9 @@ function EventTrigger(objName : String){
 	}
 	
 	if(objName.Equals("Salida2")){
-		fabio = GetComponent(Menu_script).EstaPersonaje("P2");
-		diana = GetComponent(Menu_script).EstaPersonaje("P3");
-		cris = GetComponent(Menu_script).EstaPersonaje("P4");
+		fabio = GetComponent(Player_Manager).estaPersonaje(Player_Manager.FABIO);
+		diana = GetComponent(Player_Manager).estaPersonaje(Player_Manager.DIANA);
+		cris = GetComponent(Player_Manager).estaPersonaje(Player_Manager.CRISTINA);
 		
 		if(fabio && diana && cris){
 			
@@ -171,6 +188,7 @@ function EventTrigger(objName : String){
 
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
+currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
 	
 	var managerDialogos = GetComponent(ManagerDialogos1);
 	//Caja donde esta la llave
@@ -206,9 +224,9 @@ function EventSwitch(comando : String){
 	if(comando.Equals("Cajon")){
 		
 		//Cuando el jugador interactua con el cajon que contiene el botiquin
-		if(!(act_Player.GetComponent(Player).Nombre().Equals("Diana"))){// Si no se tiene a Diana seleccionada
+		if(!(currentPlayer.getId() == Player_Manager.DIANA)){// Si no se tiene a Diana seleccionada
 		
-			if(flag3)
+			if(GetComponent(Player_Manager).estaPersonaje(Player_Manager.DIANA))
 			{//Si diana esta en la party
 				managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER12);
 		}
@@ -228,25 +246,25 @@ else{//Cuando se tiene a diana seleccionada
 
 //Derrumbe de la habitacion donde esta fabio
 if(comando.Equals("Derrumbe")){
-	if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
-		act_Player.GetComponent(MoverClick).MoverOff();
-		cm1 = true;//Empieza la cinematica 1
+	if(currentPlayer.getId() == Player_Manager.FABIO){
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematica1 = true;//Empieza la cinematica 1
 		
 		yield WaitForSeconds(5);
 		Destroy(GameObject.Find("Derrumbe"));
 		
-		cm1 = false;//Termina la cinematica 1
+		cinematica1 = false;//Termina la cinematica 1
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_FABIO_DARIO2);
-		flag1 = true;
+		
 	}
-	else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
+	else if(currentPlayer.getId() == Player_Manager.DARIO){
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER9);
 	}
 }
 //Armario donde esta atrapada cristina
 if(comando.Equals("Armario")){
-	if(!(act_Player.GetComponent(Player).Nombre().Equals("Fabio"))){
+	if(!(currentPlayer.getId() == Player_Manager.FABIO)){
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER1);
 	}
 	else{
@@ -254,30 +272,33 @@ if(comando.Equals("Armario")){
 		Destroy(GameObject.Find("Armario"));
 		GameObject.Find("AyudaTrigger").GetComponent(Interactor_Trigger).apagar();
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		GetComponent(Player_Manager).crearPlayer4();
-		act_Player.GetComponent(MoverClick).MoverOff();
-		cm1 = true;
+		GameObject.Find("Cristina").renderer.enabled = true;
+	GameObject.Find("Cristina").collider.enabled = true;
+		
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematica1 = true;
 		yield WaitForSeconds(5);
-		cm1 = false;
+		cinematica1 = false;
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_CRISTINA);
 	}
 }
 //Escombros donde esta atrapada diana
 if(comando.Equals("Escombros")){
-	if(act_Player.GetComponent(Player).Nombre().Equals("Fabio")){
-		act_Player.GetComponent(MoverClick).MoverOff();
-		cm1 = true;
+	if(currentPlayer.getId() == Player_Manager.FABIO){
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematica1 = true;
 		yield WaitForSeconds(5);
 		Destroy(GameObject.Find("Escombros"));
-		cm1 = false;
+		cinematica1 = false;
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_DIANA2);
-		GetComponent(Menu_script).activarP3();
+		GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDiana,Player_Manager.DIANA, "Diana" , texturaCursorDiana));
+		
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		GameObject.Find("AuxilioTrigger").GetComponent(Interactor_Trigger).apagar();
-		flag3 = true;
+		
 	}
-	else if(act_Player.GetComponent(Player).Nombre().Equals("Dario")){
-		if(flag1){
+	else if(currentPlayer.getId() == Player_Manager.DARIO){
+		if(GetComponent(Player_Manager).estaPersonaje(Player_Manager.FABIO)){ // Si esta fabio
 			managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_DARIO5);
 		}
 		else{
@@ -292,27 +313,27 @@ if(comando.Equals("Cristina")){
 	
 	
 	
-	if(act_Player.GetComponent(Player).Nombre().Equals("Diana")){//Si se tiene a diana seleccionada
+	if(currentPlayer.getId() == Player_Manager.DIANA){//Si se tiene a diana seleccionada
 	
 	if(GetComponent(Inventario).enInventario(OBJETO_BOTIQUIN)){
 		
 		//Curan exitosamente a cristina
-		act_Player.GetComponent(MoverClick).MoverOff();
-		cm2 = true;
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematica2 = true;
 		
 		yield WaitForSeconds(5);
-		cm2 = false;
+		cinematica2 = false;
 		//Ya esta
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER3);
 		//Cristina se unio
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_WORLD5);
-		GetComponent(Menu_script).activarP4();
-		GameObject.Find("Cristina").GetComponent(Interactor_Click).enabled = false;
-		GetComponent(Player_Manager).darPlayer4().GetComponent(Interactor_Click).enabled = false;
+		GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroCristina,Player_Manager.CRISTINA, "Cristina" , texturaCursorCristina));
+				GameObject.Find("Cristina").GetComponent(Interactor_Click).enabled = false;
+		
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 
 		
-		act_Player.GetComponent(MoverClick).MoverOn();
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOn();
 		
 		
 	}
@@ -332,20 +353,20 @@ else{
 
 
 if(comando.Equals("Emergencia")){
-	if(act_Player.GetComponent(Player).Nombre().Equals("Cristina")){
+	if(currentPlayer.getId() == Player_Manager.CRISTINA){
 	
-		act_Player.GetComponent(MoverClick).MoverOff();
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();
 		
-		cm3 = true;
+		cinematica3 = true;
 		Destroy(GameObject.Find("PuertaEmergencia"));
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		yield WaitForSeconds(5);
-		cm3 = false;
-		act_Player.GetComponent(MoverClick).MoverOn();
+		cinematica3 = false;
+		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOn();
 	}
 	else{
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER7);
-		if(GetComponent(Menu_script).EstaPersonaje("P4")){
+		if(GetComponent(Player_Manager).estaPersonaje(Player_Manager.CRISTINA)){
 			managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER8);
 		}
 	}

@@ -20,6 +20,10 @@ private var texturaActual1 : Texture2D;
 private var texturaActual2 : Texture2D;
 
 
+//Conexión con el LevelManager
+var manager : GameObject;
+
+
 var customSkin: GUISkin;
 var texturaDiana : Texture2D;
 var texturaCristina : Texture2D;
@@ -43,6 +47,15 @@ public static final var CONVERSACION_DARIO :int = 2;
 public static final var CONVERSACION_MARIO : int = 3;
 public static final var CONVERSACION_CRISTINA :int = 4;
 public static final var CONVERSACION_FRANCISCO  :int= 5;
+
+public static final var NEGACION = 0;
+
+public static final var ACEPTACION_DIANA = 1;
+
+public static final var ACEPTACION_MARIO = 2;
+
+public static final var ACEPTACION_FRANCISCO = 3;
+
 
 
 // ================================================================================
@@ -141,32 +154,12 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 	else if(conversacionActual.getNodoActual().estaTerminado() && !conversacionActual.getNodoActual().tieneHijos()){
 		print("Fin dialogo");
 		dialogosActivos = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+		manager.GetComponent(IEvent_manager).DialogSwitch(conversacionActual.getResultado());
 		
-		GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOn();
 	}
 }
 
-//ESTA EN LAS OPCIONES Y APACHURRA LA 1, como prueba se usa boton izq del mouse
-//else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && enOpcion){
-	//print("Escogio Opcion 1:");
-	//conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
-///	dibujarDialogo();
-//	enOpcion = false;
-//	textoOpcion1 = "";
-//	textoOpcion2 = "";
-	//textoOpcion3 = "";
-	
-//}
-
-//ESTA EN LAS OPCIONES Y APACHURRA LA 2, como prueba se usa boton der del mouse
-//else if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse1) && enOpcion){
-	//print("Escogio Opcion 2:");
-//	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
-	//dibujarDialogo();
-	//enOpcion = false;
-	//textoOpcion1 = "";
-	//textoOpcion2 = "";
-//}
 
 
 }
@@ -208,7 +201,7 @@ conversacionActual = conversacionFrancisco;
 break;
 }
 
-GetComponent(Player_Manager).darActual().GetComponent(MoverClick).MoverOff();
+GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
 
 dialogosActivos = true;
 
@@ -302,7 +295,7 @@ dialogos.Push(l);
 l = new LineaDialogo("La verdad doc, es que estoy de acuerdo con Fabio, es mejor bajar y pedir auxilio a profesionales que ya deben estar listos para ayudar.",2);
 dialogos.Push(l);
 
-var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+var nodo1: NodoDialogo = new NodoDialogo(dialogos, NEGACION );
 
 nodoRaiz.setHijo1(nodo1);
 
@@ -335,7 +328,7 @@ dialogos.Push(l);
 l = new LineaDialogo("No doctor, mejor bajamos a pedir ayuda, somos muy pocos para tanta gente que hay arriba.",2);
 dialogos.Push(l);
 
-var nodo21 : NodoDialogo= new NodoDialogo(dialogos);
+var nodo21 : NodoDialogo= new NodoDialogo(dialogos, NEGACION);
 
 nodo2.setHijo1(nodo21);
 
@@ -351,7 +344,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Si lo pone en esos términos doctor, entonces que se haga lo que usted dice.",2);
 dialogos.Push(l);
 
-var nodo22: NodoDialogo = new NodoDialogo(dialogos);
+var nodo22: NodoDialogo = new NodoDialogo(dialogos, ACEPTACION_DIANA);
 
 nodo2.setHijo2(nodo22);
 }
@@ -384,7 +377,7 @@ dialogos.Push(l);
 l = new LineaDialogo("De una vez se lo digo doctor, no cuente conmigo. Yo bajo en seguida.",2);
 dialogos.Push(l);
 
-var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+var nodo1: NodoDialogo = new NodoDialogo(dialogos, NEGACION);
 
 nodoRaiz.setHijo1(nodo1);
 
@@ -399,7 +392,7 @@ dialogos.Push(l);
 l = new LineaDialogo("De una vez se lo digo doctor, no cuente conmigo. Yo bajo en seguida.",2);
 dialogos.Push(l);
 
-var nodo2: NodoDialogo = new NodoDialogo(dialogos);
+var nodo2: NodoDialogo = new NodoDialogo(dialogos, NEGACION);
 
 nodoRaiz.setHijo2(nodo2);
 }
@@ -435,7 +428,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Está loco, amigo, no crea que por ser doctor puede darme órdenes\n, yo me voy ya, usted verá lo que hace.",2);
 dialogos.Push(l);
 
-var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+var nodo1: NodoDialogo = new NodoDialogo(dialogos,NEGACION);
 
 nodoRaiz.setHijo1(nodo1);
 
@@ -465,7 +458,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Haga lo que quiera, yo me largo.",2);
 dialogos.Push(l);
 
-var nodo21 : NodoDialogo= new NodoDialogo(dialogos);
+var nodo21 : NodoDialogo= new NodoDialogo(dialogos,NEGACION);
 
 nodo2.setHijo1(nodo21);
 
@@ -480,7 +473,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Está bien, subo. Pero le advierto, si a los 5 minutos veo que la cosa no funciona, bajo a salvar mi pellejo.",2);
 dialogos.Push(l);
 
-var nodo22: NodoDialogo = new NodoDialogo(dialogos);
+var nodo22: NodoDialogo = new NodoDialogo(dialogos,ACEPTACION_FRANCISCO);
 
 nodo2.setHijo2(nodo22);
 }
@@ -519,7 +512,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Gracias, sé que juntos podemos hacer mucho.",1);
 dialogos.Push(l);
 
-var nodo1: NodoDialogo = new NodoDialogo(dialogos);
+var nodo1: NodoDialogo = new NodoDialogo(dialogos, ACEPTACION_MARIO);
 
 nodoRaiz.setHijo1(nodo1);
 
@@ -557,7 +550,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Bueno doctor, subo con usted. Ojalá que mis nervios no me traicionen",2);
 dialogos.Push(l);
 
-var nodo21 : NodoDialogo= new NodoDialogo(dialogos);
+var nodo21 : NodoDialogo= new NodoDialogo(dialogos,ACEPTACION_MARIO);
 
 nodo2.setHijo1(nodo21);
 
@@ -576,7 +569,7 @@ dialogos.Push(l);
 l = new LineaDialogo("Más que seguro doctor, es lo correcto, no puedo meterme en su camino.",2);
 dialogos.Push(l);
 
-var nodo22: NodoDialogo = new NodoDialogo(dialogos);
+var nodo22: NodoDialogo = new NodoDialogo(dialogos,NEGACION);
 
 nodo2.setHijo2(nodo22);
 
@@ -644,7 +637,7 @@ dialogos.Push(l);
 l = new LineaDialogo("No, yo subo. Pero debería usted pedir ayuda para su brazo y para su estado emocional.\n Una crisis de abstinencia podría ser fatal.",1);
 dialogos.Push(l);
   
-var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, NEGACION);
 
 conversacionCristina.setRaiz(nodoRaiz);
 }

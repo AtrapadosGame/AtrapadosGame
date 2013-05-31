@@ -1,24 +1,32 @@
 #pragma strict
 //Ojo, para evitar problemas en el nivel 1.5:
-// Dario --> Player1
-private var act_Player : GameObject;
+
+
 //Flags de control
 
 //Texturas
 var cinematicas : Texture2D[] = new Texture2D[5];
 
+var texturaCursorDario : Texture2D;
+var texturaCursorCristina : Texture2D;
+var texturaCursorFabio : Texture2D;
+var texturaCursorDiana : Texture2D;
+var texturaCursorMario : Texture2D;
+var texturaCursorFrancisco : Texture2D;
 
-function Start () {
 
+
+var texturaCuadroDario : Texture2D;
+var texturaCuadroCristina : Texture2D;
+var texturaCuadroFabio : Texture2D;
+var texturaCuadroDiana : Texture2D;
+var texturaCuadroMario : Texture2D;
+var texturaCuadroFrancisco : Texture2D;
+
+function Awake () {
+GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDario,Player_Manager.DARIO, "Dario" , texturaCursorDario));
 }
 
-function Update() {
-	act_Player = GetComponent(Player_Manager).darActual();
-}
-
-function OnGUI(){
-
-}
 
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
@@ -58,13 +66,53 @@ function EventSwitch(comando : String){
 	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_FRANCISCO);
 	
 	}
+	if(comando.Equals("Armario 1")){
+	
+	
+	
+	}
+	if(comando.Equals("Armario 2")){
+	
+	
+	
+	}
+	if(comando.Equals("Armario 3")){
+	
+	
+	
+	}
 	
 }
 
-//Implementación de la funcion Item() de la interfaz
-function EventItem(objName : String){
-	
+
+function EventDialog(idResultado : int){
+
+switch(idResultado){
+
+case ManagerDialogos1_5A.NEGACION:
+
+break;
+case ManagerDialogos1_5A.ACEPTACION_DIANA:
+GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDiana,Player_Manager.DIANA, "Diana" , texturaCursorDiana));
+break;
+
+case ManagerDialogos1_5A.ACEPTACION_MARIO:
+GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroMario,Player_Manager.MARIO, "Mario" , texturaCursorMario));
+break;
+
+case ManagerDialogos1_5A.ACEPTACION_FRANCISCO:
+GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroFrancisco,Player_Manager.FRANCISCO, "Francisco" , texturaCursorFrancisco));
+break;
+
+
 }
+
+
+		
+}
+
+
+
 
 function DarCinematica(index : int){
 	return cinematicas[index];
