@@ -1,8 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\Manager1_5A.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Inventario\LootManager1_5.js">
     <Files>
-      <File FileName="Assets\Scripts\Managers\Manager1_5A.js" Line="71" Column="2" />
+      <File FileName="Assets\Scripts\Managers\Manager1_5A.js" Line="70" Column="2" />
+      <File FileName="Assets\Scripts\Inventario\LootManager1_5.js" Line="31" Column="31" />
+      <File FileName="Assets\Scripts\Managers\ManagerDialogos1_5A.js" Line="114" Column="3" />
+      <File FileName="Assets\Scripts\Managers\ManagerDialogos1.js" Line="182" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Player_Manager.js" Line="130" Column="43" />
+      <File FileName="Assets\Scripts\MoverClick.js" Line="59" Column="2" />
+      <File FileName="Assets\Scripts\MenuScript.js" Line="83" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

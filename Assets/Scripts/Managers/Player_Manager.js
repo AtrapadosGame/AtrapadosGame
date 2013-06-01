@@ -35,7 +35,8 @@ public static final var FRANCISCO : int = 5;
 function OnGUI () 
 {
 
-
+var pausa : boolean = GetComponent(MenuScript).estaPausado();
+if(!pausa){
 
 for(var i:int = 0 ; i <4 ; i++)
 {
@@ -62,6 +63,7 @@ if (Event.current.type == EventType.Repaint && GUI.tooltip != lastTooltip)
 }
 
 }
+}
 // ================================================================================
 // Start
 // ================================================================================
@@ -78,7 +80,7 @@ ancho = (Screen.width/8) - 50;
 }
 
 function cambiarPj(id : int){
-	
+	print("esta cambiando de pj");
 		var posActual = currentGO.transform.position;
 		var rotActual = currentGO.transform.rotation;
 		currentGO.renderer.enabled = false;

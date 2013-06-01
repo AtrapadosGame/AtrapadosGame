@@ -77,12 +77,15 @@ function Start(){
 // ================================================================================
 
 function OnGUI () {
-
+var pausa : boolean = GetComponent(MenuScript).estaPausado();
+if(!pausa){
 GUI.skin = customSkin;
 	if(dialogosActivos){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
 		GUI.Box(Rect(0,50,Screen.width/2,Screen.height/2),texturaActual1);
 		GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);		
+	}
+	
 	}
 }
 
@@ -135,7 +138,8 @@ function WindowFunction (windowID : int) {
 // OnMouseDown
 // ================================================================================
 function Update(){
-
+var pausa : boolean = GetComponent(MenuScript).estaPausado();
+if(!pausa){
 if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 
 	print("OnMouseDown");
@@ -160,7 +164,7 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 	}
 }
 
-
+}
 
 }
 

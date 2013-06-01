@@ -2,6 +2,10 @@
 //Menu_script: Este script controla las acciones del menu de personajes en la interfaz de usuario
 
 
+
+// ================================================================================
+// Variables
+// ================================================================================
 private var lastTooltip : String = " "; //Tooltip para controlar los mensajes del menu
 
 // Las siguientes variables determinan el posicionamiento de los botones
@@ -11,8 +15,9 @@ private var alto : int;
 private var separacion : int;
 private var pausa :boolean = false;
 
+//Establece el estilo que se usara en los botones
 var customSkin: GUISkin;
-
+//Texturas de los botones del menu
 var menu : Texture2D;
 var reiniciar : Texture2D;
 var home : Texture2D;
@@ -27,6 +32,9 @@ function Start () {
 
 
 
+// ================================================================================
+// OnGui
+// ================================================================================
 //Dibuja el menu y responde a los eventos de los botones
 function OnGUI () {
 
@@ -72,6 +80,9 @@ GUI.skin = customSkin;
 }
 
 
+// ================================================================================
+// Metodos
+// ================================================================================
 
     function ButtonOnMouseOver () {
       GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
@@ -82,3 +93,10 @@ GUI.skin = customSkin;
         GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
         }
     }
+
+
+function estaPausado():boolean {
+
+return pausa;
+
+}

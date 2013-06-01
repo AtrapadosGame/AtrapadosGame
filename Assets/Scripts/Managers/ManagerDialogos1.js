@@ -179,7 +179,8 @@ function Start(){
 // ================================================================================
 
 function OnGUI () {
-
+var pausa : boolean = GetComponent(MenuScript).estaPausado();
+if(!pausa){
 GUI.skin = customSkin;
 	if(dialogosActivos){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
@@ -189,6 +190,7 @@ GUI.skin = customSkin;
 	}
 	
 	
+	}
 }
 
 function WindowFunction (windowID : int) {

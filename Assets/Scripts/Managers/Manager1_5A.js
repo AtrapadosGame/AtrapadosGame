@@ -36,7 +36,7 @@ function EventTrigger(objName : String){
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
 	var managerDialogos = GetComponent(ManagerDialogos1_5A);
-	
+	var lootManager = GetComponent(LootManager1_5);
 	if(comando.Equals("Diana")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_DIANA);
@@ -68,17 +68,17 @@ function EventSwitch(comando : String){
 	}
 	if(comando.Equals("Armario 1")){
 	
-	
+	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO1);
 	
 	}
 	if(comando.Equals("Armario 2")){
 	
-	
+	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO2);
 	
 	}
 	if(comando.Equals("Armario 3")){
 	
-	
+	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO3);
 	
 	}
 	

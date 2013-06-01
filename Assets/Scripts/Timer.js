@@ -1,5 +1,9 @@
 #pragma strict
 
+
+// ================================================================================
+// Variables
+// ================================================================================
 private var startTime : float;
 private var restSeconds : int;
 private var roundedRestSeconds : int;
@@ -15,12 +19,44 @@ var countDownSeconds : int;
 
 var MainCamera : Camera;
 
+
+private var originPosition:Vector3;
+private var originRotation:Quaternion;
+ 
+private var shake_decay: float;
+private var shake_intensity: float;;
+ 
+ 
+// ================================================================================
+// Update
+// ================================================================================
+function Update(){
+
+    if(shake_intensity > 0){
+        MainCamera.transform.position = originPosition + Random.insideUnitSphere * shake_intensity;
+        MainCamera.transform.rotation =  Quaternion(
+                        originRotation.x + Random.Range(-shake_intensity,shake_intensity)*.2,
+                        originRotation.y + Random.Range(-shake_intensity,shake_intensity)*.2,
+                        originRotation.z + Random.Range(-shake_intensity,shake_intensity)*.2,
+                        originRotation.w + Random.Range(-shake_intensity,shake_intensity)*.2);
+        shake_intensity -= shake_decay;
+    }
+}
+ // ================================================================================
+// Awake
+// ================================================================================
 function Awake() {
+print("esta temblando");
 	startTime = Time.time;
 	lastShake = startTime;
 	numTemblores = 0;
-	MainCamera.GetComponent(cameraShake).Shake();
+	shake();
+	
 }
+
+ // ================================================================================
+// OnGui
+// ================================================================================
 
 function OnGUI () {
 	//make sure that your time is based on when this script was first called
@@ -30,7 +66,7 @@ function OnGUI () {
 	if(shakeTimer >= timeUntilShake){
 		
 		//ACA TIENE QUE TEMBLAR
-		MainCamera.GetComponent(cameraShake).Shake();
+		shake();
 		
 		lastShake = Time.time;
 		numTemblores ++ ;
@@ -55,6 +91,21 @@ function OnGUI () {
 	GUI.Label (Rect (Screen.width/2 - anchoLabel, 0, anchoLabel, altoLabel), text);
 }
 
-function StartTime(){
+ 
+ // ================================================================================
+// Metodos
+// ================================================================================
+
+
+function shake(){
+print("esta temblando");
+    originPosition = MainCamera.transform.position;
+    originRotation = MainCamera.transform.rotation;
+    shake_intensity = .3;
+    shake_decay = 0.002;
+}
+
+
+function getStartTime(){
 	return startTime;
 }

@@ -30,8 +30,8 @@ function Start () {
 function OnGUI () {
 
 GUI.skin = customSkin;
-
-
+var pausa : boolean = GetComponent(MenuScript).estaPausado();
+if(!pausa){
 for(var i:int = 0 ; i <4 ; i++){
 	if (itemsActuales[i]){
 		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent(itemsActuales[i].getTextura(), "Button"));
@@ -50,7 +50,8 @@ for(var i:int = 0 ; i <4 ; i++){
                 SendMessage (GUI.tooltip + "OnMouseOver", SendMessageOptions.DontRequireReceiver);
             lastTooltip = GUI.tooltip;
 }
-	
+
+	}	
 }
 
 // ================================================================================
