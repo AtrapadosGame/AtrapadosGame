@@ -68,23 +68,18 @@ function EventSwitch(comando : String){
 	}
 	if(comando.Equals("Armario 1")){
 	
-	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO1);
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_ARMARIO1);
 	
 	}
 	if(comando.Equals("Armario 2")){
 	
-	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO2);
-	
-	}
-	if(comando.Equals("Armario 3")){
-	
-	lootManager.empezarLoot(LootManager1_5.LOOT_ARMARIO3);
+	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_ARMARIO2);
 	
 	}
 	
 }
 
-
+//Implementación de la función IEventDialog
 function EventDialog(idResultado : int){
 
 switch(idResultado){
@@ -102,6 +97,14 @@ break;
 
 case ManagerDialogos1_5A.ACEPTACION_FRANCISCO:
 GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroFrancisco,Player_Manager.FRANCISCO, "Francisco" , texturaCursorFrancisco));
+break;
+
+case ManagerDialogos1_5A.DIALOGO_ARMARIO1:
+GetComponent(LootManager1_5).empezarLoot(LootManager1_5.LOOT_ARMARIO1);
+break;
+
+case ManagerDialogos1_5A.DIALOGO_ARMARIO2:
+GetComponent(LootManager1_5).empezarLoot(LootManager1_5.LOOT_ARMARIO2);
 break;
 
 

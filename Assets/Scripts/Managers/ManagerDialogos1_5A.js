@@ -8,6 +8,8 @@ private var conversacionFabio : ArbolConversacion;
 private var conversacionFrancisco : ArbolConversacion;
 private var conversacionMario : ArbolConversacion;
 private var conversacionCristina : ArbolConversacion;
+private var conversacionArmario1 : ArbolConversacion;
+private var conversacionArmario2 : ArbolConversacion;
 
 
 private var ventana : Rect = Rect(0,(Screen.height/2)+50, Screen.width,(Screen.height/3));
@@ -47,6 +49,9 @@ public static final var CONVERSACION_DARIO :int = 2;
 public static final var CONVERSACION_MARIO : int = 3;
 public static final var CONVERSACION_CRISTINA :int = 4;
 public static final var CONVERSACION_FRANCISCO  :int= 5;
+public static final var CONVERSACION_ARMARIO1  :int= 6;
+public static final var CONVERSACION_ARMARIO2  :int= 7;
+
 
 public static final var NEGACION = 0;
 
@@ -55,6 +60,10 @@ public static final var ACEPTACION_DIANA = 1;
 public static final var ACEPTACION_MARIO = 2;
 
 public static final var ACEPTACION_FRANCISCO = 3;
+
+public static final var DIALOGO_ARMARIO1 = 4;
+
+public static final var DIALOGO_ARMARIO2 = 5;
 
 
 
@@ -69,6 +78,8 @@ function Start(){
  inicializarConversacionFabio();
  inicializarConversacionFrancisco();
  inicializarConversacionMario();
+ inicializarConversacionArmario1();
+ inicializarConversacionArmario2();
 }
 
 
@@ -201,6 +212,16 @@ break;
 case CONVERSACION_FRANCISCO:
 
 conversacionActual = conversacionFrancisco;
+
+break;
+case CONVERSACION_ARMARIO1:
+
+conversacionActual = conversacionArmario1;
+
+break;
+case CONVERSACION_ARMARIO2:
+
+conversacionActual = conversacionArmario2;
 
 break;
 }
@@ -644,4 +665,39 @@ dialogos.Push(l);
 var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, NEGACION);
 
 conversacionCristina.setRaiz(nodoRaiz);
+}
+
+//Monólogo en los armarios
+function inicializarConversacionArmario1(){
+conversacionArmario1 = new ArbolConversacion(texturaDario,null,null,null);
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("Hay varios objetos que pueden llegar a ser útiles aquí",1);
+dialogos.Push(l);
+l = new LineaDialogo("Pero tengo que decidir bien, solo puedo cargar cuatro objetos",1);
+dialogos.Push(l);
+
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, DIALOGO_ARMARIO1);
+
+conversacionArmario1.setRaiz(nodoRaiz);
+}
+
+function inicializarConversacionArmario2(){
+conversacionArmario2 = new ArbolConversacion(texturaDario,null,null,null);
+/**
+* Nodo Raiz
+* 
+*/
+var dialogos : Array = new Array();
+var l: LineaDialogo = new LineaDialogo("Hay varios objetos que pueden llegar a ser útiles aquí",1);
+dialogos.Push(l);
+l = new LineaDialogo("Pero tengo que decidir bien, solo puedo cargar cuatro objetos",1);
+dialogos.Push(l);
+
+var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, DIALOGO_ARMARIO2);
+
+conversacionArmario2.setRaiz(nodoRaiz);
 }
