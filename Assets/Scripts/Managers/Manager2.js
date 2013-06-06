@@ -1,24 +1,17 @@
 #pragma strict
+#pragma strict
 //Ojo, para evitar problemas en el nivel 1.5:
 
 
-// ================================================================================
-// Variables
-// ================================================================================
 //Variables para los managers
 var managerDialogos: ManagerDialogos1_5A;
 var playerManager : Player_Manager;
 var lootManager : LootManager1_5;
-var persitance : Persistance;
+var persistance : Persistance;
 var inventario : Inventario;
 
-
+//Texturas
 var cinematicas : Texture2D[] = new Texture2D[5];
-
-
-// ================================================================================
-// Texturas
-// ================================================================================
 
 var texturaCursorDario : Texture2D;
 var texturaCursorCristina : Texture2D;
@@ -39,33 +32,44 @@ var texturaCuadroFrancisco : Texture2D;
 
 
 
-// ================================================================================
-// Awake
-// ================================================================================
 function Awake () {
+
+GameObject.Find("Diana").renderer.enabled = false;
+	GameObject.Find("Diana").collider.enabled = false;
+GameObject.Find("Diana").renderer.enabled = false;
+	GameObject.Find("Mario").collider.enabled = false;
+	GameObject.Find("Mario").renderer.enabled = false;
+	GameObject.Find("Francisco").collider.enabled = false;
+	GameObject.Find("Francisco").renderer.enabled = false;
+
 //Inicializacion de los managers y demas scripts
 playerManager = GetComponent(Player_Manager);
 managerDialogos = GetComponent(ManagerDialogos1_5A);
 lootManager = GetComponent(LootManager1_5);
 inventario = GetComponent(Inventario);
-persitance = GameObject.Find("Persistance").GetComponent(Persistance);
+persistance = GameObject.Find("Persistance").GetComponent(Persistance);
 
-playerManager.addPlayer(new Player(texturaCuadroDario,Player_Manager.DARIO, "Dario" , texturaCursorDario));
+
+inventario.setItemsActuales(persistance.getInventario());
+
+var tempPlayers: Player[] = persistance.getParty();
+
+for(var i:int = 0 ; i <tempPlayers.Length ; i++){
+	if(tempPlayers[i]){
+		playerManager.addPlayer(new Player(tempPlayers[i].getTextura(),tempPlayers[i].getId(),tempPlayers[i].getNombre(),tempPlayers[i].getCursor()));
+	}
 
 }
 
-// ================================================================================
-// Trigger
-// ================================================================================
+}
+
+
+
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
 	
 }
 
-
-// ================================================================================
-// Switch
-// ================================================================================
 //Imlementación de la funcion Switch()
 function EventSwitch(comando : String){
 	
@@ -109,18 +113,12 @@ function EventSwitch(comando : String){
 	
 	}//TEST PARA REALIZAR EL CAMBIO DE LEVEL
 	if(comando.Equals("CambioLevel")){
-	persitance.finalizarNivel(inventario.getItemsActuales(), playerManager.getPlayers());
-	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+	persistance.finalizarNivel(inventario.getItemsActuales(), playerManager.getPlayers());
 	    Application.LoadLevel ("Nivel2A");
 	
 	}
 	
 }
-
-
-// ================================================================================
-// EventDialog
-// ================================================================================
 //Se llama como resultado(al finalizar) de un dialogo, no todos los dialogos tiene resultado*
 //Implementación de la función IEventDialog
 function EventDialog(idResultado : int){

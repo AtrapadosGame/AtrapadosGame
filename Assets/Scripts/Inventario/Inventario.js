@@ -126,3 +126,8 @@ function getItemsActuales(): Item[]{
 
 return itemsActuales;
 }
+function setItemsActuales(items: Item[]){
+
+
+itemsActuales = items;
+}
