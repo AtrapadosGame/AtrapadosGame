@@ -75,10 +75,15 @@ function EventSwitch(comando : String){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5A.CONVERSACION_ARMARIO2);
 	
+	}//TEST PARA REALIZAR EL CAMBIO DE LEVEL
+	if(comando.Equals("CambioLevel")){
+	GameObject.Find("Persistance").GetComponent(Persistance).guardarInventario(GetComponent(Inventario).getItemsActuales());
+	    Application.LoadLevel ("Nivel2A");
+	
 	}
 	
 }
-
+//Se llama como resultado(al finalizar) de un dialogo, no todos los dialogos tiene resultado*
 //Implementación de la función IEventDialog
 function EventDialog(idResultado : int){
 
@@ -88,15 +93,19 @@ case ManagerDialogos1_5A.NEGACION:
 
 break;
 case ManagerDialogos1_5A.ACEPTACION_DIANA:
-GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDiana,Player_Manager.DIANA, "Diana" , texturaCursorDiana));
+GameObject.Find("Persistance").GetComponent(Persistance).addPlayer(new Player(texturaCuadroDiana,Player_Manager.DIANA, "Diana" , texturaCursorDiana));
+//GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroDiana,Player_Manager.DIANA, "Diana" , texturaCursorDiana));
 break;
 
 case ManagerDialogos1_5A.ACEPTACION_MARIO:
-GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroMario,Player_Manager.MARIO, "Mario" , texturaCursorMario));
+GameObject.Find("Persistance").GetComponent(Persistance).addPlayer(new Player(texturaCuadroMario,Player_Manager.MARIO, "Mario" , texturaCursorMario));
+//GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroMario,Player_Manager.MARIO, "Mario" , texturaCursorMario));
 break;
 
 case ManagerDialogos1_5A.ACEPTACION_FRANCISCO:
-GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroFrancisco,Player_Manager.FRANCISCO, "Francisco" , texturaCursorFrancisco));
+//GetComponent(Player_Manager).addPlayer(new Player(texturaCuadroFrancisco,Player_Manager.FRANCISCO, "Francisco" , texturaCursorFrancisco));
+GameObject.Find("Persistance").GetComponent(Persistance).addPlayer(new Player(texturaCuadroFrancisco,Player_Manager.FRANCISCO, "Francisco" , texturaCursorFrancisco));
+
 break;
 
 case ManagerDialogos1_5A.DIALOGO_ARMARIO1:

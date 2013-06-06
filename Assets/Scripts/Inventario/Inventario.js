@@ -121,4 +121,8 @@ itemsActuales = tempItems;
 // Getters y Setters
 // ================================================================================
 
+function getItemsActuales(): Item[]{
 
+
+return itemsActuales;
+}
