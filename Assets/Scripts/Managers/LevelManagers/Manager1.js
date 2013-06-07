@@ -196,7 +196,7 @@ currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
 		
 		//Aca se consigue la llave de la puerta
 		GameObject.Find("CajaLlave").GetComponent(Interactor_Click).FlagOff();
-		GetComponent(Inventario).addItem(new Item(texturaLlave, OBJETO_LLAVE));
+		GetComponent(InventarioManager).addItem(new Item(texturaLlave, OBJETO_LLAVE));
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_DARIO3);
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		
@@ -205,7 +205,7 @@ currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
 	if(comando.Equals("Puerta")){
 		
 		//SI se tiene la llave en el inventario
-		if(GetComponent(Inventario).enInventario(OBJETO_LLAVE)){
+		if(GetComponent(InventarioManager).enInventario(OBJETO_LLAVE)){
 			
 			var puerta : GameObject = GameObject.Find("Puerta");
 			puerta.audio.Play();
@@ -237,7 +237,7 @@ currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
 }
 else{//Cuando se tiene a diana seleccionada
 	
-	GetComponent(Inventario).addItem(new Item(texturaBotiquin, OBJETO_BOTIQUIN));
+	GetComponent(InventarioManager).addItem(new Item(texturaBotiquin, OBJETO_BOTIQUIN));
 	managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_DIANA1);
 	GameObject.Find("CajaBotiquin").GetComponent(Interactor_Click).FlagOff();
 	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
@@ -315,7 +315,7 @@ if(comando.Equals("Cristina")){
 	
 	if(currentPlayer.getId() == Player_Manager.DIANA){//Si se tiene a diana seleccionada
 	
-	if(GetComponent(Inventario).enInventario(OBJETO_BOTIQUIN)){
+	if(GetComponent(InventarioManager).enInventario(OBJETO_BOTIQUIN)){
 		
 		//Curan exitosamente a cristina
 		currentPlayer.getGameObject().GetComponent(MoverClick).MoverOff();

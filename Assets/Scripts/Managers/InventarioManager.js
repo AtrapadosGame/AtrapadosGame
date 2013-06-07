@@ -30,7 +30,7 @@ function Start () {
 function OnGUI () {
 
 GUI.skin = customSkin;
-var pausa : boolean = GetComponent(MenuScript).estaPausado();
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
 if(!pausa){
 for(var i:int = 0 ; i <4 ; i++){
 	if (itemsActuales[i]){

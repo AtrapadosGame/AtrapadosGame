@@ -36,7 +36,7 @@ public static final var FRANCISCO : int = 5;
 function OnGUI () 
 {
 
-var pausa : boolean = GetComponent(MenuScript).estaPausado();
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
 if(!pausa){
 
 for(var i:int = 0 ; i <4 ; i++)

@@ -18,7 +18,7 @@ private var ventana : Rect = Rect(Screen.width/4,Screen.height/4, Screen.width/2
 
 
 
-private var inventario : Inventario;
+private var inventario : InventarioManager;
 
 //Dimensiones de los botones
 private var ancho : int = 128;
@@ -65,7 +65,7 @@ public static final var TIJERAS : int = 6;
 
 function Start(){
 
-inventario = GetComponent(Inventario);
+inventario = GetComponent(InventarioManager);
  inicializarLootArmario1();
  inicializarLootArmario2();
 // inicializarLootArmario3();

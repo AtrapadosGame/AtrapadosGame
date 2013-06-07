@@ -179,7 +179,7 @@ function Start(){
 // ================================================================================
 
 function OnGUI () {
-var pausa : boolean = GetComponent(MenuScript).estaPausado();
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
 if(!pausa){
 GUI.skin = customSkin;
 	if(dialogosActivos){

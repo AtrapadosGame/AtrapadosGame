@@ -88,7 +88,7 @@ function Start(){
 // ================================================================================
 
 function OnGUI () {
-var pausa : boolean = GetComponent(MenuScript).estaPausado();
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
 if(!pausa){
 GUI.skin = customSkin;
 	if(dialogosActivos){
@@ -149,7 +149,7 @@ function WindowFunction (windowID : int) {
 // OnMouseDown
 // ================================================================================
 function Update(){
-var pausa : boolean = GetComponent(MenuScript).estaPausado();
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
 if(!pausa){
 if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 
