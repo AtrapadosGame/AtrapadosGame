@@ -37,7 +37,8 @@ function OnGUI ()
 {
 
 var pausa : boolean = GetComponent(MenuManager).estaPausado();
-if(!pausa){
+var botonesHabilitados : boolean = GetComponent(MenuManager).estaBotonesHabilitado();
+if(!pausa&&botonesHabilitados){
 
 for(var i:int = 0 ; i <4 ; i++)
 {

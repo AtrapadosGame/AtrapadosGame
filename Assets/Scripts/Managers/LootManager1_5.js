@@ -79,11 +79,17 @@ inventario = GetComponent(InventarioManager);
 //TODO
 function OnGUI () {
 
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
+
+if(!pausa){
 //GUI.skin = customSkin;
 	if(lootActivo){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
 		//GUI.Box(Rect(0,50,Screen.width/2,Screen.height/2),texturaActual1);
 		//GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);		
+	}
+	
+	
 	}
 }
 //TODO
@@ -119,6 +125,7 @@ if(GUI.Button(new Rect(ventana.width/2, (ventana.height * 3)/4, ancho, alto ), "
 		
 		lootActivo = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();		
+		GetComponent(MenuManager).setBotonesHabilitado(true);
 		}
 
 
@@ -133,7 +140,7 @@ if(GUI.Button(new Rect(ventana.width/2, (ventana.height * 3)/4, ancho, alto ), "
 
 function empezarLoot(idLoot:int ){
 print("empezarLoot");
-
+GetComponent(MenuManager).setBotonesHabilitado(false);
 switch(idLoot){
 
 case LOOT_ARMARIO1:

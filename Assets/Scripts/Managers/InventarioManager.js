@@ -31,7 +31,9 @@ function OnGUI () {
 
 GUI.skin = customSkin;
 var pausa : boolean = GetComponent(MenuManager).estaPausado();
-if(!pausa){
+var botonesHabilitados : boolean = GetComponent(MenuManager).estaBotonesHabilitado();
+
+if(!pausa&&botonesHabilitados){
 for(var i:int = 0 ; i <4 ; i++){
 	if (itemsActuales[i]){
 		GUI.Box(new Rect(i*ancho,Screen.height - alto,ancho,alto), GUIContent(itemsActuales[i].getTextura(), "Button"));

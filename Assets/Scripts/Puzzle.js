@@ -14,7 +14,8 @@ private var ventana : Rect = Rect(Screen.width/4,Screen.height/4, Screen.width/2
 
 
 
-
+private var textInput : String = "0";;
+private var isIniciando: boolean;
 
 
 //Dimensiones de los botones
@@ -23,10 +24,10 @@ private var alto : int = 64;
 //texturas
 var texturaInterruptor : Texture2D;
 
-private var puzzle: boolean[,] = new boolean[3,3];
+
 
 //Constantes
-private var SOLUCION: boolean[,] = new boolean[3,3];
+private static final var SOLUCION: String = "181651";
 
 //public static final var SOLUCION = [ [true,true,false]  , [false,true,false] , [false,false,false]];
 
@@ -41,20 +42,7 @@ private var SOLUCION: boolean[,] = new boolean[3,3];
 // ================================================================================
 
 function Start(){
-SOLUCION[0,0]= true;
-SOLUCION[0,1]= false;
-SOLUCION[0,2]=true;
 
-
-SOLUCION[1,0]=true;
-SOLUCION[1,1]=false;
-SOLUCION[1,2]=true;
-
-
-SOLUCION[2,0]=false;
-SOLUCION[2,1]=false;
-SOLUCION[2,2]=true;
- 
 
 
 }
@@ -66,26 +54,58 @@ SOLUCION[2,2]=true;
 //TODO
 function OnGUI () {
 
+var pausa : boolean = GetComponent(MenuManager).estaPausado();
+
+if(!pausa){
 //GUI.skin = customSkin;
 	if(puzzleActivo){
 		ventana = GUI.Window(0,ventana , WindowFunction,"");
-		//GUI.Box(Rect(0,50,Screen.width/2,Screen.height/2),texturaActual1);
-		//GUI.Box(Rect(Screen.width/2,50,Screen.width/2,Screen.height/2),texturaActual2);		
+		
+	}
 	}
 }
 //TODO
 function WindowFunction (windowID : int) {
 GUI.Label(new Rect(ventana.width/2,10,ancho,alto), "Puzzle");
 
+
+GUI.Label(new Rect(ventana.width/2,70,ancho,alto), textInput);
+var cont: int = 0;
 for(var i:int = 0 ; i <3 ; i++){
 
 	for(var j:int = 0 ; j <3 ; j++){
-
-		puzzle[i,j] = GUI.Toggle (Rect ((i*ancho)+(ventana.width/3), (j*alto)+100, ancho, alto), puzzle[i,j], "Switch" + i+","+j);
+cont++;
+		if(GUI.Button(new Rect (j*ancho + ((ventana.width/10)*3),i*alto+100,ancho,alto),cont + ""))
+ 		{
+ 			if(isIniciando){
+ 			textInput = cont + "";
+ 			isIniciando =false;
+ 			}else{ 
+ 			if(textInput.Length < 6){
+ 			textInput += cont;
+ 			}
+ 			
+ 			}
+ 			
+ 		}
 	
 	}
 }
-
+GUI.Box(new Rect (((ventana.width/10)*3),3*alto+100,ancho,alto),"");
+if(GUI.Button(new Rect (ancho + ((ventana.width/10)*3),3*alto+100,ancho,alto),""+0))
+ 		{
+ 			if(isIniciando){
+ 			textInput = 0 + "";
+ 			isIniciando =false;
+ 			}else{ 
+ 			if(textInput.Length < 6){
+ 			textInput += 0;
+ 			}
+ 			
+ 			}
+ 			
+ 		}
+GUI.Box(new Rect ((ancho*2 +(ventana.width/10)*3),3*alto+100,ancho,alto),"");
 
 if(GUI.Button(new Rect(ventana.width/3, (ventana.height * 3)/4, ancho, alto ), "Probar")){
 		
@@ -94,7 +114,11 @@ if(GUI.Button(new Rect(ventana.width/3, (ventana.height * 3)/4, ancho, alto ), "
 		print("encontro respuest");
 		//TODO...RETORNA A EL MANAGER DEL LEVEL
 		}else{
+		//TODO...RETORNA A EL MANAGER DEL LEVEL
 		print("No es la respuesta");
+		textInput = "0";
+		isIniciando = true;
+		
 		}
 		
 		}
@@ -103,6 +127,7 @@ if(GUI.Button(new Rect((ventana.width/9)*5, (ventana.height * 3)/4, ancho, alto 
 		
 		puzzleActivo = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();		
+		GetComponent(MenuManager).setBotonesHabilitado(true);
 		}
 
 
@@ -116,32 +141,26 @@ if(GUI.Button(new Rect((ventana.width/9)*5, (ventana.height * 3)/4, ancho, alto 
 
 
 function empezarPuzzle(){
-print("empezarLoot");
-
+print("empezarPuzzle");
+GetComponent(MenuManager).setBotonesHabilitado(false);
 GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
 
 puzzleActivo = true;
-
+isIniciando = true;
+textInput = "0";
 
 }
 
 
 function esSolucion() : boolean{
 
-var esDiferente: boolean= false;
-for(var i:int = 0 ; i <3 && !esDiferente; i++){
-
-	for(var j:int = 0 ; j <3  && !esDiferente; j++){
-
-		if(puzzle[i,j] != SOLUCION[i,j]){
-		
-		 esDiferente = true;
-		 } 
-	
-	}
+if(SOLUCION.Equals(textInput)){
+return true;
+}else
+return false;
 }
 
 
-return !esDiferente;
-}
+
+
 
