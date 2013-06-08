@@ -171,7 +171,7 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 	else if(conversacionActual.getNodoActual().estaTerminado() && !conversacionActual.getNodoActual().tieneHijos()){
 		print("Fin dialogo");
 		dialogosActivos = false;
-		GetComponent(MenuManager).setBotonesHabilitado(false);
+		GetComponent(MenuManager).setBotonesHabilitado(true);
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
 		manager.GetComponent(IEvent_manager).DialogSwitch(conversacionActual.getResultado());
 		

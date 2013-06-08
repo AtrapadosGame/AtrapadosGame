@@ -168,7 +168,7 @@ function EventTrigger(objName : String){
 	
 	if(objName.Equals("Final")){
 		managerDialogos.empezarDialogos(ManagerDialogos1.CONVERSACION_PLAYER11);
-		Application.LoadLevel("cambio nivel");
+		Application.LoadLevel("Nivel1-5");
 	}
 	
 	if(objName.Equals("Fantasma")){
