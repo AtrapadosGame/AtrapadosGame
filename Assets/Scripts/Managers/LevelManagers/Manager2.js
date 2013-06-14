@@ -66,8 +66,17 @@ for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 
 
 
+// ================================================================================
+// Manejo de los eventos de triggers(Activados por Areas)(Llamado por interactorTrigger_)
+// ================================================================================
+
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
+//	currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
+	var managerDialogos = GetComponent(ManagerDialogos2);
+	
+	
+	
 	
 }
 

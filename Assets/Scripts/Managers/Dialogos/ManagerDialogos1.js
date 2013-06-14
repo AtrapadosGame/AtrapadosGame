@@ -263,7 +263,7 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 		print("Fin dialogo");
 		dialogosActivos = false;
 		prenderMovimiento();
-		GetComponent(MenuManager).setBotonesHabilitado(false);
+		GetComponent(MenuManager).setBotonesHabilitado(true);
 		
 	}
 }
