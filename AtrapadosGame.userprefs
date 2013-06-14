@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\Dialogos\ManagerDialogos1_5.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js">
     <Files>
-      <File FileName="Assets\Scripts\Managers\MenuManager.js" Line="69" Column="6" />
+      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js" Line="306" Column="2" />
+      <File FileName="Assets\Scripts\Managers\MenuManager.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1_5.js" Line="171" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
