@@ -97,7 +97,7 @@ function OnGUI () {
 	var text : String = String.Format ("{0:00}:{1:00}", displayMinutes, displaySeconds);
 	var anchoLabel:int = Screen.width/8;
 	var altoLabel:int = Screen.height/8;
-	//GUI.Label (Rect (Screen.width/2 - anchoLabel, 0, anchoLabel, altoLabel), text);
+	GUI.Label (Rect (Screen.width/2 - anchoLabel, 0, anchoLabel, altoLabel), text);
 }
 
  
