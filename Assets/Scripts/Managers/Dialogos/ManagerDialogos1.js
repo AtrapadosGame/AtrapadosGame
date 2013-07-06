@@ -539,7 +539,7 @@ switch(idConversacion){
 		}
 		inicializarConversacionPlayer7(texturaPlayer);
 		conversacionActual = conversacionPlayer7;
-		dibujarDialogo();
+		
 	break;
 			
 	case CONVERSACION_PLAYER8:
