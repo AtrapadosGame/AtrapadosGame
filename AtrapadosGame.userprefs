@@ -2,11 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.js">
     <Files>
+      <File FileName="Assets\SM2\Plugins\AnBSoft Common\Standard Shaders\Sprite Vertex Colored, Fast.shader" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\MenuManager.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1_5.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Timer.js" Line="42" Column="6" />
-      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1.js" Line="542" Column="3" />
+      <File FileName="Assets\Scripts\Timer.js" Line="43" Column="2" />
+      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
