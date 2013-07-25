@@ -25,7 +25,7 @@ private var alto : int = 64;
 var texturaInterruptor : Texture2D;
 
 
-
+var puzzleResolved : boolean = false ;
 //Constantes
 private static final var SOLUCION: String = "181651";
 
@@ -150,15 +150,19 @@ isIniciando = true;
 textInput = "0";
 
 }
+ 
 
-
-function esSolucion() : boolean{
-
-if(SOLUCION.Equals(textInput)){
-return true;
-}else
-return false;
+function esSolucion(): boolean{
+	if(SOLUCION.Equals(textInput))
+	{
+	puzzleResolved = true;
+	}
+	return puzzleResolved;
 }
+
+function puzzleRespuesta(): boolean{
+	return puzzleResolved;
+} 
 
 
 

@@ -1,13 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Puzzle.js">
     <Files>
-      <File FileName="Assets\SM2\Plugins\AnBSoft Common\Standard Shaders\Sprite Vertex Colored, Fast.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\MenuManager.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1_5.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Timer.js" Line="43" Column="2" />
+      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager2.js" Line="146" Column="29" />
+      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js" Line="848" Column="37" />
+      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager1.js" Line="166" Column="4" />
       <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\LootManager1_5.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\InventarioManager.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Player_Manager.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Inventario\Loot.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Puzzle.js" Line="146" Column="101" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
