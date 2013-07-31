@@ -26,8 +26,9 @@ party = new Player[4];
 party[0] = new Player(texturaCuadroDario, 0,"Dario", texturaCursorDario );
 party[1] = new Player(texturaCuadroDiana, 1,"Diana", texturaCursorDiana );
 party[2] = new Player(texturaCuadroMario, 4,"Mario", texturaCursorMario );
-//inventario[0]  = new Item(texturaPala,0,"Pala");
-//inventario[1]  = new Item(texturaBotiquin,1,"Botiquin");
+party[3] = new Player(texturaCuadroMario, 5,"Francisco", texturaCursorMario );
+inventario[0]  = new Item(texturaPala,4,"Llave");
+inventario[1]  = new Item(texturaBotiquin,0,"Pala");
 //inventario[2] = new Item(texturaToalla,2,"Toalla");
 //inventario[0] = new Item(texturaToalla,6,"Segueta");
 

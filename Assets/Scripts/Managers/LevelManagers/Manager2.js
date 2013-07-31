@@ -139,24 +139,22 @@ function EventSwitch(comando : String){
 	
 	//puzzle
 	if(comando.Equals("Puzzle")){	
-		//
-		if(infoConserje)
-		{
+		
+		if(currentPlayer.getId() == Player_Manager.MARIO){
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_FUERTE_MARIO);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
+			boolLlave = true;
+		}
+		else{
 			puzzle.empezarPuzzle();
 			if(puzzle.puzzleRespuesta())
 			{
 				GameObject.Find("Caja").GetComponent(Interactor_Click).FlagOff();
 				GetComponent(InventarioManager).addItem(new Item(texturaLlave, LLAVE));
-				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER_FRANCISCO_EN_PARTY);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_EXITO);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
 			}
-		}else{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_FUERTE_MARIO);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
-			boolLlave = true;
 		}
-		
-		
 	}
 	
 	//Caja donde esta la segueta
@@ -180,30 +178,31 @@ function EventSwitch(comando : String){
 	//mueble bloqueando puerta jefe
 	if(comando.Equals("MesaPuerta")){	
 		//Aca se consigue la llave de la puerta
-		if(GetComponent(InventarioManager).enInventario(PALA))
-		{
-			GameObject.Find("MesaPuerta").GetComponent(Interactor_Click).FlagOff();
-			GetComponent(InventarioManager).usarItem(PALA);
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_PALA);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("RejaJefe").renderer.enabled = false;
-			GameObject.Find("RejaJefe").collider.enabled = false;
+		if(boolPuerta){
+			if(GetComponent(InventarioManager).enInventario(PALA))
+			{
+				Destroy(GameObject.Find("MesaPuerta"));
+				GetComponent(InventarioManager).usarItem(PALA);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_PALA);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			}
+			else if(GetComponent(InventarioManager).enInventario(TUBO))
+			{
+				GameObject.Find("MesaPuerta").GetComponent(Interactor_Click).FlagOff();
+				GetComponent(InventarioManager).usarItem(TUBO);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_TUBO);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				GameObject.Find("MesaPuerta").renderer.enabled = false;
+				GameObject.Find("MesaPuerta").collider.enabled = false;
+			}
+			else if(currentPlayer.getId() == Player_Manager.MARIO){
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_MARIO);
+			}
+			else{
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_NO_MARIO);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			}
 		}
-		else if(GetComponent(InventarioManager).enInventario(TUBO))
-		{
-			GameObject.Find("MesaPuerta").GetComponent(Interactor_Click).FlagOff();
-			GetComponent(InventarioManager).usarItem(TUBO);
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_TUBO);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			var boolTubo = true;
-			GameObject.Find("MesaPuerta").renderer.enabled = false;
-			GameObject.Find("MesaPuerta").collider.enabled = false;
-		}
-		else{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_NO_MARIO);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		}
-		
 	}
 	
 	//Caja puerta jefe
@@ -213,11 +212,11 @@ function EventSwitch(comando : String){
 		//Aca se consigue la llave de la puerta
 		if(GetComponent(Player_Manager).estaPersonaje(FRANCISCO))
 		{
-			if(currentPlayer.Equals("Francisco"))
+			if(currentPlayer.getId() == Player_Manager.FRANCISCO)
 			{
 				GameObject.Find("MesaTubos").GetComponent(Interactor_Click).FlagOff();
 				GetComponent(InventarioManager).addItem(new Item(texturaTubo, TUBO));
-				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_ARMARIO_TUBO_FRANCISCO_EN_PARTY);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_ARMARIO_TUBO_FRANCISCO);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			}else{
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_ARMARIO_TUBO_FRANCISCO_EN_PARTY);
@@ -225,10 +224,8 @@ function EventSwitch(comando : String){
 			}
 		}
 		else {
-			GameObject.Find("MesaTubos").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_TUBO);
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_ARMARIO_TUBO_SIN_FRANCISCO);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			boolTubo = true ;
 		}
 	}
 	
@@ -244,14 +241,8 @@ function EventSwitch(comando : String){
 	
 	//JEFE
 	if(comando.Equals("Jefe")){	
-		//Aca se consigue la llave de la puerta
-		GameObject.Find("Jefe").GetComponent(Interactor_Click).FlagOff();
 		managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_JEFE);
-		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		GameObject.Find("Jefe").renderer.enabled = false;
-		GameObject.Find("Jefe").collider.enabled = false;
-		jefeEscapa = true;
-		
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
 	}
 	
 	//reja puerta jefe
@@ -268,6 +259,7 @@ function EventSwitch(comando : String){
 					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 					GameObject.Find("Reja").renderer.enabled = false;
 					GameObject.Find("Reja").collider.enabled = false;
+					boolReja = true;
 				}
 				else{
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_3_PERSONAS);
@@ -277,7 +269,6 @@ function EventSwitch(comando : String){
 			else{
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_SEGUETA);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-				boolReja = true;
 			}
 		}
 	}
@@ -287,17 +278,24 @@ function EventSwitch(comando : String){
 	//puerta jefe
 	if(comando.Equals("PuertaJefe")){	
 		//Aca se usa la llave de la puerta
-		if(GetComponent(InventarioManager).enInventario(LLAVE))
-		{
-			GameObject.Find("PuertaJefe").GetComponent(Interactor_Click).FlagOff();
-			GetComponent(InventarioManager).usarItem(LLAVE);
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_2);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
-		}else {
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_1);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			boolReja = true ;
+		if(boolReja){
+			if(GetComponent(InventarioManager).enInventario(LLAVE))
+			{
+				var puerta : GameObject = GameObject.Find("Puerta");
+				puerta.renderer.enabled = false;
+				puerta.collider.enabled = false;
+				GetComponent(InventarioManager).usarItem(LLAVE);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_2);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				boolPuerta = true;
+			}
+			else if(currentPlayer.getId() == Player_Manager.MARIO){
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_MARIO);
+			}
+			else {
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_1);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			}
 		}
 	}
 	
@@ -573,6 +571,10 @@ function EventDialog(idResultado : int){
 		yield WaitForSeconds(5);
 		cinematicaFusibles = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+	}
+	
+	if(idResultado == ManagerDialogos2.FINAL_JEFE){
+		Application.LoadLevel("FinN2");
 	}
 		
 }
