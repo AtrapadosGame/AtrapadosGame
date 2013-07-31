@@ -40,7 +40,7 @@ var jefeEscapa : boolean = false ;
 var quemado : boolean = false ;
 var infoConserje : boolean = false ;
 
-
+var cinematicaFusibles : boolean = false ;
 
 var texturaCuadroDario : Texture2D;
 var texturaCuadroCristina : Texture2D;
@@ -59,8 +59,6 @@ public static final var TUBO : int = 7;
 public static final var INHALADOR : int = 8;
 
 
-
-
 public static final var DARIO : int = 0;
 public static final var CRISTINA : int = 1;
 public static final var DIANA : int = 2;
@@ -69,7 +67,7 @@ public static final var MARIO : int = 4;
 public static final var FRANCISCO : int = 5;
 
 public var empleadosRescados : int = 0;
-
+public var contadorSegueta : int = 0;
 
 function Awake () {
 
@@ -97,10 +95,18 @@ var tempPlayers: Player[] = persistance.getParty();
 for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 	if(tempPlayers[i]){
 		playerManager.addPlayer(new Player(tempPlayers[i].getTextura(),tempPlayers[i].getId(),tempPlayers[i].getNombre(),tempPlayers[i].getCursor()));
+		contadorSegueta++;
 	}
 
 }
 
+}
+
+
+function OnGUI(){
+	if(cinematicaFusibles){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[0]);
+	}
 }
 
 
@@ -112,11 +118,7 @@ for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 //Implementación de la función Trigger()
 function EventTrigger(objName : String){
 //	currentPlayer = GetComponent(Player_Manager).getCurrentPlayer();
-	var managerDialogos = GetComponent(ManagerDialogos2);
-	
-	
-	
-	
+	var managerDialogos = GetComponent(ManagerDialogos2);	
 }
 
 //Imlementación de la funcion Switch()
@@ -132,8 +134,6 @@ function EventSwitch(comando : String){
 		GetComponent(InventarioManager).addItem(new Item(texturaBotiquin, BOTIQUIN));
 		managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER_FRANCISCO_EN_PARTY);
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
-		
-		
 	}
 	
 	
@@ -237,7 +237,6 @@ function EventSwitch(comando : String){
 	//Caja fusibles
 	if(comando.Equals("MesaFusibles")){	
 		//Aca se consigue la llave de la puerta
-		GameObject.Find("MesaFusibles").GetComponent(Interactor_Click).FlagOff();
 		managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_ARMARIO_FUSIBLES);
 		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
@@ -257,24 +256,29 @@ function EventSwitch(comando : String){
 	
 	//reja puerta jefe
 	if(comando.Equals("RejaJefe")){	
-		//Aca se consigue la llave de la puerta
-		if(GetComponent(InventarioManager).enInventario(SEGUETA))
-		{
-			GameObject.Find("RejaJefe").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_ABRIR);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("RejaJefe").renderer.enabled = false;
-			GameObject.Find("RejaJefe").collider.enabled = false;
-			
+		if(currentPlayer.getId() == Player_Manager.MARIO){
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_MARIO);
 		}
-		else if(GetComponent(InventarioManager).enInventario(SEGUETA))
-		{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_3_PERSONAS);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		}else{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_SEGUETA);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			boolReja = true;
+		else{
+			if(GetComponent(InventarioManager).enInventario(SEGUETA))
+			{
+				if(contadorSegueta >= 3){
+					GameObject.Find("Reja").GetComponent(Interactor_Click).FlagOff();
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_ABRIR);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+					GameObject.Find("Reja").renderer.enabled = false;
+					GameObject.Find("Reja").collider.enabled = false;
+				}
+				else{
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_3_PERSONAS);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				}	
+			}
+			else{
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_SIN_SEGUETA);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				boolReja = true;
+			}
 		}
 	}
 	
@@ -563,8 +567,13 @@ function EventSwitch(comando : String){
 //Implementación de la función IEventDialog
 function EventDialog(idResultado : int){
 
-
-
+	if(idResultado == ManagerDialogos2.FUSIBLES){
+		cinematicaFusibles = true;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+		yield WaitForSeconds(5);
+		cinematicaFusibles = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+	}
 		
 }
 

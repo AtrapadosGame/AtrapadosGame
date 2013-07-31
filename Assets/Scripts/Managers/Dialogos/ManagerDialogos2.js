@@ -24,6 +24,7 @@ private var conversacionRejaJefe1 : ArbolConversacion;
 private var conversacionRejaJefe2 : ArbolConversacion;
 private var conversacionRejaJefe3 : ArbolConversacion;
 private var conversacionRejaJefe4 : ArbolConversacion;
+private var conversacionRejaMario : ArbolConversacion;
 private var conversacionArmariosSeguetas1 : ArbolConversacion;
 private var conversacionArmariosSeguetas2 : ArbolConversacion;
 private var conversacionArmariosFusibles : ArbolConversacion;
@@ -148,7 +149,6 @@ public static final var CONVERSACION_SALIDA_JEFE  :int= 52;
 public static final var CONVERSACION_SALIDA_TRABAJADORES :int= 53;
 public static final var CONVERSACION_SALIDA_SOLO  :int= 54;
 
-
 public static final var FLAG_TRABAJADOR_TUBO = 0;
 
 public static final var FLAG_BARRICADA_TUBO = 1;
@@ -160,6 +160,8 @@ public static final var FLAG_BARRICADA_TUBO1 = 3;
 public static final var DIALOGO_ARMARIO1 = 4;
 
 public static final var DIALOGO_ARMARIO2 = 5;
+
+public static final var FUSIBLES = 6;
 
 
 
@@ -620,28 +622,22 @@ switch(idConversacion){
 	case CONVERSACION_REJA_SIN_SEGUETA:
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
-			texturaPlayer=texturaDario;
-			inicializarConversacionRejaJefe1(texturaPlayer);
-			conversacionActual = conversacionRejaJefe1;
+			texturaPlayer=texturaDario;	
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
-			inicializarConversacionRejaJefe1(texturaPlayer);
-			conversacionActual = conversacionRejaJefe1;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
-			inicializarConversacionRejaJefe1(texturaPlayer);
-			conversacionActual = conversacionRejaJefe1;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
-			inicializarConversacionRejaJefe4(texturaPlayer);
-			conversacionActual = conversacionRejaJefe4;
 		}
+		inicializarConversacionRejaJefe4(texturaPlayer);
+		conversacionActual = conversacionRejaJefe4;
 		
 	break;
 	
@@ -685,6 +681,11 @@ switch(idConversacion){
 		}
 		inicializarConversacionRejaJefe3(texturaPlayer);
 		conversacionActual = conversacionRejaJefe3;
+	break;
+	
+	case CONVERSACION_REJA_MARIO:
+		inicializarConversacionRejaMario();
+		conversacionActual = conversacionRejaMario;
 	break;
 	
 	
@@ -1286,10 +1287,11 @@ switch(idConversacion){
 		inicializarConversacionSalidaSolo(texturaPlayer);
 		conversacionActual = conversacionSalidaSolo;
 	break;
-	GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
-
-	dialogosActivos = true;
+	
    }	
+ 
+   GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+	dialogosActivos = true;
 }
 
 function dibujarDialogo(){
@@ -1567,12 +1569,12 @@ function inicializarConversacionRejaJefe1(textura:Texture2D){
 function inicializarConversacionRejaJefe2(textura:Texture2D){
 	conversacionRejaJefe2 = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Esta reja es enorme. Vamos a tener problemas en abrirla si solo estamos nosotros.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Necesitaremos por lo menos tres personas para esto, hay que buscar más ayuda.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionRejaJefe2.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 }
 
 
@@ -1580,12 +1582,12 @@ function inicializarConversacionRejaJefe2(textura:Texture2D){
 function inicializarConversacionRejaJefe3(textura:Texture2D){
 	conversacionRejaJefe3 = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Vamos todos, con fuerza, podemos abrir esto",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Listo con la reja, ahora a abrir la puerta de algua forma.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionRejaJefe3.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 }
 
 
@@ -1593,12 +1595,12 @@ function inicializarConversacionRejaJefe3(textura:Texture2D){
 function inicializarConversacionRejaJefe4(textura:Texture2D){
 	conversacionRejaJefe4 = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("No puedo creerlo, hay una reja cubriendo la puerta ¿Qué clase de tipo es este jefe de sección?",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Hay que pasar esa reja de alguna forma. Tal vez haya algo aquí en las oficinas, uno nunca sabe.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionRejaJefe4.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 }
 
 
@@ -1606,12 +1608,10 @@ function inicializarConversacionRejaJefe4(textura:Texture2D){
 function inicializarConversacionArmariosSeguetas1(textura:Texture2D){
 	conversacionArmariosSeguetas1 = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Una segueta, esto es lo que necesitamos. Atravesaremos esa reja a las malas.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionArmariosSeguetas1.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 }
 
 
@@ -1632,12 +1632,10 @@ function inicializarConversacionArmariosSeguetas2(textura:Texture2D){
 function inicializarConversacionArmariosFusibles(textura:Texture2D){
 	conversacionArmariosFusibles = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Hay algo raro en este armario ¿Qué es esto?",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, FUSIBLES);
 	conversacionArmariosFusibles.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 }
 
 
@@ -2084,5 +2082,17 @@ function inicializarConversacionLockerInhalador(textura:Texture2D){
 	conversacionLockerInhalador.setRaiz(nodoRaiz);
 	l = new LineaDialogo("no acepta irse",1);
 	dialogos.Push(l);
+}
+
+// Información de Mario en la reja
+function inicializarConversacionRejaMario(){
+	conversacionRejaMario = new ArbolConversacion(texturaMario,null,null,null);
+	var dialogos : Array = new Array();
+	var l: LineaDialogo = new LineaDialogo("Esta reja no está tan gruesa, tal vez se pueda romper.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Sé que hay gente que guarda seguetas en sus armarios de oficina, debemos de encontrar alguna si buscamos.",1);
+	dialogos.Push(l); 
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	conversacionRejaMario.setRaiz(nodoRaiz);	
 } 
 

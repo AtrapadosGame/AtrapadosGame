@@ -3,7 +3,6 @@
 
 private var mover:boolean = false;// Determina la posibilidad de moverse o no
 private var targetPosition:Vector3;//Posición a la cual moverse
-
 var speed:float = 1.5; // Determina la velocidad de movimiento
 var bounceDistance: float = 0.5;
 
@@ -67,14 +66,17 @@ function SetTargetPosition(nTarget : Vector3){
 
 function MoverOff(){
 	targetPosition = Vector3.zero;
-	print("se desactiva movimiento");
 	mover = false;
 	SendMessage("StopAnim");
 }
 
 function MoverOn(){
-print("se activa movimiento");
 	mover = true;
+}
+
+function inicializarValores(bounceArg: float, speedArg: float){
+speed = speedArg; 
+bounceDistance = bounceArg;
 }
 
 
