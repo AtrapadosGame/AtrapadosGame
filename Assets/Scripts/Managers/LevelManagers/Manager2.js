@@ -58,13 +58,9 @@ public static final var SEGUETA : int = 6;
 public static final var TUBO : int = 7;
 public static final var INHALADOR : int = 8;
 
-
-public static final var DARIO : int = 0;
-public static final var CRISTINA : int = 1;
-public static final var DIANA : int = 2;
-public static final var FABIO : int = 3;
-public static final var MARIO : int = 4;
-public static final var FRANCISCO : int = 5;
+public static final var DIANA : int = Player_Manager.DIANA;
+public static final var MARIO : int = Player_Manager.MARIO;
+public static final var FRANCISCO : int = Player_Manager.FRANCISCO;
 
 public var empleadosRescados : int = 0;
 public var contadorSegueta : int = 0;
@@ -130,10 +126,20 @@ function EventSwitch(comando : String){
 	//Caja donde esta el botiquin
 	if(comando.Equals("MesaBotiquin")){	
 		//Aca se consigue lel botiquin
-		GameObject.Find("MesaBotiquin").GetComponent(Interactor_Click).FlagOff();
-		GetComponent(InventarioManager).addItem(new Item(texturaBotiquin, BOTIQUIN));
-		managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER_FRANCISCO_EN_PARTY);
-		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
+		if(currentPlayer.getId() == Player_Manager.FRANCISCO){
+			GameObject.Find("MesaBotiquin").GetComponent(Interactor_Click).FlagOff();
+			GetComponent(InventarioManager).addItem(new Item(texturaBotiquin, BOTIQUIN));
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER_FRANCISCO_EN_PARTY);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		}
+		else if(currentPlayer.getId() == Player_Manager.MARIO){
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		}
+		else{
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BOTIQUIN_LOCKER_NO_FRANCISCO);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		}	
 	}
 	
 	
@@ -390,58 +396,37 @@ function EventSwitch(comando : String){
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_EXTINTOR);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			GetComponent(InventarioManager).usarItem(EXTINTOR);
-			GameObject.Find("EscombrosFuego").renderer.enabled = false;
-			GameObject.Find("EscombrosFuego").collider.enabled = false;
+			Destroy(GameObject.Find("EscombrosFuego"));
 			empleadosRescados++;
-			GameObject.Find("TrabajadorFuego").renderer.enabled = false;
-			GameObject.Find("TrabajadorFuego").collider.enabled = false;
-
-		
-		}else if(!GetComponent(InventarioManager).enInventario(EXTINTOR))
+			contadorSegueta++;
+			GameObject.Find("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
+		}else if(!GetComponent(InventarioManager).enInventario(EXTINTOR) && !quemado)
 		{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("FireTrabajador").renderer.enabled = false;
-			GameObject.Find("FireTrabajador").collider.enabled = false;
-			GameObject.Find("FireTrabajador2").renderer.enabled = false;
-			GameObject.Find("FireTrabajador2").collider.enabled = false;
-			//GameObject.Find("FireTrabajador2").transform.position.x;
-			//mover trabajador
-
 			quemado = true;
-		
-		}else if(GetComponent(InventarioManager).enInventario(BOTIQUIN) && quemado)
+		}else
 		{
-			GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_CURAR);
-			GetComponent(InventarioManager).usarItem(BOTIQUIN);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			empleadosRescados++;
-			GameObject.Find("TrabajadorFuego").renderer.enabled = false;
-			GameObject.Find("TrabajadorFuego").collider.enabled = false;
-			
-		
-		}else if(!GetComponent(InventarioManager).enInventario(BOTIQUIN) && quemado && !GetComponent(Player_Manager).estaPersonaje(DIANA))
-		{
-			GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_NO_BOTIQUIN);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-
-		}else if(!GetComponent(Player_Manager).estaPersonaje(DIANA) && quemado)
-		{
-			GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_NO_DIANA);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-
-		}else if(GetComponent(Player_Manager).estaPersonaje(DIANA) && quemado)
-		{
-			GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_CURAR);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			empleadosRescados++;
-			GameObject.Find("TrabajadorFuego").renderer.enabled = false;
-			GameObject.Find("TrabajadorFuego").collider.enabled = false;
-
+			if(GetComponent(Player_Manager).estaPersonaje(DIANA)){
+				if(GetComponent(InventarioManager).enInventario(BOTIQUIN)){
+	
+					GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_CURAR);
+					GetComponent(InventarioManager).usarItem(BOTIQUIN);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+					empleadosRescados++;
+					contadorSegueta++;
+				}
+				else{
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_NO_BOTIQUIN);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				}
+			}	
+			else{
+				GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_NO_DIANA);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			}
 		}
 	}
 	
@@ -571,6 +556,11 @@ function EventDialog(idResultado : int){
 		yield WaitForSeconds(5);
 		cinematicaFusibles = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+	}
+	
+	if(idResultado == ManagerDialogos2.TRABAJADOR_FUEGO){
+		GameObject.Find("TrabajadorFuego").transform.position.x = -7.624907;
+		GameObject.Find("TrabajadorFuego").transform.position.z = -9.590029;
 	}
 	
 	if(idResultado == ManagerDialogos2.FINAL_JEFE){

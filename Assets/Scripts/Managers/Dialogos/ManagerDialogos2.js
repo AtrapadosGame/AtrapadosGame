@@ -85,14 +85,14 @@ var texturaDario: Texture2D;
 var texturaMario: Texture2D;
 var texturaFrancisco: Texture2D;
 var texturaJefe: Texture2D;
-
+var texturaOficinista: Texture2D;
 
 var texturaDianaSombreada : Texture2D;
 var texturaDarioSombreada: Texture2D;
 var texturaMarioSombreada: Texture2D;
 var texturaFranciscoSombreada: Texture2D;
 var texturaJefeSombreada: Texture2D;
-
+var texturaOficinistaSombreada: Texture2D;
 
 
 public static final var CONVERSACION_TRABAJADOR_TUBO_NORMAL  :int= 0;
@@ -167,6 +167,8 @@ public static final var DIALOGO_ARMARIO2 = 5;
 public static final var FUSIBLES = 6;
 
 public static final var FINAL_JEFE = 7;
+
+public static final var TRABAJADOR_FUEGO = 8;
 
 
 
@@ -287,6 +289,7 @@ if(dialogosActivos && Input.GetKeyDown(KeyCode.Mouse0) && !enOpcion){
 function empezarDialogos(idConversacion:int ){
 GetComponent(MenuManager).setBotonesHabilitado(false);
 var texturaPlayer:Texture2D;
+var texturaPlayerSombreada:Texture2D;
 switch(idConversacion){
 
 	case CONVERSACION_TRABAJADOR_TUBO_NORMAL:
@@ -866,20 +869,24 @@ switch(idConversacion){
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
+			texturaPlayerSombreada = texturaDarioSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
+			texturaPlayerSombreada = texturaDianaSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
+			texturaPlayerSombreada = texturaFranciscoSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
+			texturaPlayerSombreada = texturaMarioSombreada;
 		}
-		inicializarConversacionTrabajadorEnPeligroLLamas(texturaPlayer);
+		inicializarConversacionTrabajadorEnPeligroLLamas(texturaPlayer, texturaPlayerSombreada);
 		conversacionActual = conversacionTrabajadorEnPeligroLLamas;
 	break;
 	
@@ -887,29 +894,29 @@ switch(idConversacion){
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
+			texturaPlayerSombreada = texturaDarioSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
+			texturaPlayerSombreada = texturaDianaSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
+			texturaPlayerSombreada = texturaFranciscoSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
+			texturaPlayerSombreada = texturaMarioSombreada;
 		}
-		inicializarConversacionTrabajadorEnPeligroLLamasExtintor(texturaPlayer);
+		inicializarConversacionTrabajadorEnPeligroLLamasExtintor(texturaPlayer, texturaPlayerSombreada);
 		conversacionActual = conversacionTrabajadorEnPeligroLLamasExtintor;
 	break;
 	
 	case CONVERSACION_TRABAJADOR_LLAMAS_CURAR:
-	
-		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
-		{
-			texturaPlayer=texturaDiana;
-		}
+		inicializarConversacionTrabajadorEnPeligroLLamasCurar();
 		conversacionActual = conversacionTrabajadorEnPeligroLLamasCurar;
 	break;
 	
@@ -917,16 +924,19 @@ switch(idConversacion){
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
+			texturaPlayerSombreada = texturaDarioSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
+			texturaPlayerSombreada = texturaFranciscoSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
+			texturaPlayerSombreada = texturaMarioSombreada;
 		}
-		inicializarConversacionTrabajadorEnPeligroLLamasNoDiana(texturaPlayer);
+		inicializarConversacionTrabajadorEnPeligroLLamasNoDiana(texturaPlayer, texturaPlayerSombreada);
 		conversacionActual = conversacionTrabajadorEnPeligroLLamasNoDiana;
 	break;
 	
@@ -934,19 +944,24 @@ switch(idConversacion){
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
+			texturaPlayerSombreada = texturaDarioSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
+			texturaPlayerSombreada = texturaDianaSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
+			texturaPlayerSombreada = texturaFranciscoSombreada;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
+			texturaPlayerSombreada = texturaMarioSombreada;
 		}
+		InicializarConversacionTrabajadorEnPeligroLLamasNoBotiquin(texturaPlayer, texturaPlayerSombreada);
 		conversacionActual = conversacionTrabajadorEnPeligroLLamasNoBotiquin;
 	break;
 	
@@ -972,7 +987,7 @@ switch(idConversacion){
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
-			inicializarConversacionTrabajadorEnPeligroLLamasCurar(texturaPlayer);
+			inicializarConversacionTrabajadorEnPeligroLLamasCurar();
 			conversacionActual = conversacionTrabajadorEnPeligroLLamasCurar;
 		}
 
@@ -1000,28 +1015,27 @@ switch(idConversacion){
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
-			inicializarConversacionBotiquinLockerFranciscoEnParty(texturaPlayer);
-			conversacionActual = conversacionBotiquinLockerFranciscoEnParty;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DIANA)
 		{
 			texturaPlayer=texturaDiana;
-			inicializarConversacionBotiquinLockerFranciscoEnParty(texturaPlayer);
-			conversacionActual = conversacionBotiquinLockerFranciscoEnParty;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.MARIO)
 		{
 			texturaPlayer=texturaMario;
-			inicializarConversacionBotiquinLockerFranciscoEnParty(texturaPlayer);
-			conversacionActual = conversacionBotiquinLockerFranciscoEnParty;
 		}
 		else if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.FRANCISCO)
 		{
 			texturaPlayer=texturaFrancisco;
-			inicializarConversacionBotiquinLocker(texturaPlayer);
-			conversacionActual = conversacionBotiquinLocker;
 		}
+		inicializarConversacionBotiquinLockerFranciscoEnParty(texturaPlayer);
+		conversacionActual = conversacionBotiquinLockerFranciscoEnParty;
 
+	break;
+	
+	case CONVERSACION_BOTIQUIN_LOCKER:
+		inicializarConversacionBotiquinLocker();
+		conversacionActual = conversacionBotiquinLocker;
 	break;
 	
 	case CONVERSACION_TRABAJADOR_HERIDO:
@@ -1735,64 +1749,80 @@ function inicializarConversacionCajaFuerteMario(){
 
 
 //Conversacion Trabajador llamas
-function inicializarConversacionTrabajadorEnPeligroLLamas(textura:Texture2D){
-	conversacionTrabajadorEnPeligroLLamas = new ArbolConversacion(textura,null,null,null);
+function inicializarConversacionTrabajadorEnPeligroLLamas(textura:Texture2D, texturaSombreada:Texture2D){
+	conversacionTrabajadorEnPeligroLLamas = new ArbolConversacion(textura,texturaOficinista,texturaSombreada,texturaOficinistaSombreada);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
-	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
-	conversacionTrabajadorEnPeligroLLamas.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
+	var l: LineaDialogo = new LineaDialogo("¡¡AYUDA!! ¡¡FUEGO!! ¡¡ME QUÉMO!!",2);
 	dialogos.Push(l);
+	l = new LineaDialogo("Tranquilícece, no hay ningún peligro. Solo salte hacia aquí.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("¡¡¿ESTÁ LOCO?!!",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("No se preocupe, lo recibiremos y nos ocuparemos de usted.\n¡Dese prisa o será muy tarde!",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("¡¡MUY BIEN, AQUÍ VOY!!",2);
+	dialogos.Push(l); 
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, TRABAJADOR_FUEGO);
+	conversacionTrabajadorEnPeligroLLamas.setRaiz(nodoRaiz);
 } 
 
 //Conversacion Trabajador llamas Extintor
-function inicializarConversacionTrabajadorEnPeligroLLamasExtintor(textura:Texture2D){
-	conversacionTrabajadorEnPeligroLLamasExtintor = new ArbolConversacion(textura,null,null,null);
+function inicializarConversacionTrabajadorEnPeligroLLamasExtintor(textura:Texture2D, texturaSombreada:Texture2D){
+	conversacionTrabajadorEnPeligroLLamasExtintor = new ArbolConversacion(textura,texturaOficinista,texturaSombreada,texturaOficinistaSombreada);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("¡¡AYUDA!! ¡¡FUEGO!! ¡¡ME QUÉMO!!",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("Tranquilo, tranquilo. Apagaremos esto en un instante, no se desespere.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionTrabajadorEnPeligroLLamasExtintor.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 //Conversacion Trabajador llamas Curar
-function inicializarConversacionTrabajadorEnPeligroLLamasCurar(textura:Texture2D){
-	conversacionTrabajadorEnPeligroLLamasCurar = new ArbolConversacion(textura,null,null,null);
+function inicializarConversacionTrabajadorEnPeligroLLamasCurar(){
+	conversacionTrabajadorEnPeligroLLamasCurar = new ArbolConversacion(texturaDiana,texturaOficinista,texturaDianaSombreada,texturaOficinistaSombreada);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Listo, no hubo mayor problema.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Gracias, es usted un ángel.",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("No se preocupe. Solo queda ayudar a sus compañeros.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Claro. Si reune a más de nosotros, tal vez podamos convencer a los que no se \nquieren mover de aquí.",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("Es una buena idea, buscaremos  más personas que necesiten ayuda.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionTrabajadorEnPeligroLLamasCurar.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 //Conversacion Trabajador llamas Curar no diana
-function inicializarConversacionTrabajadorEnPeligroLLamasNoDiana(textura:Texture2D){
-	conversacionTrabajadorEnPeligroLLamasNoDiana = new ArbolConversacion(textura,null,null,null);
+function inicializarConversacionTrabajadorEnPeligroLLamasNoDiana(textura:Texture2D, texturaSombreada:Texture2D){
+	conversacionTrabajadorEnPeligroLLamasNoDiana = new ArbolConversacion(texturaDiana,texturaOficinista,texturaDianaSombreada,texturaOficinistaSombreada);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("¡DIOS, DUELE MUCHO!",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("(No tenemos nada con que curarlo)",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("(Creo que debímos pensar esto mejor)",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionTrabajadorEnPeligroLLamasNoDiana.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 
 //Conversacion Trabajador llamas no botiquin
-function InicializarConversacionTrabajadorEnPeligroLLamasNoBotiquin(textura:Texture2D){
-	conversacionTrabajadorEnPeligroLLamasNoBotiquin = new ArbolConversacion(textura,null,null,null);
+function InicializarConversacionTrabajadorEnPeligroLLamasNoBotiquin(textura:Texture2D, texturaSombreada:Texture2D){
+	conversacionTrabajadorEnPeligroLLamasNoBotiquin = new ArbolConversacion(textura,texturaOficinista,texturaSombreada,texturaOficinistaSombreada);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Ya pasó lo peor, no se preocupe",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("!DIOS, DUELE MUCHO!",2);
+	dialogos.Push(l);
+	l = new LineaDialogo("No se angustie. Conseguiremos un botiquin, y Diana lo ayudará en un santiamén.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionTrabajadorEnPeligroLLamasNoBotiquin.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 //Conversacion Trabajador llamas Curar  dianaen party
@@ -1809,27 +1839,27 @@ function inicializarConversacionTrabajadorEnPeligroLLamasDianaEnParty(textura:Te
 
 
 //Conversacion locker botiquin
-function InicializarConversacionBotiquinLocker(textura:Texture2D){
-	conversacionBotiquinLocker = new ArbolConversacion(textura,null,null,null);
+function InicializarConversacionBotiquinLocker(){
+	conversacionBotiquinLocker = new ArbolConversacion(texturaMario,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Aquí hay material para primeros auxilios",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Alguien que sepa abrir cerraduras nos puede ayudar.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionBotiquinLocker.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
+	
 } 
 
 //Conversacion locker botiquin sin fransisco
 function inicializarConversacionBotiquinLockerNoFrancisco(textura:Texture2D){
 	conversacionBotiquinLockerNoFrancisco = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Creo que aquí hay primeros auxilios, pero ¿Cómo lo abro?",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionBotiquinLockerNoFrancisco.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
+
 } 
 
 
@@ -1838,12 +1868,10 @@ function inicializarConversacionBotiquinLockerNoFrancisco(textura:Texture2D){
 function inicializarConversacionBotiquinLockerFranciscoEnParty(textura:Texture2D){
 	conversacionBotiquinLockerFranciscoEnParty = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Si un botiquin es lo que necesitan, un botiquin les consigo",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionBotiquinLockerFranciscoEnParty.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 //Conversacion trabajador herido
@@ -2053,15 +2081,15 @@ function inicializarConversacionTrabajadorEnPeligroHeridoDiana(textura:Texture2D
 
 
 //Conversacion teniendo a Francisco selecionada para el botiquin
-function inicializarConversacionBotiquinLocker(textura:Texture2D){
-	conversacionBotiquinLocker = new ArbolConversacion(textura,null,null,null);
+function inicializarConversacionBotiquinLocker(){
+	conversacionBotiquinLocker = new ArbolConversacion(texturaMario,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("Aquí hay primeros auxilios.",1);
+	dialogos.Push(l);
+	l = new LineaDialogo("Nos seria de mucha ayuda que alguien supiera abrir cerraduras.",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionBotiquinLocker.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
 } 
 
 //Conversacion teniendo a diana selecionada para el trabajador desmayado

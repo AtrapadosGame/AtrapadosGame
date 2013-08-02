@@ -24,13 +24,13 @@ inventario = new Item[4];
 party = new Player[4];
 //Se inicializa el nivel con diana y dario
 party[0] = new Player(texturaCuadroDario, 0,"Dario", texturaCursorDario );
-party[1] = new Player(texturaCuadroDiana, 1,"Diana", texturaCursorDiana );
+party[1] = new Player(texturaCuadroDiana, 2,"Diana", texturaCursorDiana );
 party[2] = new Player(texturaCuadroMario, 4,"Mario", texturaCursorMario );
 party[3] = new Player(texturaCuadroMario, 5,"Francisco", texturaCursorMario );
-inventario[0]  = new Item(texturaPala,4,"Llave");
-inventario[1]  = new Item(texturaBotiquin,0,"Pala");
+//inventario[0]  = new Item(texturaPala,4,"Llave");
+//inventario[1]  = new Item(texturaBotiquin,3,"Botiquin");
 //inventario[2] = new Item(texturaToalla,2,"Toalla");
-//inventario[0] = new Item(texturaToalla,6,"Segueta");
+//inventario[0] = new Item(texturaToalla,1,"Extintor");
 
 }
 // ================================================================================
