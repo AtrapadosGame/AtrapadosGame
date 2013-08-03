@@ -309,24 +309,14 @@ function EventSwitch(comando : String){
 	
 	//CONVERSACIONES TRABAJADOR TUBO (terco)
 	if(comando.Equals("TTubo")){	
-		//Aca se consigue la llave de la puerta
-		if(boolTubo)
-		{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_TUBO_DESPUES_BARRICADA);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			boolTubo = false ;
-			
-		}else if(empleadosRescados >= 3){
+		if(empleadosRescados >= 3){
 			GameObject.Find	("TrabajadorTubo").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_TUBO_LIBERADO);
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LIBERADO);
 			empleadosRescados++;
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("TrabajadorTubo").renderer.enabled = false;
-			GameObject.Find("TrabajadorTubo").collider.enabled = false;
 		}else{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_TUBO_NORMAL);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
 		}
 	}
 	
@@ -334,23 +324,14 @@ function EventSwitch(comando : String){
 	//CONVERSACIONES TRABAJADOR LLAVE (terco)
 	if(comando.Equals("TrabajadorLlave")){	
 		//Aca se consigue la llave de la puerta
-		if(boolPuerta)
-		{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAVE_DESPUES_PUERTA);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			boolPuerta = false ;
-			
-		}else if(empleadosRescados >= 3){
+		if(empleadosRescados >= 3){
 			GameObject.Find	("TrabajadorLlave").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAVE_LIBERADO);
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LIBERADO);
 			empleadosRescados++;
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("TrabajadorLlave").renderer.enabled = false;
-			GameObject.Find("TrabajadorLlave").collider.enabled = false;
 		}else{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAVE_NORMAL);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
 		}
 	}
 	
@@ -359,30 +340,15 @@ function EventSwitch(comando : String){
 	//DA INFORMACION DEL CONSERJE y de la segueta
 	if(comando.Equals("TrabajadorConserje")){	
 		//Aca se consigue la llave de la puerta
-		if(boolLlave)
+		if(empleadosRescados >= 3)
 		{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_CONSERJE_DESPUES_CAJA);
-			boolLlave = false ;
-			infoConserje = true;
-		
-		}else if(boolReja)
-		{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_CONSERJE_DESPUES_PUERTA);
-			boolReja = false ;
-			
-		
-					
-		}else if(empleadosRescados >= 3)
-		{
-			GameObject.Find	("TrabajadorLlave").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_CONSERJE_LIBERADO);
+			GameObject.Find	("TrabajadorConserje").GetComponent(Interactor_Click).FlagOff();
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LIBERADO);
 			empleadosRescados++;
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			GameObject.Find("TrabajadorLlave").renderer.enabled = false;
-			GameObject.Find("TrabajadorLlave").collider.enabled = false;
 		}else{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_CONSERJE_NORMAL);
-			
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		}
 	}
 	
@@ -439,67 +405,48 @@ function EventSwitch(comando : String){
 			GameObject.Find	("TrabajadorHerido").GetComponent(Interactor_Click).FlagOff();
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_HERIDO_DIANA_EN_PARTY);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
+			contadorSegueta++;
 			empleadosRescados++;
-			GameObject.Find("TrabajadorHerido").renderer.enabled = false;
-			GameObject.Find("TrabajadorHerido").collider.enabled = false;
-			
-		
 		}else if(GetComponent(InventarioManager).enInventario(TOALLA))
 		{
 			GameObject.Find	("TrabajadorHerido").GetComponent(Interactor_Click).FlagOff();
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_HERIDO_TOALLA);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			empleadosRescados++;
-			GameObject.Find("TrabajadorHerido").renderer.enabled = false;
-			GameObject.Find("TrabajadorHerido").collider.enabled = false;
-			
-			
-		
+			contadorSegueta++;
 		}else{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_HERIDO_NO_TOALLA_NO_DIANA);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
 		}
 	}
 	
 	
-	
-	
 	//CONVERSACIONES TRABAJADOR INCONCIENTE
-	if(comando.Equals("TrabajadorHerido")){	
+	if(comando.Equals("TrabajadorDesmayado")){	
 		//Aca se consigue la llave de la puerta
 		if(GetComponent(Player_Manager).estaPersonaje(DIANA) )
 		{
-			GameObject.Find	("TrabajadorHerido").GetComponent(Interactor_Click).FlagOff();
+			GameObject.Find	("TrabajadorDesmayado").GetComponent(Interactor_Click).FlagOff();
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO_DIANA_EN_PARTY);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
+			contadorSegueta++;
 			empleadosRescados++;
-			GameObject.Find("TrabajadorHerido").renderer.enabled = false;
-			GameObject.Find("TrabajadorHerido").collider.enabled = false;
-			
-		
-		
 		}else if(GetComponent(InventarioManager).enInventario(INHALADOR))
 		{
-			GameObject.Find	("TrabajadorHerido").GetComponent(Interactor_Click).FlagOff();
+			GameObject.Find	("TrabajadorDesmayado").GetComponent(Interactor_Click).FlagOff();
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO_INHALADOR);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			empleadosRescados++;
-			GameObject.Find("TrabajadorHerido").renderer.enabled = false;
-			GameObject.Find("TrabajadorHerido").collider.enabled = false;
-			
-			
-		
+			contadorSegueta++;
 		}else if(GetComponent(Player_Manager).estaPersonaje(MARIO) )
+		{
+			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO_MARIO);
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+		}
+		else
 		{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			
-			empleadosRescados++;
-			GameObject.Find("TrabajadorHerido").renderer.enabled = false;
-			GameObject.Find("TrabajadorHerido").collider.enabled = false;	
 		}
 	}
 	
@@ -509,11 +456,11 @@ function EventSwitch(comando : String){
 		//Aca se consigue el inhalador
 		if(GetComponent(Player_Manager).estaPersonaje(FRANCISCO) )
 		{
-			if(currentPlayer.Equals("Francisco"))
+			if(currentPlayer.getId() == Player_Manager.FRANCISCO)
 			{
 				GameObject.Find("MesaTubos").GetComponent(Interactor_Click).FlagOff();
 				GetComponent(InventarioManager).addItem(new Item(texturaTubo, INHALADOR));
-				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_INHALADOR_FRANCISCO_EN_PARTY);
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_INHALADOR_FRANCISCO);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			}else{
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_INHALADOR_FRANCISCO_EN_PARTY);
@@ -529,20 +476,29 @@ function EventSwitch(comando : String){
 	//Caja donde esta EL INHALADOR
 	if(comando.Equals("Salida")){	
 		//Aca se consigue el inhalador
-		if(empleadosRescados == 6 )
-		{
-			GameObject.Find("Salida").GetComponent(Interactor_Click).FlagOff();
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_TRABAJADORES);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			//GAME OVER
-		}else if(jefeEscapa){
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_JEFE);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-			//GAME OVER
-		}else{
-			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_SOLO);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-		}
+			if(GetComponent(InventarioManager).enInventario(LLAVE))
+			{ 
+				if(empleadosRescados == 6 )
+				{
+					var puertaS : GameObject = GameObject.Find("PuertaSalida");
+					puertaS.renderer.enabled = false;
+					puertaS.collider.enabled = false;
+					GetComponent(InventarioManager).usarItem(LLAVE);
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_TRABAJADORES);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				}
+				else{
+					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_SOLO);
+					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				}
+			}
+			else if(currentPlayer.getId() == Player_Manager.MARIO){
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_MARIO);
+			}
+			else{
+				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_1);
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			}
 	}
 }	
 	
@@ -566,9 +522,15 @@ function EventDialog(idResultado : int){
 	if(idResultado == ManagerDialogos2.FINAL_JEFE){
 		Application.LoadLevel("FinN2");
 	}
-		
+	
+	if(idResultado == ManagerDialogos2.SALIDA_TRABAJADORES){
+		Application.LoadLevel("FinN2");
+	}
+	
+	if(idResultado == ManagerDialogos2.HUIR){
+		Application.LoadLevel("FinN2");
+	}		
 }
-
 
 
 function DarCinematica(index : int){
