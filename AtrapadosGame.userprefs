@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Persistance.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\LevelManagers\Manager1_5.js">
     <Files>
-      <File FileName="Assets/Scripts/Persistance.js" Line="29" Column="84" />
+      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager1_5.js" Line="113" Column="43" />
+      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager2.js" Line="78" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos2.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

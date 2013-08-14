@@ -174,6 +174,11 @@ public static final var SALIDA_TRABAJADORES = 9;
 
 public static final var HUIR = 10;
 
+public static final var TRABAJADOR_FUEGO_EXTINTOR = 11;
+
+public static final var BOTIQUIN = 12;
+
+public static final var REJA = 13;
 
 
 // ================================================================================
@@ -1607,7 +1612,7 @@ function inicializarConversacionRejaJefe3(textura:Texture2D){
 	dialogos.Push(l);
 	l = new LineaDialogo("Listo con la reja, ahora a abrir la puerta de algua forma.",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, REJA);
 	conversacionRejaJefe3.setRaiz(nodoRaiz);
 }
 
@@ -1640,12 +1645,11 @@ function inicializarConversacionArmariosSeguetas1(textura:Texture2D){
 function inicializarConversacionArmariosSeguetas2(textura:Texture2D){
 	conversacionArmariosSeguetas2 = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
-	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
+	var l: LineaDialogo = new LineaDialogo("No hay nada en este armario",1);
 	dialogos.Push(l); 
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
 	conversacionArmariosSeguetas2.setRaiz(nodoRaiz);
-	l = new LineaDialogo("no acepta irse",1);
-	dialogos.Push(l);
+	
 }
 
 
@@ -1779,7 +1783,7 @@ function inicializarConversacionTrabajadorEnPeligroLLamasExtintor(textura:Textur
 	dialogos.Push(l);
 	l = new LineaDialogo("Tranquilo, tranquilo. Apagaremos esto en un instante, no se desespere.",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos,TRABAJADOR_FUEGO_EXTINTOR );
 	conversacionTrabajadorEnPeligroLLamasExtintor.setRaiz(nodoRaiz);
 } 
 
@@ -1836,7 +1840,7 @@ function inicializarConversacionTrabajadorEnPeligroLLamasDianaEnParty(textura:Te
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, BOTIQUIN);
 	conversacionTrabajadorEnPeligroLLamasDianaEnParty.setRaiz(nodoRaiz);
 	l = new LineaDialogo("no acepta irse",1);
 	dialogos.Push(l);
@@ -1929,7 +1933,7 @@ function InicializarConversacionTrabajadorEnPeligroHeridoDiana(textura:Texture2D
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, BOTIQUIN);
 	conversacionTrabajadorEnPeligroHeridoDiana.setRaiz(nodoRaiz);
 	l = new LineaDialogo("no acepta irse",1);
 	dialogos.Push(l);
@@ -1951,7 +1955,7 @@ function inicializarConversacionTrabajadorEnPeligroHeridoToalla(textura:Texture2
 	dialogos.Push(l);
 	l = new LineaDialogo("Si, le entiendo. Veré como puedo ayudarle con eso.",2);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, BOTIQUIN);
 	conversacionTrabajadorEnPeligroHeridoToalla.setRaiz(nodoRaiz);
 }
 
@@ -2112,7 +2116,7 @@ function inicializarConversacionTrabajadorEnPeligroHeridoDiana(textura:Texture2D
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Insistencia a sacar trabajador",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, BOTIQUIN);
 	conversacionTrabajadorEnPeligroHeridoDiana.setRaiz(nodoRaiz);
 	l = new LineaDialogo("no acepta irse",1);
 	dialogos.Push(l);

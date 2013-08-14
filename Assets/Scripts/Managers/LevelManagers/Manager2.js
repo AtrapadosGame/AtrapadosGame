@@ -5,6 +5,7 @@
 
 //Variables para los managers
 
+
 private var managerDialogos: ManagerDialogos2;
 private var playerManager : Player_Manager;
 private var lootManager : LootManager1_5;
@@ -14,7 +15,8 @@ private var puzzle : Puzzle;
 
 private var currentPlayer : Player;
 //Texturas
-var cinematicas : Texture2D[] = new Texture2D[5];
+
+var cinematicas : Texture2D[] = new Texture2D[9];
 
 var texturaCursorDario : Texture2D;
 var texturaCursorCristina : Texture2D;
@@ -41,6 +43,15 @@ var quemado : boolean = false ;
 var infoConserje : boolean = false ;
 
 var cinematicaFusibles : boolean = false ;
+var cinematicaTorniquete : boolean = false ;
+var cinematicaExtintor : boolean = false ;
+var cinematicaBotiquin : boolean = false ;
+var cinematicaReja : boolean = false ;
+var cinematicaFuego : boolean = false ;
+var cinematicaMueble : boolean = false ;
+var cinematicaInhalador : boolean = false ;
+var cinematicaFinal : boolean = false ;
+
 
 var texturaCuadroDario : Texture2D;
 var texturaCuadroCristina : Texture2D;
@@ -64,6 +75,8 @@ public static final var FRANCISCO : int = Player_Manager.FRANCISCO;
 
 public var empleadosRescados : int = 0;
 public var contadorSegueta : int = 0;
+var siguienteNivel : String;
+
 
 function Awake () {
 
@@ -74,6 +87,10 @@ GameObject.Find("Mario").collider.enabled = false;
 GameObject.Find("Mario").renderer.enabled = false;
 GameObject.Find("Francisco").collider.enabled = false;
 GameObject.Find("Francisco").renderer.enabled = false;
+
+
+
+
 
 //Inicializacion de los managers y demas scripts
 playerManager = GetComponent(Player_Manager);
@@ -100,8 +117,33 @@ for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 
 
 function OnGUI(){
+
 	if(cinematicaFusibles){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[0]);
+	}
+	if(cinematicaTorniquete){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[1]);
+	}
+	if(cinematicaExtintor){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[2]);
+	}
+	if(cinematicaBotiquin){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[3]);
+	}
+	if(cinematicaReja){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[4]);
+	}
+	if(cinematicaMueble){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[5]);
+	}
+	if(cinematicaInhalador){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[6]);
+	}
+	if(cinematicaFuego){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[7]);
+	}
+	if(cinematicaFinal){
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[8]);
 	}
 }
 
@@ -191,6 +233,10 @@ function EventSwitch(comando : String){
 				GetComponent(InventarioManager).usarItem(PALA);
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_PALA);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				yield WaitForSeconds(5);
+				cinematicaMueble = true;
+				yield WaitForSeconds(5);
+				cinematicaMueble = false;
 			}
 			else if(GetComponent(InventarioManager).enInventario(TUBO))
 			{
@@ -200,6 +246,10 @@ function EventSwitch(comando : String){
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 				GameObject.Find("MesaPuerta").renderer.enabled = false;
 				GameObject.Find("MesaPuerta").collider.enabled = false;
+				yield WaitForSeconds(5);
+				cinematicaMueble = true;
+				yield WaitForSeconds(5);
+				cinematicaMueble = false;
 			}
 			else if(currentPlayer.getId() == Player_Manager.MARIO){
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_BARRICADA_MARIO);
@@ -263,6 +313,7 @@ function EventSwitch(comando : String){
 					GameObject.Find("Reja").GetComponent(Interactor_Click).FlagOff();
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_REJA_ABRIR);
 					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+					
 					GameObject.Find("Reja").renderer.enabled = false;
 					GameObject.Find("Reja").collider.enabled = false;
 					boolReja = true;
@@ -360,17 +411,22 @@ function EventSwitch(comando : String){
 		if(GetComponent(InventarioManager).enInventario(EXTINTOR))
 		{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_EXTINTOR);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			
 			GetComponent(InventarioManager).usarItem(EXTINTOR);
 			Destroy(GameObject.Find("EscombrosFuego"));
 			empleadosRescados++;
 			contadorSegueta++;
+			GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
 			GameObject.Find("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			
 		}else if(!GetComponent(InventarioManager).enInventario(EXTINTOR) && !quemado)
 		{
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS);
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			
 			quemado = true;
+			
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		}else
 		{
 			if(GetComponent(Player_Manager).estaPersonaje(DIANA)){
@@ -379,9 +435,11 @@ function EventSwitch(comando : String){
 					GameObject.Find	("TrabajadorFuego").GetComponent(Interactor_Click).FlagOff();
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_CURAR);
 					GetComponent(InventarioManager).usarItem(BOTIQUIN);
+					
 					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 					empleadosRescados++;
 					contadorSegueta++;
+					
 				}
 				else{
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_LLAMAS_NO_BOTIQUIN);
@@ -407,11 +465,17 @@ function EventSwitch(comando : String){
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			contadorSegueta++;
 			empleadosRescados++;
+			cinematicaBotiquin = true;
+			yield WaitForSeconds(5);
+			cinematicaBotiquin = false;
 		}else if(GetComponent(InventarioManager).enInventario(TOALLA))
 		{
 			GameObject.Find	("TrabajadorHerido").GetComponent(Interactor_Click).FlagOff();
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_HERIDO_TOALLA);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+			cinematicaTorniquete = true;
+			yield WaitForSeconds(5);
+			cinematicaTorniquete = false;
 			empleadosRescados++;
 			contadorSegueta++;
 		}else{
@@ -430,6 +494,9 @@ function EventSwitch(comando : String){
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO_DIANA_EN_PARTY);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			contadorSegueta++;
+			cinematicaInhalador = true;
+			yield WaitForSeconds(5);
+			cinematicaInhalador = false;
 			empleadosRescados++;
 		}else if(GetComponent(InventarioManager).enInventario(INHALADOR))
 		{
@@ -437,6 +504,9 @@ function EventSwitch(comando : String){
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_TRABAJADOR_DESMAYADO_INHALADOR);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 			empleadosRescados++;
+			cinematicaInhalador = true;
+			yield WaitForSeconds(5);
+			cinematicaInhalador = false;
 			contadorSegueta++;
 		}else if(GetComponent(Player_Manager).estaPersonaje(MARIO) )
 		{
@@ -486,6 +556,9 @@ function EventSwitch(comando : String){
 					GetComponent(InventarioManager).usarItem(LLAVE);
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_TRABAJADORES);
 					Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+					cinematicaFinal = true;
+					yield WaitForSeconds(7);
+					cinematicaFinal = false;
 				}
 				else{
 					managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_SALIDA_SOLO);
@@ -498,6 +571,9 @@ function EventSwitch(comando : String){
 			else{
 				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_PUERTA_JEFE_1);
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+				cinematicaFinal = true;
+				yield WaitForSeconds(7);
+				cinematicaFinal = false;
 			}
 	}
 }	
@@ -515,20 +591,58 @@ function EventDialog(idResultado : int){
 	}
 	
 	if(idResultado == ManagerDialogos2.TRABAJADOR_FUEGO){
+		
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematicaFuego = true;
+		yield WaitForSeconds(5);
+		cinematicaFuego = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
 		GameObject.Find("TrabajadorFuego").transform.position.x = -7.624907;
 		GameObject.Find("TrabajadorFuego").transform.position.z = -9.590029;
 	}
+	if(idResultado == ManagerDialogos2.TRABAJADOR_FUEGO_EXTINTOR){
 	
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematicaExtintor = true;
+		yield WaitForSeconds(5);
+		cinematicaExtintor = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+
+	}
+	
+	if(idResultado == ManagerDialogos2.BOTIQUIN){
+	
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematicaBotiquin = true;
+		yield WaitForSeconds(5);
+		cinematicaBotiquin = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+
+	}
 	if(idResultado == ManagerDialogos2.FINAL_JEFE){
-		Application.LoadLevel("FinN2");
+		Application.LoadLevel(siguienteNivel);
 	}
 	
 	if(idResultado == ManagerDialogos2.SALIDA_TRABAJADORES){
-		Application.LoadLevel("FinN2");
+		cinematicaFinal = true;
+		yield WaitForSeconds(7);
+		cinematicaFinal = false;
+		Application.LoadLevel(siguienteNivel);
 	}
 	
 	if(idResultado == ManagerDialogos2.HUIR){
-		Application.LoadLevel("FinN2");
+		cinematicaFinal = true;
+		yield WaitForSeconds(7);
+		cinematicaFinal = false;
+		Application.LoadLevel(siguienteNivel);
+	}
+	
+	if(idResultado == ManagerDialogos2.REJA){
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOff();
+		cinematicaReja = true;
+		yield WaitForSeconds(5);
+		cinematicaReja = false;
+		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
 	}		
 }
 
