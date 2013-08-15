@@ -1505,7 +1505,7 @@ function inicializarConversacionBarricadaPuertaJefe1(textura:Texture2D){
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Tenemos que aprovechar cualquier recurso, esta pala servirá para hacer palanca.",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, FLAG_BARRICADA_TUBO);
 	conversacionBarricadaPuertaJefe1.setRaiz(nodoRaiz);
 }
 
@@ -1529,7 +1529,7 @@ function inicializarConversacionBarricadaPuertaJefe3(textura:Texture2D){
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Tenemos que aprovechar cualquier recurso, este tubo servirá para hacer palanca.",1);
 	dialogos.Push(l); 
-	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos, FLAG_BARRICADA_TUBO);
 	conversacionBarricadaPuertaJefe3.setRaiz(nodoRaiz);
 }
 
