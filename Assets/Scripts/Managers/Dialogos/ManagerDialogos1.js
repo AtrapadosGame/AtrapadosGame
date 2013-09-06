@@ -201,7 +201,6 @@ function WindowFunction (windowID : int) {
 	
 	
 	if(GUI.Button(Rect (10, 20, ventana.width, 75), textoOpcion1)){
-	print("Escogio Opcion 1:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo1());
 	dibujarDialogo();
 	enOpcion = false;
@@ -210,7 +209,6 @@ function WindowFunction (windowID : int) {
 	
 	}
 	if(GUI.Button(Rect (10, 95, ventana.width, 75), textoOpcion2)){
-		print("Escogio Opcion 2:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo2());
 	dibujarDialogo();
 	enOpcion = false;
@@ -220,7 +218,6 @@ function WindowFunction (windowID : int) {
 	if(conversacionActual.getNodoActual().getHijo3()){
 	
 	if(GUI.Button(Rect (10, 170, ventana.width, 75), textoOpcion3)){
-		print("Escogio Opcion 2:");
 	conversacionActual.setNodoActual(conversacionActual.getNodoActual().getHijo3());
 	dibujarDialogo();
 	enOpcion = false;
@@ -520,7 +517,7 @@ switch(idConversacion){
 			
 	case CONVERSACION_PLAYER7:
 		
-		 
+		 print("Switch Player 7");
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
@@ -544,7 +541,7 @@ switch(idConversacion){
 			
 	case CONVERSACION_PLAYER8:
 		
-		 
+		 print("Switch Player 7");
 		if(GetComponent(Player_Manager).getCurrentPlayer().getId() == Player_Manager.DARIO)
 		{
 			texturaPlayer=texturaDario;
@@ -763,13 +760,7 @@ switch(idConversacion){
 	break;
 
 }
-
-
-
-
 dialogosActivos = true;
-print("El final de empezarDialogo"+dialogosActivos);
-
 }
 
 function dibujarDialogo(){
@@ -1225,7 +1216,7 @@ function inicializarConversacionPlayer6(textura:Texture2D)
 
 function inicializarConversacionPlayer7(textura:Texture2D)
 {
-	 //print("Inicializa la conversacion");
+	 print("Inicializa la conversacion Cristina!!!!!!!!!!!!!!!!!!!");
 	conversacionPlayer7 = new ArbolConversacion(textura,null,null,null);
 
 	/**
@@ -1242,7 +1233,7 @@ function inicializarConversacionPlayer7(textura:Texture2D)
 
 function inicializarConversacionPlayer8(textura:Texture2D)
 {
-	 //print("Inicializa la conversacion");
+	 print("Inicializa la conversacion Cristina");
 	conversacionPlayer8 = new ArbolConversacion(textura,null,null,null);
 
 	/**
