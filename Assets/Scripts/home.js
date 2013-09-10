@@ -13,13 +13,13 @@ function OnGUI ()
 	
 	if(GUI.Button(Rect(20,300,buttonWidth,buttonHeight),""))
 	{
-		Application.LoadLevel("cinematica");
+		Application.LoadLevel("IntroN1");
 	}	
 	
 	GUI.skin=guiskin2;	
 	if(GUI.Button(Rect(20,400,buttonWidth,buttonHeight),""))
 	{	
-		Application.LoadLevel("instructions1");
+		Application.LoadLevel("instrucciones");
 	}	
    	
    	GUI.skin=guiskin3;	
