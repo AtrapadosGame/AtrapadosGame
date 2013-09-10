@@ -180,6 +180,8 @@ public static final var BOTIQUIN = 12;
 
 public static final var REJA = 13;
 
+public static final var QUEDARSE = 14;
+
 
 // ================================================================================
 // OnCreate
@@ -2095,19 +2097,26 @@ function inicializarConversacionSalidaSolo(textura:Texture2D){
 	conversacionSalidaSolo = new ArbolConversacion(textura,null,null,null);
 	var dialogos : Array = new Array();
 	var l: LineaDialogo = new LineaDialogo("Aquí hay otra salida.",1);
-	dialogos.Push(l); 
+	dialogos.Push(l);
 	var nodoRaiz:NodoDialogo = new NodoDialogo(dialogos);
+	conversacionSalidaSolo.setRaiz(nodoRaiz);  
+	 
+	
 	dialogos = new Array();
 	l = LineaDialogo("No hay remedio, salvémonos nosotros.",1);
 	dialogos.Push(l);
+	l = LineaDialogo("Creo que hicimos lo que estaba a nuestro alcance.",1);
+	dialogos.Push(l);
 	var nodoHijo1:NodoDialogo = new NodoDialogo(dialogos, HUIR);
 	nodoRaiz.setHijo1(nodoHijo1);
+	
 	dialogos = new Array();
 	l = LineaDialogo("Tenemos que insistir, quedémonos.",1);
 	dialogos.Push(l);
-	var nodoHijo2:NodoDialogo = new NodoDialogo(dialogos);
+	l = LineaDialogo("Subimos hasta aqui, tenemos que terminar lo que comenzamos.",1);
+	dialogos.Push(l);
+	var nodoHijo2:NodoDialogo = new NodoDialogo(dialogos, QUEDARSE);
 	nodoRaiz.setHijo2(nodoHijo2);
-	conversacionSalidaSolo.setRaiz(nodoRaiz);  
 } 
 
 //Conversacion teniendo a diana selecionada para el trabajador herido

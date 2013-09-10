@@ -652,6 +652,10 @@ function EventDialog(idResultado : int){
 		yield WaitForSeconds(5);
 		cinematicaReja = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();
+	}
+	
+	if(idResultado == ManagerDialogos2.QUEDARSE){
+		GetComponent(InventarioManager).addItem(new Item(texturaLlave, LLAVE));
 	}		
 }
 
