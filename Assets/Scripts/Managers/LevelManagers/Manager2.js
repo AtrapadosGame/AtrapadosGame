@@ -120,7 +120,7 @@ for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 function OnGUI(){
 
 	if(cinematicaFusibles){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 350, Screen.width, Screen.height), cinematicas[0]);
+		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 400, Screen.width, Screen.height), cinematicas[0]);
 	}
 	if(cinematicaTorniquete){
 		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[1]);
