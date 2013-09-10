@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\LevelManagers\Manager1_5.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/volver.js">
     <Files>
-      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager1.js" Line="404" Column="73" />
-      <File FileName="Assets\Scripts\Managers\Dialogos\ManagerDialogos1.js" Line="762" Column="2" />
-      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager1_5.js" Line="99" Column="20" />
+      <File FileName="Assets/Scripts/home.js" Line="33" Column="2" />
+      <File FileName="Assets/Scripts/volver.js" Line="12" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

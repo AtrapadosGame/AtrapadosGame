@@ -78,6 +78,8 @@
      <Compile Include="Assets\Scripts\Unity Scripts\Mouse\MouseOrbit(unused).js" />
      <Compile Include="Assets\Scripts\Unity Scripts\Mouse\SmoothFollow.js" />
      <Compile Include="Assets\Scripts\Unity Scripts\Mouse\SmoothLookAt(Unused).js" />
+     <Compile Include="Assets\Scripts\home.js" />
+     <Compile Include="Assets\Scripts\volver.js" />
      <None Include="Assets\SM2\Plugins\AnBSoft Common\Standard Shaders\Sprite Vertex Colored, Fast.shader" />
      <None Include="Assets\SM2\Plugins\AnBSoft Common\Standard Shaders\Sprite Simple Texture .shader" />
      <None Include="Assets\SM2\Plugins\AnBSoft Common\Standard Shaders\Sprite Cutout.shader" />
