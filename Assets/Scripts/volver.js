@@ -9,7 +9,7 @@ function OnGUI ()
 {
 	GUI.skin=guiskin;	
 	
-	if(GUI.Button(Rect(20,600,buttonWidth,buttonHeight),""))
+	if(GUI.Button(Rect(825,625,buttonWidth,buttonHeight),""))
 	{
 		Application.LoadLevel("menu");
 	}	

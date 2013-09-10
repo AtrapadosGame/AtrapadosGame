@@ -11,19 +11,19 @@ function OnGUI ()
 {
 	GUI.skin=guiskin;	
 	
-	if(GUI.Button(Rect(20,300,buttonWidth,buttonHeight),""))
+	if(GUI.Button(Rect(20,425,buttonWidth,buttonHeight),""))
 	{
 		Application.LoadLevel("IntroN1");
 	}	
 	
 	GUI.skin=guiskin2;	
-	if(GUI.Button(Rect(20,400,buttonWidth,buttonHeight),""))
+	if(GUI.Button(Rect(20,525,buttonWidth,buttonHeight),""))
 	{	
 		Application.LoadLevel("instrucciones");
 	}	
    	
    	GUI.skin=guiskin3;	
-	if(GUI.Button(Rect(20,500,buttonWidth,buttonHeight),""))
+	if(GUI.Button(Rect(20,625,buttonWidth,buttonHeight),""))
 	{	
 		Application.LoadLevel("creditos");
 	}	

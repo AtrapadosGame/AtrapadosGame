@@ -122,6 +122,6 @@ function gameOver(){
 
 
 	yield WaitForSeconds(5);
-	Application.LoadLevel ("Nivel1");
+	Application.LoadLevel ("fin");
 		
 }

@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/home.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/LevelManagers/Manager2.js">
     <Files>
-      <File FileName="Assets/Scripts/home.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/volver.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/LevelManagers/Manager2.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/home.js" Line="14" Column="27" />
+      <File FileName="Assets/Scripts/volver.js" Line="12" Column="26" />
+      <File FileName="Assets/Scripts/Managers/LevelManagers/Manager2.js" Line="150" Column="62" />
+      <File FileName="Assets/Scripts/Managers/LevelManagers/Manager1.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

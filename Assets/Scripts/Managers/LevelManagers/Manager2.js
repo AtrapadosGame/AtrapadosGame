@@ -120,34 +120,34 @@ for(var i:int = 0 ; i <tempPlayers.Length ; i++){
 function OnGUI(){
 
 	if(cinematicaFusibles){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 400, Screen.width, Screen.height), cinematicas[0]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[0]);
 	}
 	if(cinematicaTorniquete){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[1]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[1]);
 	}
 	if(cinematicaExtintor){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[2]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[2]);
 	}
 	if(cinematicaBotiquin){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[3]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[3]);
 	}
 	if(cinematicaReja){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[4]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[4]);
 	}
 	if(cinematicaMueble){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[5]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[5]);
 	}
 	if(cinematicaInhalador){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[6]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[6]);
 	}
 	if(cinematicaFuego){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[7]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[7]);
 	}
 	if(cinematicaFinal){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[8]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[8]);
 	}
 	if(cinematicaFrancisco){
-		GUI.Label (Rect (Screen.width/2 - 600,Screen.height/2 - 250, Screen.width, Screen.height), cinematicas[9]);
+		GUI.Label (Rect (Screen.width/2 - 350,Screen.height/2 - 382, Screen.width, Screen.height), cinematicas[9]);
 	}
 }
 

@@ -83,15 +83,15 @@ function OnGUI(){
 	GUI.skin = customSkin;
 	if(cinematica1){
 		GUI.Box (Rect (0,0, Screen.width, Screen.height),"");
-		GUI.Label (Rect (0,150, Screen.width, Screen.height), cinematicas[0]);
+		GUI.Label (Rect (150,0, Screen.width, Screen.height), cinematicas[0]);
 	}
 	if(cinematica2){
 	GUI.Box (Rect (0,0, Screen.width, Screen.height),"");
-		GUI.Label (Rect (0,150, Screen.width, Screen.height), cinematicas[1]);
+		GUI.Label (Rect (150,0, Screen.width, Screen.height), cinematicas[1]);
 	}
 	if(cinematica3){
 		GUI.Box (Rect (0,0, Screen.width, Screen.height),"");
-		GUI.Label (Rect (0,150, Screen.width, Screen.height), cinematicas[2]);
+		GUI.Label (Rect (150,0, Screen.width, Screen.height), cinematicas[2]);
 	}
 }
 
