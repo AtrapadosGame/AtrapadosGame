@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Puzzle.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\LevelManagers\Manager2.js">
     <Files>
-      <File FileName="Assets/Scripts/Timer.js" Line="118" Column="14" />
-      <File FileName="Assets/Scripts/Puzzle.js" Line="110" Column="63" />
-      <File FileName="Assets/Scripts/Managers/LevelManagers/Manager2.js" Line="207" Column="1" />
+      <File FileName="Assets\Scripts\Puzzle.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Timer.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\LevelManagers\Manager2.js" Line="208" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

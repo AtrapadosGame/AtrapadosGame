@@ -198,18 +198,17 @@ function EventSwitch(comando : String){
 		if(currentPlayer.getId() == Player_Manager.MARIO){
 			managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_FUERTE_MARIO);
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
-			boolLlave = true;
 		}
 		else{
 			puzzle.empezarPuzzle();
-			if(puzzle.puzzleRespuesta())
-			{
-				GameObject.Find("Caja").GetComponent(Interactor_Click).FlagOff();
-				GetComponent(InventarioManager).addItem(new Item(texturaLlave, LLAVE));
-				managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_EXITO);
-				Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
-			}
 		}
+	}
+	
+	if(comando.Equals("PuzzleResuelto")){	
+		GameObject.Find("Caja").GetComponent(Interactor_Click).FlagOff();
+		GetComponent(InventarioManager).addItem(new Item(texturaLlave, LLAVE));
+		managerDialogos.empezarDialogos(ManagerDialogos2.CONVERSACION_CAJA_EXITO);
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);	
 	}
 	
 	//Caja donde esta la segueta
