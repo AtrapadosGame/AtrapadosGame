@@ -111,7 +111,7 @@ if(GUI.Button(new Rect(ventana.width/3, (ventana.height * 3)/4, ancho, alto ), "
 		
 		if(esSolucion()){
 		
-		print("encontro respuest");
+		print("encontro respuesta");
 		//TODO...RETORNA A EL MANAGER DEL LEVEL
 		}else{
 		//TODO...RETORNA A EL MANAGER DEL LEVEL
@@ -123,7 +123,7 @@ if(GUI.Button(new Rect(ventana.width/3, (ventana.height * 3)/4, ancho, alto ), "
 		
 		}
 
-if(GUI.Button(new Rect((ventana.width/9)*5, (ventana.height * 3)/4, ancho, alto ), "Cancelar")){
+if(GUI.Button(new Rect((ventana.width/8)*5, (ventana.height * 3)/4, ancho, alto ), "Cancelar")){
 		
 		puzzleActivo = false;
 		GetComponent(Player_Manager).getCurrentPlayer().getGameObject().GetComponent(MoverClick).MoverOn();		
