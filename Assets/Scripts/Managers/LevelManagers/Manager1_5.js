@@ -72,6 +72,7 @@ function EventSwitch(comando : String){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_DIANA);
 	GameObject.Find("Diana").GetComponent(Interactor_Click).FlagOff();
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	
 	}
 	
@@ -79,33 +80,39 @@ function EventSwitch(comando : String){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_FABIO);
 	GameObject.Find("Fabio").GetComponent(Interactor_Click).FlagOff();
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	
 	if(comando.Equals("Cristina")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_CRISTINA);
 	GameObject.Find("Cristina").GetComponent(Interactor_Click).FlagOff();
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	
 	if(comando.Equals("Mario")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_MARIO);
 	GameObject.Find("Mario").GetComponent(Interactor_Click).FlagOff();
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	
 	if(comando.Equals("Francisco")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_FRANCISCO);
 	GameObject.Find("Francisco").GetComponent(Interactor_Click).FlagOff();
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	}
 	if(comando.Equals("Armario 1")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_ARMARIO1);
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	
 	}
 	if(comando.Equals("Armario 2")){
 	
 	managerDialogos.empezarDialogos(ManagerDialogos1_5.CONVERSACION_ARMARIO2);
+	Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 	
 	}//TEST PARA REALIZAR EL CAMBIO DE LEVEL
 	if(comando.Equals("CambioLevel")){

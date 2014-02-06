@@ -322,6 +322,7 @@ switch(idConversacion){
 
 	case CONVERSACION_DIANA2:
 		conversacionActual = conversacionDiana2;
+		dibujarDialogo();
 	break;
 
 	case CONVERSACION_DIANA3:
